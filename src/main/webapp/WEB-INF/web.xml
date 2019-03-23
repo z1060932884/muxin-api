@@ -3,27 +3,27 @@
 
     <display-name>bengshiwei</display-name>
 
-    <servlet>
-        <servlet-name>BengShiWeiServlet</servlet-name>
-        <!--容器-->
-        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-        <init-param>
-            <param-name>jersey.config.server.provider.packages</param-name>
-            <!--映射的包名，用于搜索处理类-->
-            <param-value>com.zzj.muxin.jersey.service</param-value>
-        </init-param>
-        <init-param>
-            <param-name>javax.ws.rs.Application</param-name>
-            <param-value>com.zzj.muxin.jersey.JerseyConfig</param-value>
-        </init-param>
+    <!--<servlet>-->
+        <!--<servlet-name>BengShiWeiServlet</servlet-name>-->
+        <!--&lt;!&ndash;容器&ndash;&gt;-->
+        <!--<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>-->
+        <!--<init-param>-->
+            <!--<param-name>jersey.config.server.provider.packages</param-name>-->
+            <!--&lt;!&ndash;映射的包名，用于搜索处理类&ndash;&gt;-->
+            <!--<param-value>com.zzj.muxin.jersey.service</param-value>-->
+        <!--</init-param>-->
+        <!--<init-param>-->
+            <!--<param-name>javax.ws.rs.Application</param-name>-->
+            <!--<param-value>com.zzj.muxin.jersey.JerseyConfig</param-value>-->
+        <!--</init-param>-->
 
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+        <!--<load-on-startup>1</load-on-startup>-->
+    <!--</servlet>-->
 
-    <!--映射-->
-    <servlet-mapping>
-        <servlet-name>BengShiWeiServlet</servlet-name>
-        <!--访问路径-->
-        <url-pattern>/api/*</url-pattern>
-    </servlet-mapping>
+    <!--&lt;!&ndash;映射&ndash;&gt;-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>BengShiWeiServlet</servlet-name>-->
+        <!--&lt;!&ndash;访问路径&ndash;&gt;-->
+        <!--<url-pattern>/api/*</url-pattern>-->
+    <!--</servlet-mapping>-->
 </web-app>

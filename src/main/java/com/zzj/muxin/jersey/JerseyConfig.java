@@ -8,6 +8,8 @@ import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.stereotype.Component;
 
+import java.util.logging.Logger;
+
 @Component
 public class JerseyConfig extends ResourceConfig {
 
@@ -20,7 +22,7 @@ public class JerseyConfig extends ResourceConfig {
         register(GsonProvider.class);
 
         //注册日志打印输出
-//        register(Log.class);
+        register(Logger.class);
 
         register(ResponseFilter.class);
         register(WriterInterceptor.class);
