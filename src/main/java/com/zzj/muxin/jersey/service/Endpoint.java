@@ -9,7 +9,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 @Component
-@Path("/hello")
+@Path("/test")
 public class Endpoint {
 
     @Autowired

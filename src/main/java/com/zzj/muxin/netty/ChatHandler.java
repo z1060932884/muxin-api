@@ -1,7 +1,10 @@
 package com.zzj.muxin.netty;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import com.zzj.muxin.enums.MsgActionEnum;
+import com.zzj.muxin.service.UserService;
 import com.zzj.muxin.utils.JsonUtils;
+import com.zzj.muxin.utils.SpringUtil;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -9,8 +12,11 @@ import io.netty.channel.group.ChannelGroup;
 import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.concurrent.GlobalEventExecutor;
+import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
 
@@ -24,19 +30,58 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
 
         //获取客户端出来的消息
         String message= textWebSocketFrame.text();
-
+        //当前的channel
+        Channel currentChannel = channelHandlerContext.channel();
         //1.获取客户端发来的消息
         DataContent dataContent = JsonUtils.jsonToPojo(message,DataContent.class);
         //2.判断消息类型，根据不同的类型处理不同的业务
         Integer action = dataContent.getAction();
+
         if(action == MsgActionEnum.CONNECT.type){
             //  2.1 当websocket 第一次open的时候，初始化channel,把channel和userId关联起来
-
+            UserChannelRel.put(dataContent.getChatMsg().getSenderId(),currentChannel);
         }else if(action == MsgActionEnum.CHAT.type){
             //  2.2 聊天类型的消息，把聊天记录保存到数据库，同时标记消息的签收状态（未签收）
+            ChatMsg chatMsg = dataContent.getChatMsg();
+            String msgText = chatMsg.getMsg();
+            String receiverId = chatMsg.getReceiverId();
+            String senderId = chatMsg.getSenderId();
+
+            UserService userService = (UserService) SpringUtil.getBean("userServiceImp");
+            String msgId = userService.saveMsg(dataContent.getChatMsg());
+            chatMsg.setMsgId(msgId);
+            //发送消息
+            //从全局用户Channel关系中获取接收方channel
+            Channel receiverChannel =  UserChannelRel.get(receiverId);
+            if(receiverChannel == null){
+                // TODO channel为空  代表用户离线
+            }else {
+                //当receiverChannel 不为空，从userGroup中查找channel
+                Channel findChannel = users.find(receiverChannel.id());
+                if(findChannel!=null){
+                    //用户在线
+                    findChannel.writeAndFlush(new TextWebSocketFrame(JsonUtils.objectToJson(chatMsg)));
+                }else {
+                    // TODO 用户离线
+                }
+            }
 
         }else if(action == MsgActionEnum.SIGNED.type){
             //  2.3 签收消息类型，针对具体的消息进行签收，修改数据库中对应消息的签收状态（已签收）
+            UserService userService = (UserService) SpringUtil.getBean("userServiceImp");
+            String msgIdsStr = dataContent.getExtand();
+            String[] msgIds = msgIdsStr.split(",");
+            List<String> msgIdList = new ArrayList<>();
+            for(String mid : msgIds){
+                if(StringUtils.isNotBlank(mid)){
+                    msgIdList.add(mid);
+                }
+            }
+            if(msgIdList!=null && !msgIdList.isEmpty() && msgIdList.size()>0){
+                //批量签收
+
+                userService.updateMsgSigned(msgIdList);
+            }
 
         }else if(action == MsgActionEnum.PULL_FRIEND.type){
 

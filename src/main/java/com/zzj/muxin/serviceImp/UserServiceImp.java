@@ -1,8 +1,12 @@
 package com.zzj.muxin.serviceImp;
 
+import com.zzj.muxin.domain.ChatMsgExample;
 import com.zzj.muxin.domain.Users;
 import com.zzj.muxin.domain.UsersExample;
+import com.zzj.muxin.enums.MsgSignFlagEnum;
+import com.zzj.muxin.mapper.ChatMsgMapper;
 import com.zzj.muxin.mapper.UsersMapper;
+import com.zzj.muxin.netty.ChatMsg;
 import com.zzj.muxin.service.UserService;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -21,6 +26,8 @@ public class UserServiceImp implements UserService {
      */
     @Autowired
     private UsersMapper usersMapper;
+    @Autowired
+    private ChatMsgMapper msgMapper;
 
     @Autowired
     private Sid sid;
@@ -75,6 +82,32 @@ public class UserServiceImp implements UserService {
     public Users updateUserInfo(Users users) {
         usersMapper.updateByPrimaryKeySelective(users);
         return queryUserById(users.getId());
+    }
+
+    @Override
+    public String saveMsg(ChatMsg chatMsg) {
+        com.zzj.muxin.domain.ChatMsg msg = new com.zzj.muxin.domain.ChatMsg();
+        String msgId = sid.nextShort();
+        msg.setId(msgId);
+        msg.setMsg(chatMsg.getMsg());
+        msg.setAcceptUserId(chatMsg.getReceiverId());
+        msg.setSendUserId(chatMsg.getSenderId());
+        msg.setCreateTime(new Date());
+        msg.setSignFlag(MsgSignFlagEnum.unsign.type);
+
+        msgMapper.insert(msg);
+
+        return msgId;
+    }
+
+    @Override
+    public void updateMsgSigned(List<String> msgIdList) {
+        ChatMsgExample chatMsgExample = new ChatMsgExample();
+        ChatMsgExample.Criteria criteria = chatMsgExample.createCriteria();
+        criteria.andIdIn(msgIdList);
+        com.zzj.muxin.domain.ChatMsg chatMsg = new com.zzj.muxin.domain.ChatMsg();
+        chatMsg.setSignFlag(MsgSignFlagEnum.signed.type);
+        msgMapper.updateByExample(chatMsg,chatMsgExample);
     }
 
 
