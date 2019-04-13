@@ -14,13 +14,13 @@ package com.zzj.muxin.utils;
 public class IMoocJSONResult {
 
     // 响应业务状态
-    private Integer status;
+    private Integer code;
 
     // 响应消息
-    private String msg;
+    private String message;
 
     // 响应中的数据
-    private Object data;
+    private Object result;
     
     private String ok;	// 不使用
 
@@ -61,51 +61,50 @@ public class IMoocJSONResult {
 //    }
 
     public IMoocJSONResult(Integer status, String msg, Object data) {
-        this.status = status;
-        this.msg = msg;
-        this.data = data;
+        this.code = status;
+        this.message = msg;
+        this.result = data;
     }
 
     public IMoocJSONResult(Object data) {
-        this.status = 200;
-        this.msg = "OK";
-        this.data = data;
+        this.code = 200;
+        this.message = "OK";
+        this.result = data;
     }
 
     public Boolean isOK() {
-        return this.status == 200;
+        return this.code == 200;
     }
 
-    public Integer getStatus() {
-        return status;
+    public Integer getCode() {
+        return code;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setCode(Integer code) {
+        this.code = code;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public Object getData() {
-        return data;
+    public Object getResult() {
+        return result;
     }
 
-    public void setData(Object data) {
-        this.data = data;
+    public void setResult(Object result) {
+        this.result = result;
     }
 
-	public String getOk() {
-		return ok;
-	}
+    public String getOk() {
+        return ok;
+    }
 
-	public void setOk(String ok) {
-		this.ok = ok;
-	}
-
+    public void setOk(String ok) {
+        this.ok = ok;
+    }
 }
