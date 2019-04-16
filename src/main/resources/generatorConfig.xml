@@ -11,7 +11,7 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码   mysql数据库连接-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3305/muxin-dev" userId="root"
+                        connectionURL="jdbc:mysql://localhost:3305/muxin-dev?serverTimezone=UTC" userId="root"
                         password="123456">
         </jdbcConnection>
         <!--oracle数据库连接-->
@@ -48,15 +48,14 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
         <!-- 指定数据库表 -->
+        <table tableName="chat_users"></table>
         <table tableName="chat_msg"></table>
-        <table tableName="friends_request"></table>
-        <table tableName="my_friends"></table>
-        <table tableName="users"></table>
-
+        <table  tableName="friends_request"></table>
+        <table  tableName="my_friends"></table>
 
 
         <!-- 有些表的字段需要指定java类型
-         <table schema="" tableName="">
+         <table schema="muxin-dev" tableName="">
             <columnOverride column="" javaType="" />
         </table> -->
     </context>

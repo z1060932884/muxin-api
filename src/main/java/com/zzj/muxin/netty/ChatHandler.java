@@ -30,6 +30,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
 
         //获取客户端出来的消息
         String message= textWebSocketFrame.text();
+        System.out.println("接收到消息--->"+message);
         //当前的channel
         Channel currentChannel = channelHandlerContext.channel();
         //1.获取客户端发来的消息
@@ -48,22 +49,22 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             String senderId = chatMsg.getSenderId();
 
             UserService userService = (UserService) SpringUtil.getBean("userServiceImp");
-            String msgId = userService.saveMsg(dataContent.getChatMsg());
-            chatMsg.setMsgId(msgId);
+            userService.saveMsg(dataContent.getChatMsg());
             //发送消息
             //从全局用户Channel关系中获取接收方channel
             Channel receiverChannel =  UserChannelRel.get(receiverId);
             if(receiverChannel == null){
                 // TODO channel为空  代表用户离线
             }else {
-                //当receiverChannel 不为空，从userGroup中查找channel
-                Channel findChannel = users.find(receiverChannel.id());
-                if(findChannel!=null){
-                    //用户在线
-                    findChannel.writeAndFlush(new TextWebSocketFrame(JsonUtils.objectToJson(chatMsg)));
-                }else {
-                    // TODO 用户离线
-                }
+                receiverChannel.writeAndFlush(new TextWebSocketFrame(message));
+//                //当receiverChannel 不为空，从userGroup中查找channel
+//                Channel findChannel = users.find(receiverChannel.id());
+//                if(findChannel!=null){
+//                    //用户在线
+//                    findChannel.writeAndFlush(new TextWebSocketFrame(JsonUtils.objectToJson(chatMsg)));
+//                }else {
+//                    // TODO 用户离线
+//                }
             }
 
         }else if(action == MsgActionEnum.SIGNED.type){

@@ -5,9 +5,9 @@ import com.zzj.muxin.enums.MsgActionEnum;
 import com.zzj.muxin.enums.MsgSignFlagEnum;
 import com.zzj.muxin.enums.SearchFriendsStatusEnum;
 import com.zzj.muxin.mapper.ChatMsgMapper;
+import com.zzj.muxin.mapper.ChatUsersMapper;
 import com.zzj.muxin.mapper.FriendsRequestMapper;
 import com.zzj.muxin.mapper.MyFriendsMapper;
-import com.zzj.muxin.mapper.UsersMapper;
 import com.zzj.muxin.netty.ChatMsg;
 import com.zzj.muxin.netty.DataContent;
 import com.zzj.muxin.netty.UserChannelRel;
@@ -17,7 +17,6 @@ import com.zzj.muxin.vo.FriendRequestVO;
 import com.zzj.muxin.vo.MyFriendsVO;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import org.n3r.idworker.Sid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -36,7 +35,7 @@ public class UserServiceImp implements UserService {
      * 使用编译的mapper自动注入
      */
     @Autowired
-    private UsersMapper usersMapper;
+    private ChatUsersMapper usersMapper;
 
     @Autowired
     private MyFriendsMapper myFriendsMapper;
@@ -54,10 +53,10 @@ public class UserServiceImp implements UserService {
     @Override
     public boolean queryUsernameIsExist(String username) {
 
-        UsersExample example = new UsersExample();
-        UsersExample.Criteria criteria = example.createCriteria();
+        ChatUsersExample example = new ChatUsersExample();
+        ChatUsersExample.Criteria criteria = example.createCriteria();
         criteria.andUsernameEqualTo(username);
-        List<Users> users = usersMapper.selectByExample(example);
+        List<ChatUsers> users = usersMapper.selectByExample(example);
 
         if(users.size()>0){
             System.out.println(users.size());
@@ -69,13 +68,13 @@ public class UserServiceImp implements UserService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public Users queryUsername(String username, String password) {
-        Users users = null;
-        UsersExample example = new UsersExample();
-        UsersExample.Criteria criteria = example.createCriteria();
+    public ChatUsers queryUsername(String username, String password) {
+        ChatUsers users = null;
+        ChatUsersExample example = new ChatUsersExample();
+        ChatUsersExample.Criteria criteria = example.createCriteria();
         criteria.andUsernameEqualTo(username);
         criteria.andPasswordEqualTo(password);
-        List<Users> usersList = usersMapper.selectByExample(example);
+        List<ChatUsers> usersList = usersMapper.selectByExample(example);
         if(usersList.size()>0){
             users = usersList.get(0);
         }
@@ -84,7 +83,7 @@ public class UserServiceImp implements UserService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public Users saveUser(Users users) {
+    public ChatUsers saveUser(ChatUsers users) {
 
         // TODO: 2018/11/2 为用户生成一个二维码
         users.setQrcode("");
@@ -98,9 +97,12 @@ public class UserServiceImp implements UserService {
 
     @Transactional(propagation = Propagation.REQUIRED)
     @Override
-    public Users updateUserInfo(Users users) {
-        usersMapper.updateByPrimaryKeySelective(users);
-        return queryUserById(users.getId());
+    public ChatUsers updateUserInfo(ChatUsers users) {
+        ChatUsersExample chatUsersExample = new ChatUsersExample();
+        ChatUsersExample.Criteria criteria = chatUsersExample.createCriteria();
+        criteria.andIdEqualTo(users.getId());
+        usersMapper.updateByExample(users,chatUsersExample);
+        return queryUserInfoByUserId(users.getId());
     }
 
 
@@ -108,7 +110,7 @@ public class UserServiceImp implements UserService {
     @Override
     public Integer preconditionSearchFriends(String myUserId, String friendUsername) {
 
-        Users user = queryUserInfoByUsername(friendUsername);
+        ChatUsers user = queryUserInfoByUsername(friendUsername);
 
         // 1. 搜索的用户如果不存在，返回[无此用户]
         if (user == null) {
@@ -139,16 +141,29 @@ public class UserServiceImp implements UserService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public Users queryUserInfoByUsername(String username) {
-        UsersExample ue = new UsersExample();
-        UsersExample.Criteria uc = ue.createCriteria();
+    public ChatUsers queryUserInfoByUsername(String username) {
+        ChatUsersExample ue = new ChatUsersExample();
+        ChatUsersExample.Criteria uc = ue.createCriteria();
         uc.andUsernameEqualTo( username);
-        Users users = null;
-        List<Users> usersList = usersMapper.selectByExample(ue);
+        ChatUsers users = null;
+        List<ChatUsers> usersList = usersMapper.selectByExample(ue);
         if(usersList!=null&&usersList.size()>0){
             users = usersList.get(0);
         }
         return users;
+    }
+
+
+    @Override
+    public ChatUsers queryUserInfoByUserId(String userId) {
+        ChatUsersExample ue = new ChatUsersExample();
+        ChatUsersExample.Criteria uc = ue.createCriteria();
+        uc.andIdEqualTo(userId);
+        List<ChatUsers> chatUsers = usersMapper.selectByExample(ue);
+        if(chatUsers!=null&&chatUsers.size()>0){
+            return chatUsers.get(0);
+        }
+        return null;
     }
 
 
@@ -157,7 +172,7 @@ public class UserServiceImp implements UserService {
     public void sendFriendRequest(String myUserId, String friendUsername) {
 
         // 根据用户名把朋友信息查询出来
-        Users friend = queryUserInfoByUsername(friendUsername);
+        ChatUsers friend = queryUserInfoByUsername(friendUsername);
 
         // 1. 查询发送好友请求记录表
         FriendsRequestExample fre = new FriendsRequestExample();
@@ -191,7 +206,11 @@ public class UserServiceImp implements UserService {
         if(friendsRequests!=null && friendsRequests.size()>0){
             for(FriendsRequest friendsRequest : friendsRequests){
                 FriendRequestVO friendRequestVO = new FriendRequestVO();
-                BeanUtils.copyProperties(friendsRequest,friendRequestVO);
+                ChatUsers user = queryUserInfoByUserId(friendsRequest.getSendUserId());
+                friendRequestVO.setSendUserId(friendsRequest.getSendUserId());
+                friendRequestVO.setSendFaceImage(user.getFaceImage());
+                friendRequestVO.setSendNickname(user.getNickname());
+                friendRequestVO.setSendUsername(user.getUsername());
                 friendRequestVOS.add(friendRequestVO);
             }
         }
@@ -248,7 +267,11 @@ public class UserServiceImp implements UserService {
         if(myFirends!=null && myFirends.size()>0){
             for(MyFriends myFriends : myFirends){
                 MyFriendsVO myFriendsVO = new MyFriendsVO();
-                BeanUtils.copyProperties(myFriends,myFriendsVO);
+                ChatUsers users = queryUserInfoByUserId(myFriends.getMyFriendUserId());
+                myFriendsVO.setFriendUserId(myFriends.getMyFriendUserId());
+                myFriendsVO.setFriendFaceImage(users.getFaceImage());
+                myFriendsVO.setFriendNickname(users.getNickname());
+                myFriendsVO.setFriendUsername(users.getUsername());
                 myFriendsVOS.add(myFriendsVO);
             }
         }
@@ -259,17 +282,19 @@ public class UserServiceImp implements UserService {
     @Override
     public String saveMsg(ChatMsg chatMsg) {
         com.zzj.muxin.domain.ChatMsg msg = new com.zzj.muxin.domain.ChatMsg();
-        String msgId = sid.nextShort();
-        msg.setId(msgId);
+//        String msgId = sid.nextShort();
+        msg.setId(chatMsg.getMsgId());
         msg.setMsg(chatMsg.getMsg());
         msg.setAcceptUserId(chatMsg.getReceiverId());
         msg.setSendUserId(chatMsg.getSenderId());
         msg.setCreateTime(new Date());
         msg.setSignFlag(MsgSignFlagEnum.unsign.type);
+        msg.setItemType(chatMsg.getItemType());
+        msg.setType(chatMsg.getType());
 
         msgMapper.insert(msg);
 
-        return msgId;
+        return chatMsg.getMsgId();
     }
 
     @Override
@@ -283,9 +308,6 @@ public class UserServiceImp implements UserService {
     }
 
 
-    private Users queryUserById(String userId){
 
-        return usersMapper.selectByPrimaryKey(userId);
-    }
 
 }

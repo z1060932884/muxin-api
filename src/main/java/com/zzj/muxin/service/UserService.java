@@ -1,6 +1,6 @@
 package com.zzj.muxin.service;
 
-import com.zzj.muxin.domain.Users;
+import com.zzj.muxin.domain.ChatUsers;
 import com.zzj.muxin.netty.ChatMsg;
 import com.zzj.muxin.vo.FriendRequestVO;
 import com.zzj.muxin.vo.MyFriendsVO;
@@ -22,19 +22,19 @@ public interface UserService {
      * @param password
      * @return
      */
-    public Users queryUsername(String username,String password);
+    public ChatUsers queryUsername(String username, String password);
 
     /**
      * 注册用户 保存
      * @param users
      * @return
      */
-    public Users saveUser(Users users);
+    public ChatUsers saveUser(ChatUsers users);
 
     /**
      * 修改用户信息
      */
-    public Users updateUserInfo(Users users);
+    public ChatUsers updateUserInfo(ChatUsers users);
 
     /**
      * 保存消息
@@ -57,7 +57,11 @@ public interface UserService {
     /**
      * @Description: 根据用户名查询用户对象
      */
-    public Users queryUserInfoByUsername(String username);
+    public ChatUsers queryUserInfoByUsername(String username);
+    /**
+     * @Description: 根据id查询用户对象
+     */
+    public ChatUsers queryUserInfoByUserId(String userId);
 
     /**
      * @Description: 添加好友请求记录，保存到数据库

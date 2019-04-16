@@ -8,6 +8,8 @@
     <result column="msg" jdbcType="VARCHAR" property="msg" />
     <result column="sign_flag" jdbcType="INTEGER" property="signFlag" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="item_type" jdbcType="INTEGER" property="itemType" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, send_user_id, accept_user_id, msg, sign_flag, create_time
+    id, send_user_id, accept_user_id, msg, sign_flag, create_time, type, item_type
   </sql>
   <select id="selectByExample" parameterType="com.zzj.muxin.domain.ChatMsgExample" resultMap="BaseResultMap">
     select
@@ -92,11 +94,11 @@
   </delete>
   <insert id="insert" parameterType="com.zzj.muxin.domain.ChatMsg">
     insert into chat_msg (id, send_user_id, accept_user_id, 
-      msg, sign_flag, create_time
-      )
+      msg, sign_flag, create_time, 
+      type, item_type)
     values (#{id,jdbcType=VARCHAR}, #{sendUserId,jdbcType=VARCHAR}, #{acceptUserId,jdbcType=VARCHAR}, 
-      #{msg,jdbcType=VARCHAR}, #{signFlag,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
-      )
+      #{msg,jdbcType=VARCHAR}, #{signFlag,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{type,jdbcType=INTEGER}, #{itemType,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zzj.muxin.domain.ChatMsg">
     insert into chat_msg
@@ -119,6 +121,12 @@
       <if test="createTime != null">
         create_time,
       </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="itemType != null">
+        item_type,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -138,6 +146,12 @@
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="itemType != null">
+        #{itemType,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -168,6 +182,12 @@
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemType != null">
+        item_type = #{record.itemType,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -180,7 +200,9 @@
       accept_user_id = #{record.acceptUserId,jdbcType=VARCHAR},
       msg = #{record.msg,jdbcType=VARCHAR},
       sign_flag = #{record.signFlag,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      type = #{record.type,jdbcType=INTEGER},
+      item_type = #{record.itemType,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

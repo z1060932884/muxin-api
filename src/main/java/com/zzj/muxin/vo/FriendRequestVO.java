@@ -4,6 +4,7 @@ package com.zzj.muxin.vo;
  * @Description: 好友请求发送方的信息
  */
 public class FriendRequestVO {
+
     private String sendUserId;
     private String sendUsername;
     private String sendFaceImage;

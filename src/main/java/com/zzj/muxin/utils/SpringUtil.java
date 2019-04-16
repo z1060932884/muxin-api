@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContextAware;
 /**
  * @Description: 提供手动获取被spring管理的bean对象
  */
+
 public class SpringUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;

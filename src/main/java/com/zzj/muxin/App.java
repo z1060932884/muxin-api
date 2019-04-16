@@ -1,10 +1,12 @@
 package com.zzj.muxin;
 
+import com.zzj.muxin.utils.SpringUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 //spring-boot应用标识
@@ -13,6 +15,11 @@ import org.springframework.context.annotation.ComponentScan;
 @MapperScan("com.zzj.muxin.mapper")
 @ComponentScan(basePackages = {"com.zzj.muxin","org.n3r.idworker"})
 public class App extends SpringBootServletInitializer {
+
+    @Bean
+    public SpringUtil getSpingUtil() {
+        return new SpringUtil();
+    }
 
     public static void main(String[] args){
         // 程序启动入口

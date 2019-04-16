@@ -1,6 +1,6 @@
 package com.zzj.muxin.domain;
 
-public class Users {
+public class ChatUsers {
     private String id;
 
     private String username;

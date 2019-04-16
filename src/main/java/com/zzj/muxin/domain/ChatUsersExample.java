@@ -3,14 +3,14 @@ package com.zzj.muxin.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersExample {
+public class ChatUsersExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public UsersExample() {
+    public ChatUsersExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 

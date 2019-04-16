@@ -1,7 +1,7 @@
 package com.zzj.muxin.controller;
 
 import com.zzj.muxin.bo.UsersBo;
-import com.zzj.muxin.domain.Users;
+import com.zzj.muxin.domain.ChatUsers;
 import com.zzj.muxin.enums.OperatorFriendRequestTypeEnum;
 import com.zzj.muxin.enums.SearchFriendsStatusEnum;
 import com.zzj.muxin.service.UserService;
@@ -31,14 +31,14 @@ public class UserController {
     private FastDFSClient fastDFSClient;
 
     @PostMapping("/registerOrLogin")
-    public IMoocJSONResult registerOrLogin(@RequestBody Users users) throws Exception{
+    public IMoocJSONResult registerOrLogin(@RequestBody ChatUsers users) throws Exception{
 
         if(Strings.isBlank(users.getUsername() )|| Strings.isBlank(users.getPassword())){
 
             return IMoocJSONResult.errorMsg("用户名或密码不能为空");
         }
 
-        Users usersResult = null;
+        ChatUsers usersResult = null;
         //判断用户名是否存在，如果存在就登录，如果不存在则注册
         boolean usernameIsExist = userService.queryUsernameIsExist(users.getUsername());
         if(usernameIsExist){
@@ -83,7 +83,7 @@ public class UserController {
         String thumpImageUrl = arr[0] + thump+arr[1];
 
         //更改用户头像
-        Users users = new Users();
+        ChatUsers users = new ChatUsers();
         users.setId(usersBo.getUserId());
         users.setFaceImageBig(url);
         users.setFaceImage(thumpImageUrl);
@@ -109,7 +109,7 @@ public class UserController {
         // 前置条件 - 3. 搜索的朋友已经是你的好友，返回[该用户已经是你的好友]
         Integer status = userService.preconditionSearchFriends(myUserId, friendUsername);
         if (status == SearchFriendsStatusEnum.SUCCESS.status) {
-            Users user = userService.queryUserInfoByUsername(friendUsername);
+            ChatUsers user = userService.queryUserInfoByUsername(friendUsername);
             UsersVO userVO = new UsersVO();
             BeanUtils.copyProperties(user, userVO);
             return IMoocJSONResult.ok(userVO);
@@ -210,6 +210,26 @@ public class UserController {
         List<MyFriendsVO> myFirends = userService.queryMyFriends(userId);
 
         return IMoocJSONResult.ok(myFirends);
+    }
+
+
+    /**
+     * 根据id获取用户信息
+     * @param userId 用户id
+     * @return
+     */
+    @GetMapping("/getUserInfo")
+    public IMoocJSONResult getUserInfo(String userId){
+        // 0. userId 判断不能为空
+        if (StringUtils.isBlank(userId)) {
+            return IMoocJSONResult.errorMsg("");
+        }
+
+       ChatUsers users =  userService.queryUserInfoByUserId(userId);
+        if(users == null){
+            return IMoocJSONResult.errorMsg("该用户不存在");
+        }
+        return IMoocJSONResult.ok(users);
     }
 
 }

@@ -15,6 +15,10 @@ public class ChatMsg {
 
     private Date createTime;
 
+    private Integer type;
+
+    private Integer itemType;
+
     public String getId() {
         return id;
     }
@@ -61,5 +65,21 @@ public class ChatMsg {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public Integer getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(Integer itemType) {
+        this.itemType = itemType;
     }
 }
