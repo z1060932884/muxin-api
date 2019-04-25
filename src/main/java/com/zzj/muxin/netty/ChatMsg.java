@@ -1,5 +1,6 @@
 package com.zzj.muxin.netty;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
@@ -12,6 +13,53 @@ public class ChatMsg implements Serializable {
     private String  msgId;//消息Id
     private int type;//消息类型
     private int itemType;//消息item类型
+    /**
+     * 发送失败
+     */
+    private boolean sendFails;
+    private String time;//时间
+    /**
+     * 是否发送成功
+     */
+    @JsonProperty(value = "isSend")
+    private boolean isSend;
+    /**
+     * 是否读取
+     */
+    @JsonProperty(value = "isRead")
+    private boolean isRead;
+
+    public boolean isSendFails() {
+        return sendFails;
+    }
+
+    public void setSendFails(boolean sendFails) {
+        this.sendFails = sendFails;
+    }
+
+    public boolean isSend() {
+        return isSend;
+    }
+
+    public void setSend(boolean send) {
+        isSend = send;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public int getType() {
         return type;

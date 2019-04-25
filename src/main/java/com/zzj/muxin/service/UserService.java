@@ -91,4 +91,10 @@ public interface UserService {
      */
     public List<MyFriendsVO> queryMyFriends(String userId);
 
+
+    /**
+     * @Description: 获取未签收消息列表
+     */
+    public List<com.zzj.muxin.domain.ChatMsg> getUnReadMsgList(String acceptUserId);
+
 }

@@ -1,5 +1,6 @@
 package com.zzj.muxin.netty;
 
+import cn.hutool.core.date.DateUtil;
 import com.sun.xml.internal.bind.v2.TODO;
 import com.zzj.muxin.enums.MsgActionEnum;
 import com.zzj.muxin.service.UserService;
@@ -16,6 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
@@ -23,7 +25,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
     /**
      * 记录管理所有客户端的channel
      */
-    private ChannelGroup users = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+    public static ChannelGroup users = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame textWebSocketFrame)
             throws Exception {
@@ -47,16 +49,29 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             String msgText = chatMsg.getMsg();
             String receiverId = chatMsg.getReceiverId();
             String senderId = chatMsg.getSenderId();
-
+            chatMsg.setTime(chatMsg.getTime());
+            //标记消息已发送成功
+            chatMsg.setSend(true);
+            chatMsg.setRead(false);
             UserService userService = (UserService) SpringUtil.getBean("userServiceImp");
-            userService.saveMsg(dataContent.getChatMsg());
+            userService.saveMsg(chatMsg);
             //发送消息
             //从全局用户Channel关系中获取接收方channel
             Channel receiverChannel =  UserChannelRel.get(receiverId);
+            //发送给接收者的消息
+            String sendMessage = JsonUtils.objectToJson(dataContent);
+
+            //通知发送者已收到消息并保存数据库
+            DataContent notifyData = new DataContent();
+            // 6 代表通知发送者已后台收到消息并保存数据库
+            notifyData.setAction(6);
+
+            notifyData.setExtand(chatMsg.getMsgId());
+            UserChannelRel.get(senderId).writeAndFlush(new TextWebSocketFrame(JsonUtils.objectToJson(notifyData)));
             if(receiverChannel == null){
                 // TODO channel为空  代表用户离线
             }else {
-                receiverChannel.writeAndFlush(new TextWebSocketFrame(message));
+                receiverChannel.writeAndFlush(new TextWebSocketFrame(sendMessage));
 //                //当receiverChannel 不为空，从userGroup中查找channel
 //                Channel findChannel = users.find(receiverChannel.id());
 //                if(findChannel!=null){

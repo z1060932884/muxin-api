@@ -1,6 +1,7 @@
 package com.zzj.muxin.controller;
 
 import com.zzj.muxin.bo.UsersBo;
+import com.zzj.muxin.domain.ChatMsg;
 import com.zzj.muxin.domain.ChatUsers;
 import com.zzj.muxin.enums.OperatorFriendRequestTypeEnum;
 import com.zzj.muxin.enums.SearchFriendsStatusEnum;
@@ -232,4 +233,21 @@ public class UserController {
         return IMoocJSONResult.ok(users);
     }
 
+
+    /**
+     *
+     * @Description: 用户手机端获取未签收的消息列表
+     */
+    @PostMapping("/getUnReadMsgList")
+    public IMoocJSONResult getUnReadMsgList(String acceptUserId) {
+        // 0. userId 判断不能为空
+        if (StringUtils.isBlank(acceptUserId)) {
+            return IMoocJSONResult.errorMsg("");
+        }
+
+        // 查询列表
+        List<ChatMsg> unreadMsgList = userService.getUnReadMsgList(acceptUserId);
+
+        return IMoocJSONResult.ok(unreadMsgList);
+    }
 }
