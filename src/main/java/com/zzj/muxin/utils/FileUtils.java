@@ -10,6 +10,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import cn.hutool.core.codec.Base64;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.ImageUtil;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Base64Utils;
@@ -139,17 +142,22 @@ public class FileUtils {
         if(base64Data == null || "".equals(base64Data)){
             return false;
         }else{
-            String [] d = base64Data.split("base64,");
-            if(d != null && d.length == 2){
-                dataPrix = d[0];
-                data = d[1];
-            }else{
-                return false;
-            }
+        	if(base64Data.contains("base64,")){
+				String [] d = base64Data.split("base64,");
+				if(d != null && d.length == 2){
+					dataPrix = d[0];
+					data = d[1];
+				}else{
+					return false;
+				}
+			}else {
+				data = base64Data;
+			}
+
         }
 
         // 因为BASE64Decoder的jar问题，此处使用spring框架提供的工具包
-        byte[] bs = Base64Utils.decodeFromString(data);
+        byte[] bs = Base64.decode(data);
         // 使用apache提供的工具类操作流
         org.apache.commons.io.FileUtils.writeByteArrayToFile(new File(filePath), bs);
         
