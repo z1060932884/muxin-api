@@ -11,8 +11,9 @@
         </commentGenerator>
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码   mysql数据库连接-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3305/muxin-dev?serverTimezone=UTC" userId="root"
-                        password="123456">
+                        connectionURL="jdbc:mysql://47.75.50.156:3306/muxin-dev?serverTimezone=UTC"
+                        userId="root"
+                        password="z123456">
         </jdbcConnection>
         <!--oracle数据库连接-->
         <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"     connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:yycg"
@@ -52,6 +53,8 @@
         <table tableName="chat_msg"></table>
         <table  tableName="friends_request"></table>
         <table  tableName="my_friends"></table>
+        <table  tableName="tb_group"></table>
+        <table  tableName="tb_group_member"></table>
 
 
         <!-- 有些表的字段需要指定java类型

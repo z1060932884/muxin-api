@@ -2,8 +2,10 @@ package com.zzj.muxin.vo;
 
 import com.google.gson.annotations.Expose;
 import com.zzj.muxin.db.GroupMember;
+import com.zzj.muxin.domain.TbGroupMember;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 群成员Model
@@ -23,15 +25,15 @@ public class GroupMemberCard {
     @Expose
     private String groupId;// 对于的群Id
     @Expose
-    private LocalDateTime modifyAt;// 最后修改时间
+    private Date modifyAt;// 最后修改时间
 
-    public GroupMemberCard(GroupMember member) {
+    public GroupMemberCard(TbGroupMember member) {
         this.id = member.getId();
         this.alias = member.getAlias();
         this.isAdmin = member.getPermissionType() == GroupMember.PERMISSION_TYPE_ADMIN;
         this.isOwner = member.getPermissionType() == GroupMember.PERMISSION_TYPE_ADMIN_SU;
-        this.userId = member.getUser().getId();
-        this.groupId = member.getGroup().getId();
+        this.userId = member.getUserId();
+        this.groupId = member.getGroupId();
         this.modifyAt = member.getUpdateAt();
     }
 
@@ -83,11 +85,11 @@ public class GroupMemberCard {
         this.groupId = groupId;
     }
 
-    public LocalDateTime getModifyAt() {
+    public Date getModifyAt() {
         return modifyAt;
     }
 
-    public void setModifyAt(LocalDateTime modifyAt) {
+    public void setModifyAt(Date modifyAt) {
         this.modifyAt = modifyAt;
     }
 }

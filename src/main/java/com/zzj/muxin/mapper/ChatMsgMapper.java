@@ -14,9 +14,11 @@ public interface ChatMsgMapper {
 
     int insertSelective(ChatMsg record);
 
+
     List<ChatMsg> selectByExample(ChatMsgExample example);
 
     int updateByExampleSelective(@Param("record") ChatMsg record, @Param("example") ChatMsgExample example);
+
 
     int updateByExample(@Param("record") ChatMsg record, @Param("example") ChatMsgExample example);
 }

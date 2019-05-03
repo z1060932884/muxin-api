@@ -5,11 +5,13 @@
     <result column="id" jdbcType="VARCHAR" property="id" />
     <result column="send_user_id" jdbcType="VARCHAR" property="sendUserId" />
     <result column="accept_user_id" jdbcType="VARCHAR" property="acceptUserId" />
-    <result column="msg" jdbcType="VARCHAR" property="msg" />
     <result column="sign_flag" jdbcType="INTEGER" property="signFlag" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="item_type" jdbcType="INTEGER" property="itemType" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zzj.muxin.domain.ChatMsg">
+    <result column="msg" jdbcType="LONGVARCHAR" property="msg" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,8 +72,27 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, send_user_id, accept_user_id, msg, sign_flag, create_time, type, item_type
+    id, send_user_id, accept_user_id, sign_flag, create_time, type, item_type
   </sql>
+  <sql id="Blob_Column_List">
+    msg
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.zzj.muxin.domain.ChatMsgExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from chat_msg
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" parameterType="com.zzj.muxin.domain.ChatMsgExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -94,11 +115,11 @@
   </delete>
   <insert id="insert" parameterType="com.zzj.muxin.domain.ChatMsg">
     insert into chat_msg (id, send_user_id, accept_user_id, 
-      msg, sign_flag, create_time, 
-      type, item_type)
+      sign_flag, create_time, type, 
+      item_type, msg)
     values (#{id,jdbcType=VARCHAR}, #{sendUserId,jdbcType=VARCHAR}, #{acceptUserId,jdbcType=VARCHAR}, 
-      #{msg,jdbcType=VARCHAR}, #{signFlag,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{type,jdbcType=INTEGER}, #{itemType,jdbcType=INTEGER})
+      #{signFlag,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{type,jdbcType=INTEGER}, 
+      #{itemType,jdbcType=INTEGER}, #{msg,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zzj.muxin.domain.ChatMsg">
     insert into chat_msg
@@ -112,9 +133,6 @@
       <if test="acceptUserId != null">
         accept_user_id,
       </if>
-      <if test="msg != null">
-        msg,
-      </if>
       <if test="signFlag != null">
         sign_flag,
       </if>
@@ -127,6 +145,9 @@
       <if test="itemType != null">
         item_type,
       </if>
+      <if test="msg != null">
+        msg,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -137,9 +158,6 @@
       </if>
       <if test="acceptUserId != null">
         #{acceptUserId,jdbcType=VARCHAR},
-      </if>
-      <if test="msg != null">
-        #{msg,jdbcType=VARCHAR},
       </if>
       <if test="signFlag != null">
         #{signFlag,jdbcType=INTEGER},
@@ -152,6 +170,9 @@
       </if>
       <if test="itemType != null">
         #{itemType,jdbcType=INTEGER},
+      </if>
+      <if test="msg != null">
+        #{msg,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -173,9 +194,6 @@
       <if test="record.acceptUserId != null">
         accept_user_id = #{record.acceptUserId,jdbcType=VARCHAR},
       </if>
-      <if test="record.msg != null">
-        msg = #{record.msg,jdbcType=VARCHAR},
-      </if>
       <if test="record.signFlag != null">
         sign_flag = #{record.signFlag,jdbcType=INTEGER},
       </if>
@@ -188,7 +206,24 @@
       <if test="record.itemType != null">
         item_type = #{record.itemType,jdbcType=INTEGER},
       </if>
+      <if test="record.msg != null">
+        msg = #{record.msg,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update chat_msg
+    set id = #{record.id,jdbcType=VARCHAR},
+      send_user_id = #{record.sendUserId,jdbcType=VARCHAR},
+      accept_user_id = #{record.acceptUserId,jdbcType=VARCHAR},
+      sign_flag = #{record.signFlag,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      type = #{record.type,jdbcType=INTEGER},
+      item_type = #{record.itemType,jdbcType=INTEGER},
+      msg = #{record.msg,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -198,7 +233,6 @@
     set id = #{record.id,jdbcType=VARCHAR},
       send_user_id = #{record.sendUserId,jdbcType=VARCHAR},
       accept_user_id = #{record.acceptUserId,jdbcType=VARCHAR},
-      msg = #{record.msg,jdbcType=VARCHAR},
       sign_flag = #{record.signFlag,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       type = #{record.type,jdbcType=INTEGER},

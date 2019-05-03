@@ -9,8 +9,6 @@ public class ChatMsg {
 
     private String acceptUserId;
 
-    private String msg;
-
     private Integer signFlag;
 
     private Date createTime;
@@ -18,6 +16,8 @@ public class ChatMsg {
     private Integer type;
 
     private Integer itemType;
+
+    private String msg;
 
     public String getId() {
         return id;
@@ -41,14 +41,6 @@ public class ChatMsg {
 
     public void setAcceptUserId(String acceptUserId) {
         this.acceptUserId = acceptUserId == null ? null : acceptUserId.trim();
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg == null ? null : msg.trim();
     }
 
     public Integer getSignFlag() {
@@ -81,5 +73,13 @@ public class ChatMsg {
 
     public void setItemType(Integer itemType) {
         this.itemType = itemType;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg == null ? null : msg.trim();
     }
 }

@@ -3,8 +3,11 @@ package com.zzj.muxin.vo;
 import com.google.gson.annotations.Expose;
 import com.zzj.muxin.db.Group;
 import com.zzj.muxin.db.GroupMember;
+import com.zzj.muxin.domain.TbGroup;
+import com.zzj.muxin.domain.TbGroupMember;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 群信息Model
@@ -25,19 +28,17 @@ public class GroupCard {
     @Expose
     private int notifyLevel;// 对于当前用户的通知级别
     @Expose
-    private LocalDateTime joinAt;// 加入时间
+    private Date joinAt;// 加入时间
     @Expose
-    private LocalDateTime modifyAt;// 最后修改时间
+    private Date modifyAt;// 最后修改时间
 
-    public GroupCard(GroupMember member) {
-        this(member.getGroup(), member);
-    }
 
-    public GroupCard(Group group) {
+
+    public GroupCard(TbGroup group) {
         this(group, null);
     }
 
-    public GroupCard(Group group, GroupMember member) {
+    public GroupCard(TbGroup group, TbGroupMember member) {
         this.id = group.getId();
         this.name = group.getName();
         this.desc = group.getDescription();
@@ -96,19 +97,19 @@ public class GroupCard {
         this.notifyLevel = notifyLevel;
     }
 
-    public LocalDateTime getJoinAt() {
+    public Date getJoinAt() {
         return joinAt;
     }
 
-    public void setJoinAt(LocalDateTime joinAt) {
+    public void setJoinAt(Date joinAt) {
         this.joinAt = joinAt;
     }
 
-    public LocalDateTime getModifyAt() {
+    public Date getModifyAt() {
         return modifyAt;
     }
 
-    public void setModifyAt(LocalDateTime modifyAt) {
+    public void setModifyAt(Date modifyAt) {
         this.modifyAt = modifyAt;
     }
 }
