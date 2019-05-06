@@ -11,7 +11,7 @@ public class TbGroupMember {
 
     private String groupId;
 
-    private Integer notifyLevel;
+    private Integer notifyLevel = 0;
 
     private Integer permissionType;
 
@@ -23,7 +23,10 @@ public class TbGroupMember {
 
     }
     public TbGroupMember(String userId,String groupId){
-
+        this.userId = userId;
+        this.groupId = groupId;
+        this.createAt = new Date();
+        this.updateAt = new Date();
     }
 
     public String getId() {

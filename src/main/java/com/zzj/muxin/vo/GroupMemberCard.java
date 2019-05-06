@@ -2,6 +2,7 @@ package com.zzj.muxin.vo;
 
 import com.google.gson.annotations.Expose;
 import com.zzj.muxin.db.GroupMember;
+import com.zzj.muxin.domain.ChatUsers;
 import com.zzj.muxin.domain.TbGroupMember;
 
 import java.time.LocalDateTime;
@@ -21,6 +22,8 @@ public class GroupMemberCard {
     @Expose
     private boolean isOwner;// 是否是创建者
     @Expose
+    private ChatUsers users;
+    @Expose
     private String userId;// 对于的用户Id
     @Expose
     private String groupId;// 对于的群Id
@@ -35,6 +38,14 @@ public class GroupMemberCard {
         this.userId = member.getUserId();
         this.groupId = member.getGroupId();
         this.modifyAt = member.getUpdateAt();
+    }
+
+    public ChatUsers getUsers() {
+        return users;
+    }
+
+    public void setUsers(ChatUsers users) {
+        this.users = users;
     }
 
     public String getId() {

@@ -85,6 +85,7 @@ public class GroupServiceImp implements GroupService {
         chatUsers.forEach(chatUsers1 -> {
             TbGroupMember tbGroupMember = new TbGroupMember(chatUsers1.getId(),group.getId());
             tbGroupMember.setId(sid.nextShort());
+            tbGroupMember.setPermissionType(GroupMember.PERMISSION_TYPE_NONE);
             groupMemberMapper.insert(tbGroupMember);
         });
 
@@ -123,8 +124,20 @@ public class GroupServiceImp implements GroupService {
         TbGroupMemberExample.Criteria criteria = groupMemberExample.createCriteria();
         criteria.andGroupIdEqualTo(group.getId());
         List<TbGroupMember> groupMembers = groupMemberMapper.selectByExample(groupMemberExample);
-
-
+        return new HashSet<>(groupMembers);
+    }
+    /**
+     * 获取群的成员
+     * @param groupId
+     * @return
+     */
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public Set<TbGroupMember> getMembersByGroupId(String groupId) {
+        TbGroupMemberExample groupMemberExample = new TbGroupMemberExample();
+        TbGroupMemberExample.Criteria criteria = groupMemberExample.createCriteria();
+        criteria.andGroupIdEqualTo(groupId);
+        List<TbGroupMember> groupMembers = groupMemberMapper.selectByExample(groupMemberExample);
         return new HashSet<>(groupMembers);
     }
 
@@ -153,6 +166,13 @@ public class GroupServiceImp implements GroupService {
 
         return groupMapper.selectByExample(tbGroupExample);
     }
+
+    /**
+     * 添加群成员
+     * @param group
+     * @param insertUsers
+     * @return
+     */
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public Set<TbGroupMember> addMembers(TbGroup group, List<ChatUsers> insertUsers) {
@@ -161,6 +181,7 @@ public class GroupServiceImp implements GroupService {
         insertUsers.forEach(chatUsers1 -> {
             TbGroupMember tbGroupMember = new TbGroupMember(chatUsers1.getId(),group.getId());
             tbGroupMember.setId(sid.nextShort());
+            tbGroupMember.setPermissionType(GroupMember.PERMISSION_TYPE_NONE);
             groupMemberMapper.insert(tbGroupMember);
             tbGroupMembers.add(tbGroupMember);
         });

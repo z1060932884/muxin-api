@@ -332,7 +332,7 @@ public class UserServiceImp implements UserService {
         chatCriteria.andSignFlagEqualTo(0);
         chatCriteria.andAcceptUserIdEqualTo(acceptUserId);
 
-        List<com.zzj.muxin.domain.ChatMsg> result = msgMapper.selectByExample(chatExample);
+        List<com.zzj.muxin.domain.ChatMsg> result = msgMapper.selectByExampleWithBLOBs(chatExample);
 
         return result;
     }

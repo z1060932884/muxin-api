@@ -127,8 +127,8 @@ public class GroupController {
      * 获取群列表
      * @return
      */
-    @GetMapping("list/{userId}/{date:(.*)?}")
-    public IMoocJSONResult groupList(@PathVariable("userId")String userId,@PathVariable("date")String dateStr){
+    @GetMapping("/list")
+    public IMoocJSONResult groupList(String userId, String dateStr){
         Date date = null;
         try {
             //获取日期
@@ -208,6 +208,10 @@ public class GroupController {
         }
         //抓换数据
         List<GroupMemberCard> groupMemberCards = groupMemberSet.stream().map(GroupMemberCard::new).collect(Collectors.toList());
+        for (GroupMemberCard card: groupMemberCards) {
+            card.setUsers(userService.queryUserInfoByUserId(card.getUserId()));
+
+        }
         return IMoocJSONResult.ok(groupMemberCards);
     }
 

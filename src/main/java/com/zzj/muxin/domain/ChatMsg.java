@@ -17,6 +17,8 @@ public class ChatMsg {
 
     private Integer itemType;
 
+    private Integer chatType = 0;
+
     private String msg;
 
     public String getId() {
@@ -73,6 +75,14 @@ public class ChatMsg {
 
     public void setItemType(Integer itemType) {
         this.itemType = itemType;
+    }
+
+    public Integer getChatType() {
+        return chatType;
+    }
+
+    public void setChatType(Integer chatType) {
+        this.chatType = chatType;
     }
 
     public String getMsg() {

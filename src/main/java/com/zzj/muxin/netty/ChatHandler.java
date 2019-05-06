@@ -3,6 +3,7 @@ package com.zzj.muxin.netty;
 import cn.hutool.core.date.DateUtil;
 import com.sun.xml.internal.bind.v2.TODO;
 import com.zzj.muxin.enums.MsgActionEnum;
+import com.zzj.muxin.factory.PushFactory;
 import com.zzj.muxin.service.UserService;
 import com.zzj.muxin.utils.JsonUtils;
 import com.zzj.muxin.utils.SpringUtil;
@@ -53,6 +54,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             //标记消息已发送成功
             chatMsg.setSend(true);
             chatMsg.setRead(false);
+            //单聊
             UserService userService = (UserService) SpringUtil.getBean("userServiceImp");
             userService.saveMsg(chatMsg);
             //发送消息
@@ -64,7 +66,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             //通知发送者已收到消息并保存数据库
             DataContent notifyData = new DataContent();
             // 6 代表通知发送者已后台收到消息并保存数据库
-            notifyData.setAction(6);
+            notifyData.setAction(MsgActionEnum.MSG_Received.type);
 
             notifyData.setExtand(chatMsg.getMsgId());
             UserChannelRel.get(senderId).writeAndFlush(new TextWebSocketFrame(JsonUtils.objectToJson(notifyData)));
@@ -103,6 +105,29 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
 
         }else if(action == MsgActionEnum.KEEPALIVE.type){
             //  2.4 心跳类型的消息
+
+        }else if(action == MsgActionEnum.GROUP_MSG.type){
+            //群组消息
+            ChatMsg chatMsg = dataContent.getChatMsg();
+            String senderId = chatMsg.getSenderId();
+            chatMsg.setTime(chatMsg.getTime());
+            //标记消息已发送成功
+            chatMsg.setSend(true);
+            chatMsg.setRead(false);
+            UserService userService = (UserService) SpringUtil.getBean("userServiceImp");
+            userService.saveMsg(chatMsg);
+
+            //通知发送者已收到消息并保存数据库
+            DataContent notifyData = new DataContent();
+            // 6 代表通知发送者已后台收到消息并保存数据库
+            notifyData.setAction(MsgActionEnum.MSG_Received.type);
+
+            notifyData.setExtand(chatMsg.getMsgId());
+            UserChannelRel.get(senderId).writeAndFlush(new TextWebSocketFrame(JsonUtils.objectToJson(notifyData)));
+
+            //1、获取群的id
+            String groupId = chatMsg.getReceiverId();
+            PushFactory.pushGroupMessage(groupId,chatMsg);
 
         }
 

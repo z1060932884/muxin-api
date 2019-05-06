@@ -13,6 +13,7 @@ public class ChatMsg implements Serializable {
     private String  msgId;//消息Id
     private int type;//消息类型
     private int itemType;//消息item类型
+    private int chatType;
     /**
      * 发送失败
      */
@@ -31,6 +32,14 @@ public class ChatMsg implements Serializable {
 
     public boolean isSendFails() {
         return sendFails;
+    }
+
+    public int getChatType() {
+        return chatType;
+    }
+
+    public void setChatType(int chatType) {
+        this.chatType = chatType;
     }
 
     public void setSendFails(boolean sendFails) {

@@ -85,7 +85,7 @@ public class UserController {
         String thumpImageUrl = arr[0] + thump+arr[1];
 
         //更改用户头像
-        ChatUsers users = new ChatUsers();
+        ChatUsers users = userService.queryUserInfoByUserId(usersBo.getUserId());
         users.setId(usersBo.getUserId());
         users.setFaceImageBig(url);
         users.setFaceImage(thumpImageUrl);

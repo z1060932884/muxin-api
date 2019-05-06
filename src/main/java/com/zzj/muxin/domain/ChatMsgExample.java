@@ -554,6 +554,66 @@ public class ChatMsgExample {
             addCriterion("item_type not between", value1, value2, "itemType");
             return (Criteria) this;
         }
+
+        public Criteria andChatTypeIsNull() {
+            addCriterion("chat_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatTypeIsNotNull() {
+            addCriterion("chat_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatTypeEqualTo(Integer value) {
+            addCriterion("chat_type =", value, "chatType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatTypeNotEqualTo(Integer value) {
+            addCriterion("chat_type <>", value, "chatType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatTypeGreaterThan(Integer value) {
+            addCriterion("chat_type >", value, "chatType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("chat_type >=", value, "chatType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatTypeLessThan(Integer value) {
+            addCriterion("chat_type <", value, "chatType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("chat_type <=", value, "chatType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatTypeIn(List<Integer> values) {
+            addCriterion("chat_type in", values, "chatType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatTypeNotIn(List<Integer> values) {
+            addCriterion("chat_type not in", values, "chatType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatTypeBetween(Integer value1, Integer value2) {
+            addCriterion("chat_type between", value1, value2, "chatType");
+            return (Criteria) this;
+        }
+
+        public Criteria andChatTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("chat_type not between", value1, value2, "chatType");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

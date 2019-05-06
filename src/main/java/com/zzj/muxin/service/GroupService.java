@@ -33,6 +33,7 @@ public interface GroupService {
     TbGroupMember getMember(String userId, String groupId);
 
     Set<TbGroupMember> getMembers(TbGroup group);
+    Set<TbGroupMember> getMembersByGroupId(String groupId);
     Set<TbGroupMember> getMembers(String  userId);
 
 
