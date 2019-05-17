@@ -127,7 +127,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
 
             //1、获取群的id
             String groupId = chatMsg.getReceiverId();
-            PushFactory.pushGroupMessage(groupId,chatMsg);
+            PushFactory.pushGroupMessage(senderId,groupId,chatMsg);
 
         }
 

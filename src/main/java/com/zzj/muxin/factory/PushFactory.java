@@ -54,12 +54,16 @@ public class PushFactory {
      * 发送群消息
      * @param groupId
      */
-    public static void pushGroupMessage(String groupId, ChatMsg chatMsg) {
+    public static void pushGroupMessage(String senderId,String groupId, ChatMsg chatMsg) {
         GroupService groupService = (GroupService) SpringUtil.getBean("groupServiceImp");
         UserService userService = (UserService) SpringUtil.getBean("userServiceImp");
         Set<TbGroupMember> groupMembers = groupService.getMembersByGroupId(groupId);
         Sid sid = new Sid();
         for(TbGroupMember groupMember : groupMembers){
+            //去除发送者的id,发送者不再接收消息
+            if(senderId.equals(groupMember.getUserId())){
+                continue;
+            }
             //1、接收者Id
             String receicerId = groupMember.getUserId();
             //2、接收者通道

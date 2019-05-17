@@ -109,8 +109,8 @@ public class GroupController {
      * @param name
      * @return
      */
-    @GetMapping("/search/{userId}/{name:(.*)?}")
-    public IMoocJSONResult search(@PathVariable("userId") String userId,@PathVariable("name") String name){
+    @GetMapping("/search")
+    public IMoocJSONResult search(String userId, String name){
 //        ChatUsers chatUsers = userService.queryUserInfoByUserId(userId);
         List<TbGroup> groups = groupService.search(name);
         if(groups!=null && groups.size()!=0){
