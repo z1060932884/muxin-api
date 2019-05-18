@@ -17,6 +17,10 @@ public class ChatUsers {
 
     private String cid;
 
+    private String desc;
+
+    private String phone;
+
     public String getId() {
         return id;
     }
@@ -79,5 +83,21 @@ public class ChatUsers {
 
     public void setCid(String cid) {
         this.cid = cid == null ? null : cid.trim();
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc == null ? null : desc.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 }

@@ -17,7 +17,7 @@ public class ChatMsg {
 
     private Integer itemType;
 
-    private Integer chatType = 0;
+    private Integer chatType;
 
     private String msg;
 
