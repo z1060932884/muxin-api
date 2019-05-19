@@ -17,9 +17,11 @@ public class ChatUsers {
 
     private String cid;
 
-    private String desc;
+    private String description;
 
     private String phone;
+
+    private Integer chatSex;
 
     public String getId() {
         return id;
@@ -85,12 +87,12 @@ public class ChatUsers {
         this.cid = cid == null ? null : cid.trim();
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc == null ? null : desc.trim();
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 
     public String getPhone() {
@@ -99,5 +101,13 @@ public class ChatUsers {
 
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
+    }
+
+    public Integer getChatSex() {
+        return chatSex;
+    }
+
+    public void setChatSex(Integer chatSex) {
+        this.chatSex = chatSex;
     }
 }

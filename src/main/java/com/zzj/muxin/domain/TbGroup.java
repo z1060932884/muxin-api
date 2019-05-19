@@ -1,5 +1,7 @@
 package com.zzj.muxin.domain;
 
+import com.zzj.muxin.bo.GroupCreateModel;
+
 import java.util.Date;
 
 public class TbGroup {
@@ -16,6 +18,19 @@ public class TbGroup {
     private String picture;
 
     private Date updateAt;
+
+    public TbGroup(){
+
+    }
+    public TbGroup(String userId, GroupCreateModel createModel){
+        this.ownerId = userId;
+        this.name = createModel.getName();
+        this.description = createModel.getDesc();
+        this.picture = createModel.getPicture();
+        this.createAt = new Date();
+        this.updateAt = new Date();
+
+    }
 
     public String getId() {
         return id;

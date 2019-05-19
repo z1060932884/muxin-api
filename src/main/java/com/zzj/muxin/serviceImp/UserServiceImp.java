@@ -297,6 +297,7 @@ public class UserServiceImp implements UserService {
         msg.setSignFlag(MsgSignFlagEnum.unsign.type);
         msg.setItemType(chatMsg.getItemType());
         msg.setType(chatMsg.getType());
+        msg.setChatType(chatMsg.getChatType());
 
         msgMapper.insert(msg);
 

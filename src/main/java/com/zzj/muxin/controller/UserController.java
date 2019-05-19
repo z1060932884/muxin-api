@@ -59,9 +59,30 @@ public class UserController {
             usersResult = userService.saveUser(users);
 
         }
-        UsersVO usersVO = new UsersVO();
-        BeanUtils.copyProperties(usersResult,usersVO);
-        return IMoocJSONResult.ok(usersVO);
+
+        return IMoocJSONResult.ok(usersResult);
+    }
+    @PostMapping("/updateUserInfo")
+    public IMoocJSONResult updateUserInfo(@RequestBody ChatUsers users) throws Exception{
+
+        if(Strings.isBlank(users.getId() )|| Strings.isBlank(users.getFaceImage())
+                ||Strings.isBlank(users.getNickname()) ||Strings.isBlank(users.getDescription())
+                ||users.getChatSex()==0){
+
+            return IMoocJSONResult.errorMsg("信息不能为空");
+        }
+
+        //判断用户名是否存在，
+        ChatUsers chatUsers = userService.queryUserInfoByUserId(users.getId());
+        if(chatUsers == null){
+            return IMoocJSONResult.errorMsg("用户信息错误");
+        }
+        chatUsers.setFaceImage(users.getFaceImage());
+        chatUsers.setNickname(users.getNickname());
+        chatUsers.setDescription(users.getDescription());
+        chatUsers.setChatSex(users.getChatSex());
+
+        return IMoocJSONResult.ok(userService.updateUserInfo(chatUsers));
     }
 
     @PostMapping("/uploadFace")
