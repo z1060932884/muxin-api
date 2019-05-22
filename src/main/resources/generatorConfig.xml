@@ -55,6 +55,7 @@
         <table  tableName="my_friends"></table>
         <table  tableName="tb_group"></table>
         <table  tableName="tb_group_member"></table>
+        <table  tableName="zzj_image_manager"></table>
 
 
         <!-- 有些表的字段需要指定java类型
