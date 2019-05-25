@@ -272,4 +272,34 @@ public class UserController {
 
         return IMoocJSONResult.ok(unreadMsgList);
     }
+
+
+    /**
+     * 获取首页卡片列表
+     * @return
+     */
+    @GetMapping("/listUserCard")
+    public IMoocJSONResult listUserCard(String userId,String location){
+
+        //1、根据userId获取用户信息，知道性别，推送不同性别的用户列表
+        ChatUsers user = userService.queryUserInfoByUserId(userId);
+        if(user == null){
+            return IMoocJSONResult.errorMsg("登录信息有误");
+        }
+        List<UsersVO> chatUsers = null;
+        //chatSex == 1 男性  2 女性
+        if(user.getChatSex() == 1){
+            //1.1、查询女性用户
+            chatUsers =  userService.queryUserListBySex(2);
+        }else {
+            //1.2、查询男性用户
+            chatUsers =  userService.queryUserListBySex(1);
+        }
+
+        if(chatUsers == null){
+            return IMoocJSONResult.errorMsg("服务器错误");
+        }
+
+        return IMoocJSONResult.ok(chatUsers);
+    }
 }

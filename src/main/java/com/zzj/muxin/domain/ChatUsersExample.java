@@ -863,6 +863,266 @@ public class ChatUsersExample {
             addCriterion("chat_sex not between", value1, value2, "chatSex");
             return (Criteria) this;
         }
+
+        public Criteria andProfessionalIsNull() {
+            addCriterion("professional is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalIsNotNull() {
+            addCriterion("professional is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalEqualTo(String value) {
+            addCriterion("professional =", value, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalNotEqualTo(String value) {
+            addCriterion("professional <>", value, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalGreaterThan(String value) {
+            addCriterion("professional >", value, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalGreaterThanOrEqualTo(String value) {
+            addCriterion("professional >=", value, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalLessThan(String value) {
+            addCriterion("professional <", value, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalLessThanOrEqualTo(String value) {
+            addCriterion("professional <=", value, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalLike(String value) {
+            addCriterion("professional like", value, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalNotLike(String value) {
+            addCriterion("professional not like", value, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalIn(List<String> values) {
+            addCriterion("professional in", values, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalNotIn(List<String> values) {
+            addCriterion("professional not in", values, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalBetween(String value1, String value2) {
+            addCriterion("professional between", value1, value2, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andProfessionalNotBetween(String value1, String value2) {
+            addCriterion("professional not between", value1, value2, "professional");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeIsNull() {
+            addCriterion("bsw_age is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeIsNotNull() {
+            addCriterion("bsw_age is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeEqualTo(Integer value) {
+            addCriterion("bsw_age =", value, "bswAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeNotEqualTo(Integer value) {
+            addCriterion("bsw_age <>", value, "bswAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeGreaterThan(Integer value) {
+            addCriterion("bsw_age >", value, "bswAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("bsw_age >=", value, "bswAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeLessThan(Integer value) {
+            addCriterion("bsw_age <", value, "bswAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeLessThanOrEqualTo(Integer value) {
+            addCriterion("bsw_age <=", value, "bswAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeIn(List<Integer> values) {
+            addCriterion("bsw_age in", values, "bswAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeNotIn(List<Integer> values) {
+            addCriterion("bsw_age not in", values, "bswAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeBetween(Integer value1, Integer value2) {
+            addCriterion("bsw_age between", value1, value2, "bswAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAgeNotBetween(Integer value1, Integer value2) {
+            addCriterion("bsw_age not between", value1, value2, "bswAge");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumIsNull() {
+            addCriterion("picture_num is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumIsNotNull() {
+            addCriterion("picture_num is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumEqualTo(Integer value) {
+            addCriterion("picture_num =", value, "pictureNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumNotEqualTo(Integer value) {
+            addCriterion("picture_num <>", value, "pictureNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumGreaterThan(Integer value) {
+            addCriterion("picture_num >", value, "pictureNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumGreaterThanOrEqualTo(Integer value) {
+            addCriterion("picture_num >=", value, "pictureNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumLessThan(Integer value) {
+            addCriterion("picture_num <", value, "pictureNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumLessThanOrEqualTo(Integer value) {
+            addCriterion("picture_num <=", value, "pictureNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumIn(List<Integer> values) {
+            addCriterion("picture_num in", values, "pictureNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumNotIn(List<Integer> values) {
+            addCriterion("picture_num not in", values, "pictureNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumBetween(Integer value1, Integer value2) {
+            addCriterion("picture_num between", value1, value2, "pictureNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andPictureNumNotBetween(Integer value1, Integer value2) {
+            addCriterion("picture_num not between", value1, value2, "pictureNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationIsNull() {
+            addCriterion("bsw_constellation is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationIsNotNull() {
+            addCriterion("bsw_constellation is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationEqualTo(String value) {
+            addCriterion("bsw_constellation =", value, "bswConstellation");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationNotEqualTo(String value) {
+            addCriterion("bsw_constellation <>", value, "bswConstellation");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationGreaterThan(String value) {
+            addCriterion("bsw_constellation >", value, "bswConstellation");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationGreaterThanOrEqualTo(String value) {
+            addCriterion("bsw_constellation >=", value, "bswConstellation");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationLessThan(String value) {
+            addCriterion("bsw_constellation <", value, "bswConstellation");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationLessThanOrEqualTo(String value) {
+            addCriterion("bsw_constellation <=", value, "bswConstellation");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationLike(String value) {
+            addCriterion("bsw_constellation like", value, "bswConstellation");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationNotLike(String value) {
+            addCriterion("bsw_constellation not like", value, "bswConstellation");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationIn(List<String> values) {
+            addCriterion("bsw_constellation in", values, "bswConstellation");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationNotIn(List<String> values) {
+            addCriterion("bsw_constellation not in", values, "bswConstellation");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationBetween(String value1, String value2) {
+            addCriterion("bsw_constellation between", value1, value2, "bswConstellation");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswConstellationNotBetween(String value1, String value2) {
+            addCriterion("bsw_constellation not between", value1, value2, "bswConstellation");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

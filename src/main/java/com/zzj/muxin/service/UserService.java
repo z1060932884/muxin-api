@@ -4,6 +4,7 @@ import com.zzj.muxin.domain.ChatUsers;
 import com.zzj.muxin.netty.ChatMsg;
 import com.zzj.muxin.vo.FriendRequestVO;
 import com.zzj.muxin.vo.MyFriendsVO;
+import com.zzj.muxin.vo.UsersVO;
 
 import java.util.List;
 
@@ -96,5 +97,12 @@ public interface UserService {
      * @Description: 获取未签收消息列表
      */
     public List<com.zzj.muxin.domain.ChatMsg> getUnReadMsgList(String acceptUserId);
+
+    /**
+     * 根据性别查询用户列表
+     * @param chatSex
+     * @return
+     */
+    List<UsersVO> queryUserListBySex(int chatSex);
 
 }

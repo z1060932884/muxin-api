@@ -13,6 +13,10 @@
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="chat_sex" jdbcType="INTEGER" property="chatSex" />
+    <result column="professional" jdbcType="VARCHAR" property="professional" />
+    <result column="bsw_age" jdbcType="INTEGER" property="bswAge" />
+    <result column="picture_num" jdbcType="INTEGER" property="pictureNum" />
+    <result column="bsw_constellation" jdbcType="VARCHAR" property="bswConstellation" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,7 +78,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, username, password, face_image, face_image_big, nickname, qrcode, cid, description, 
-    phone, chat_sex
+    phone, chat_sex, professional, bsw_age, picture_num, bsw_constellation
   </sql>
   <select id="selectByExample" parameterType="com.zzj.muxin.domain.ChatUsersExample" resultMap="BaseResultMap">
     select
@@ -100,11 +104,15 @@
     insert into chat_users (id, username, password, 
       face_image, face_image_big, nickname, 
       qrcode, cid, description, 
-      phone, chat_sex)
+      phone, chat_sex, professional, 
+      bsw_age, picture_num, bsw_constellation
+      )
     values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{faceImage,jdbcType=VARCHAR}, #{faceImageBig,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
       #{qrcode,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{phone,jdbcType=VARCHAR}, #{chatSex,jdbcType=INTEGER})
+      #{phone,jdbcType=VARCHAR}, #{chatSex,jdbcType=INTEGER}, #{professional,jdbcType=VARCHAR}, 
+      #{bswAge,jdbcType=INTEGER}, #{pictureNum,jdbcType=INTEGER}, #{bswConstellation,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zzj.muxin.domain.ChatUsers">
     insert into chat_users
@@ -142,6 +150,18 @@
       <if test="chatSex != null">
         chat_sex,
       </if>
+      <if test="professional != null">
+        professional,
+      </if>
+      <if test="bswAge != null">
+        bsw_age,
+      </if>
+      <if test="pictureNum != null">
+        picture_num,
+      </if>
+      <if test="bswConstellation != null">
+        bsw_constellation,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -176,6 +196,18 @@
       </if>
       <if test="chatSex != null">
         #{chatSex,jdbcType=INTEGER},
+      </if>
+      <if test="professional != null">
+        #{professional,jdbcType=VARCHAR},
+      </if>
+      <if test="bswAge != null">
+        #{bswAge,jdbcType=INTEGER},
+      </if>
+      <if test="pictureNum != null">
+        #{pictureNum,jdbcType=INTEGER},
+      </if>
+      <if test="bswConstellation != null">
+        #{bswConstellation,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +253,18 @@
       <if test="record.chatSex != null">
         chat_sex = #{record.chatSex,jdbcType=INTEGER},
       </if>
+      <if test="record.professional != null">
+        professional = #{record.professional,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bswAge != null">
+        bsw_age = #{record.bswAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.pictureNum != null">
+        picture_num = #{record.pictureNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.bswConstellation != null">
+        bsw_constellation = #{record.bswConstellation,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -238,7 +282,11 @@
       cid = #{record.cid,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
       phone = #{record.phone,jdbcType=VARCHAR},
-      chat_sex = #{record.chatSex,jdbcType=INTEGER}
+      chat_sex = #{record.chatSex,jdbcType=INTEGER},
+      professional = #{record.professional,jdbcType=VARCHAR},
+      bsw_age = #{record.bswAge,jdbcType=INTEGER},
+      picture_num = #{record.pictureNum,jdbcType=INTEGER},
+      bsw_constellation = #{record.bswConstellation,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

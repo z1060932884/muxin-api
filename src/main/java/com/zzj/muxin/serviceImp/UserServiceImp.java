@@ -18,8 +18,10 @@ import com.zzj.muxin.service.UserService;
 import com.zzj.muxin.utils.JsonUtils;
 import com.zzj.muxin.vo.FriendRequestVO;
 import com.zzj.muxin.vo.MyFriendsVO;
+import com.zzj.muxin.vo.UsersVO;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import org.n3r.idworker.Sid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -30,7 +32,8 @@ import io.netty.channel.Channel;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -336,6 +339,22 @@ public class UserServiceImp implements UserService {
         List<com.zzj.muxin.domain.ChatMsg> result = msgMapper.selectByExampleWithBLOBs(chatExample);
 
         return result;
+    }
+
+    @Override
+    public List<UsersVO> queryUserListBySex(int chatSex) {
+        ChatUsersExample ue = new ChatUsersExample();
+        ChatUsersExample.Criteria uc = ue.createCriteria();
+        uc.andChatSexEqualTo(chatSex);
+        List<ChatUsers> chatUsersList = usersMapper.selectByExample(ue);
+        return chatUsersList.stream().map(new Function<ChatUsers, UsersVO>() {
+            @Override
+            public UsersVO apply(ChatUsers chatUsers) {
+                UsersVO usersVO = new UsersVO();
+                BeanUtils.copyProperties(chatUsers,usersVO);
+                return usersVO;
+            }
+        }).collect(Collectors.toList());
     }
 
 

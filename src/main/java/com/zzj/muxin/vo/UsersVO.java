@@ -15,6 +15,44 @@ public class UsersVO {
 
     private String qrcode;
 
+    private String description;
+
+    private String phone;
+
+    private Integer chatSex;
+
+    private String professional;
+
+    private Integer bswAge;
+
+    private Integer pictureNum;
+
+    private String bswConstellation;
+
+    public String getProfessional() {
+        return professional;
+    }
+
+    public void setProfessional(String professional) {
+        this.professional = professional;
+    }
+
+    public Integer getBswAge() {
+        return bswAge;
+    }
+
+    public void setBswAge(Integer bswAge) {
+        this.bswAge = bswAge;
+    }
+
+    public String getBswConstellation() {
+        return bswConstellation;
+    }
+
+    public void setBswConstellation(String bswConstellation) {
+        this.bswConstellation = bswConstellation;
+    }
+
     public String getId() {
         return id;
     }
@@ -61,5 +99,37 @@ public class UsersVO {
 
     public void setQrcode(String qrcode) {
         this.qrcode = qrcode;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Integer getChatSex() {
+        return chatSex;
+    }
+
+    public void setChatSex(Integer chatSex) {
+        this.chatSex = chatSex;
+    }
+
+    public Integer getPictureNum() {
+        return pictureNum;
+    }
+
+    public void setPictureNum(Integer pictureNum) {
+        this.pictureNum = pictureNum;
     }
 }
