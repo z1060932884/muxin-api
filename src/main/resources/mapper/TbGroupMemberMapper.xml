@@ -4,12 +4,12 @@
   <resultMap id="BaseResultMap" type="com.zzj.muxin.domain.TbGroupMember">
     <result column="id" jdbcType="VARCHAR" property="id" />
     <result column="alias" jdbcType="VARCHAR" property="alias" />
-    <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
-    <result column="group_id" jdbcType="VARCHAR" property="groupId" />
-    <result column="notify_level" jdbcType="INTEGER" property="notifyLevel" />
-    <result column="permission_type" jdbcType="INTEGER" property="permissionType" />
-    <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
-    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="createAt" jdbcType="TIMESTAMP" property="createat" />
+    <result column="groupId" jdbcType="VARCHAR" property="groupid" />
+    <result column="notifyLevel" jdbcType="INTEGER" property="notifylevel" />
+    <result column="permissionType" jdbcType="INTEGER" property="permissiontype" />
+    <result column="updateAt" jdbcType="TIMESTAMP" property="updateat" />
+    <result column="userId" jdbcType="VARCHAR" property="userid" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, alias, create_at, group_id, notify_level, permission_type, update_at, user_id
+    id, alias, createAt, groupId, notifyLevel, permissionType, updateAt, userId
   </sql>
   <select id="selectByExample" parameterType="com.zzj.muxin.domain.TbGroupMemberExample" resultMap="BaseResultMap">
     select
@@ -93,12 +93,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.zzj.muxin.domain.TbGroupMember">
-    insert into tb_group_member (id, alias, create_at, 
-      group_id, notify_level, permission_type, 
-      update_at, user_id)
-    values (#{id,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, 
-      #{groupId,jdbcType=VARCHAR}, #{notifyLevel,jdbcType=INTEGER}, #{permissionType,jdbcType=INTEGER}, 
-      #{updateAt,jdbcType=TIMESTAMP}, #{userId,jdbcType=VARCHAR})
+    insert into tb_group_member (id, alias, createAt, 
+      groupId, notifyLevel, permissionType, 
+      updateAt, userId)
+    values (#{id,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR}, #{createat,jdbcType=TIMESTAMP}, 
+      #{groupid,jdbcType=VARCHAR}, #{notifylevel,jdbcType=INTEGER}, #{permissiontype,jdbcType=INTEGER}, 
+      #{updateat,jdbcType=TIMESTAMP}, #{userid,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zzj.muxin.domain.TbGroupMember">
     insert into tb_group_member
@@ -109,23 +109,23 @@
       <if test="alias != null">
         alias,
       </if>
-      <if test="createAt != null">
-        create_at,
+      <if test="createat != null">
+        createAt,
       </if>
-      <if test="groupId != null">
-        group_id,
+      <if test="groupid != null">
+        groupId,
       </if>
-      <if test="notifyLevel != null">
-        notify_level,
+      <if test="notifylevel != null">
+        notifyLevel,
       </if>
-      <if test="permissionType != null">
-        permission_type,
+      <if test="permissiontype != null">
+        permissionType,
       </if>
-      <if test="updateAt != null">
-        update_at,
+      <if test="updateat != null">
+        updateAt,
       </if>
-      <if test="userId != null">
-        user_id,
+      <if test="userid != null">
+        userId,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -135,23 +135,23 @@
       <if test="alias != null">
         #{alias,jdbcType=VARCHAR},
       </if>
-      <if test="createAt != null">
-        #{createAt,jdbcType=TIMESTAMP},
+      <if test="createat != null">
+        #{createat,jdbcType=TIMESTAMP},
       </if>
-      <if test="groupId != null">
-        #{groupId,jdbcType=VARCHAR},
+      <if test="groupid != null">
+        #{groupid,jdbcType=VARCHAR},
       </if>
-      <if test="notifyLevel != null">
-        #{notifyLevel,jdbcType=INTEGER},
+      <if test="notifylevel != null">
+        #{notifylevel,jdbcType=INTEGER},
       </if>
-      <if test="permissionType != null">
-        #{permissionType,jdbcType=INTEGER},
+      <if test="permissiontype != null">
+        #{permissiontype,jdbcType=INTEGER},
       </if>
-      <if test="updateAt != null">
-        #{updateAt,jdbcType=TIMESTAMP},
+      <if test="updateat != null">
+        #{updateat,jdbcType=TIMESTAMP},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=VARCHAR},
+      <if test="userid != null">
+        #{userid,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -170,23 +170,23 @@
       <if test="record.alias != null">
         alias = #{record.alias,jdbcType=VARCHAR},
       </if>
-      <if test="record.createAt != null">
-        create_at = #{record.createAt,jdbcType=TIMESTAMP},
+      <if test="record.createat != null">
+        createAt = #{record.createat,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.groupId != null">
-        group_id = #{record.groupId,jdbcType=VARCHAR},
+      <if test="record.groupid != null">
+        groupId = #{record.groupid,jdbcType=VARCHAR},
       </if>
-      <if test="record.notifyLevel != null">
-        notify_level = #{record.notifyLevel,jdbcType=INTEGER},
+      <if test="record.notifylevel != null">
+        notifyLevel = #{record.notifylevel,jdbcType=INTEGER},
       </if>
-      <if test="record.permissionType != null">
-        permission_type = #{record.permissionType,jdbcType=INTEGER},
+      <if test="record.permissiontype != null">
+        permissionType = #{record.permissiontype,jdbcType=INTEGER},
       </if>
-      <if test="record.updateAt != null">
-        update_at = #{record.updateAt,jdbcType=TIMESTAMP},
+      <if test="record.updateat != null">
+        updateAt = #{record.updateat,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=VARCHAR},
+      <if test="record.userid != null">
+        userId = #{record.userid,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -197,14 +197,15 @@
     update tb_group_member
     set id = #{record.id,jdbcType=VARCHAR},
       alias = #{record.alias,jdbcType=VARCHAR},
-      create_at = #{record.createAt,jdbcType=TIMESTAMP},
-      group_id = #{record.groupId,jdbcType=VARCHAR},
-      notify_level = #{record.notifyLevel,jdbcType=INTEGER},
-      permission_type = #{record.permissionType,jdbcType=INTEGER},
-      update_at = #{record.updateAt,jdbcType=TIMESTAMP},
-      user_id = #{record.userId,jdbcType=VARCHAR}
+      createAt = #{record.createat,jdbcType=TIMESTAMP},
+      groupId = #{record.groupid,jdbcType=VARCHAR},
+      notifyLevel = #{record.notifylevel,jdbcType=INTEGER},
+      permissionType = #{record.permissiontype,jdbcType=INTEGER},
+      updateAt = #{record.updateat,jdbcType=TIMESTAMP},
+      userId = #{record.userid,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
 </mapper>

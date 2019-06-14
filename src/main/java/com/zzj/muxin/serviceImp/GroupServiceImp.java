@@ -40,7 +40,7 @@ public class GroupServiceImp implements GroupService {
     public TbGroup findByName(String groupName) {
         TbGroupExample tbGroupExample = new TbGroupExample();
         TbGroupExample.Criteria criteria = tbGroupExample.createCriteria();
-        criteria.andNameEqualTo(groupName);
+        criteria.andGroupNameEqualTo(groupName);
         List<TbGroup> groups = groupMapper.selectByExample(tbGroupExample);
         if(groups!=null&&groups.size()!=0){
             return groups.get(0);
@@ -72,20 +72,28 @@ public class GroupServiceImp implements GroupService {
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public TbGroup create(ChatUsers user, GroupCreateModel createModel, List<ChatUsers> chatUsers) {
-        TbGroup group = new TbGroup(user.getId(),createModel);
+        TbGroup group = new TbGroup();
+        group.setOwnerId(user.getId());
+        group.setDescription(createModel.getDesc());
+        group.setPicture(createModel.getPicture());
+        group.setGroupName(createModel.getName());
         group.setId(sid.nextShort());
         groupMapper.insert(group);
 
-        TbGroupMember groupMember = new TbGroupMember(user.getId(),group.getId());
+        TbGroupMember groupMember = new TbGroupMember();
+        groupMember.setUserid(user.getId());
+        groupMember.setGroupid(group.getId());
         groupMember.setId(sid.nextShort());
         //设置超级权限
-        groupMember.setPermissionType(GroupMember.PERMISSION_TYPE_ADMIN_SU);
+        groupMember.setPermissiontype(GroupMember.PERMISSION_TYPE_ADMIN_SU);
         groupMemberMapper.insert(groupMember);
         //循环添加普通成员
         chatUsers.forEach(chatUsers1 -> {
-            TbGroupMember tbGroupMember = new TbGroupMember(chatUsers1.getId(),group.getId());
+            TbGroupMember tbGroupMember = new TbGroupMember();
+            tbGroupMember.setUserid(chatUsers1.getId());
+            tbGroupMember.setGroupid(group.getId());
             tbGroupMember.setId(sid.nextShort());
-            tbGroupMember.setPermissionType(GroupMember.PERMISSION_TYPE_NONE);
+            tbGroupMember.setPermissiontype(GroupMember.PERMISSION_TYPE_NONE);
             groupMemberMapper.insert(tbGroupMember);
         });
 
@@ -103,8 +111,8 @@ public class GroupServiceImp implements GroupService {
     public TbGroupMember getMember(String userId, String groupId) {
         TbGroupMemberExample groupMemberExample = new TbGroupMemberExample();
         TbGroupMemberExample.Criteria criteria = groupMemberExample.createCriteria();
-        criteria.andGroupIdEqualTo(groupId);
-        criteria.andUserIdEqualTo(userId);
+        criteria.andGroupidEqualTo(groupId);
+        criteria.andUseridEqualTo(userId);
         List<TbGroupMember> groupMembers = groupMemberMapper.selectByExample(groupMemberExample);
         if(groupMembers!=null&& groupMembers.size()!=0){
             return groupMembers.get(0);
@@ -122,7 +130,7 @@ public class GroupServiceImp implements GroupService {
     public Set<TbGroupMember> getMembers(TbGroup group) {
         TbGroupMemberExample groupMemberExample = new TbGroupMemberExample();
         TbGroupMemberExample.Criteria criteria = groupMemberExample.createCriteria();
-        criteria.andGroupIdEqualTo(group.getId());
+        criteria.andGroupidEqualTo(group.getId());
         List<TbGroupMember> groupMembers = groupMemberMapper.selectByExample(groupMemberExample);
         return new HashSet<>(groupMembers);
     }
@@ -136,7 +144,7 @@ public class GroupServiceImp implements GroupService {
     public Set<TbGroupMember> getMembersByGroupId(String groupId) {
         TbGroupMemberExample groupMemberExample = new TbGroupMemberExample();
         TbGroupMemberExample.Criteria criteria = groupMemberExample.createCriteria();
-        criteria.andGroupIdEqualTo(groupId);
+        criteria.andGroupidEqualTo(groupId);
         List<TbGroupMember> groupMembers = groupMemberMapper.selectByExample(groupMemberExample);
         return new HashSet<>(groupMembers);
     }
@@ -145,7 +153,7 @@ public class GroupServiceImp implements GroupService {
     public Set<TbGroupMember> getMembers(String userId) {
         TbGroupMemberExample groupMemberExample = new TbGroupMemberExample();
         TbGroupMemberExample.Criteria criteria = groupMemberExample.createCriteria();
-        criteria.andUserIdEqualTo(userId);
+        criteria.andUseridEqualTo(userId);
         List<TbGroupMember> groupMembers = groupMemberMapper.selectByExample(groupMemberExample);
 
 
@@ -161,7 +169,7 @@ public class GroupServiceImp implements GroupService {
         String searchName = "%"+name+"%";//模糊匹配
         TbGroupExample tbGroupExample = new TbGroupExample();
         TbGroupExample.Criteria criteria = tbGroupExample.createCriteria();
-        criteria.andNameLike(searchName);
+        criteria.andGroupNameLike(searchName);
 
 
         return groupMapper.selectByExample(tbGroupExample);
@@ -179,9 +187,11 @@ public class GroupServiceImp implements GroupService {
         Set<TbGroupMember> tbGroupMembers = new HashSet<>();
         //循环添加普通成员
         insertUsers.forEach(chatUsers1 -> {
-            TbGroupMember tbGroupMember = new TbGroupMember(chatUsers1.getId(),group.getId());
+            TbGroupMember tbGroupMember = new TbGroupMember();
+            tbGroupMember.setUserid(chatUsers1.getId());
+            tbGroupMember.setGroupid(group.getId());
             tbGroupMember.setId(sid.nextShort());
-            tbGroupMember.setPermissionType(GroupMember.PERMISSION_TYPE_NONE);
+            tbGroupMember.setPermissiontype(GroupMember.PERMISSION_TYPE_NONE);
             groupMemberMapper.insert(tbGroupMember);
             tbGroupMembers.add(tbGroupMember);
         });

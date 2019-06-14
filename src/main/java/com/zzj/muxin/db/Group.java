@@ -29,7 +29,7 @@ public class Group {
 
     // 群名称
     @Column(nullable = false)
-    private String name;
+    private String groupName;
 
     // 群描述
     @Column(nullable = false)
@@ -60,9 +60,6 @@ public class Group {
     @Column(nullable = false, updatable = false, insertable = false)
     private String ownerId;
 
-    public Group() {
-
-    }
 
 
 
@@ -74,12 +71,12 @@ public class Group {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
     }
 
     public String getDescription() {

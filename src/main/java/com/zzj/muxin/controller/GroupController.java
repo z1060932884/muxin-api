@@ -144,9 +144,9 @@ public class GroupController {
         Date finalDate = date;
         List<GroupCard> groupCards = groupMembers.stream()
                 .filter(tbGroupMember -> finalDate == null //时间如果为null 不做限制
-                    || tbGroupMember.getUpdateAt().after(finalDate)
+                    || tbGroupMember.getUpdateat().after(finalDate)
                 ).map(tbGroupMember -> {//转换操作
-                    TbGroup tbGroup = groupService.findById(tbGroupMember.getGroupId());
+                    TbGroup tbGroup = groupService.findById(tbGroupMember.getGroupid());
                     return new GroupCard(tbGroup,tbGroupMember);
 
                 }).collect(Collectors.toList());
@@ -170,7 +170,7 @@ public class GroupController {
         }
         TbGroupMember groupMember = groupService.getMember(userId,groupId);
 
-        TbGroup tbGroup = groupService.findById(groupMember.getGroupId());
+        TbGroup tbGroup = groupService.findById(groupMember.getGroupid());
 
         if(groupMember == null){
             return IMoocJSONResult.errorMsg("没有查找到群信息");
@@ -234,7 +234,7 @@ public class GroupController {
 
         //我必须是成员
         TbGroupMember groupMember = groupService.getMember(userId,groupId);
-        if(groupMember == null || groupMember.getPermissionType() == GroupMember.PERMISSION_TYPE_NONE){
+        if(groupMember == null || groupMember.getPermissiontype() == GroupMember.PERMISSION_TYPE_NONE){
             return IMoocJSONResult.errorMsg("您没有操作权限");
         }
         //执行插入操作//首先拿去现在成员，比较如果已经存在 提示已加入  没有 插入

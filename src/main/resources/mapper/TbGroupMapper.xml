@@ -5,7 +5,7 @@
     <result column="id" jdbcType="VARCHAR" property="id" />
     <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
     <result column="description" jdbcType="VARCHAR" property="description" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
     <result column="owner_id" jdbcType="VARCHAR" property="ownerId" />
     <result column="picture" jdbcType="VARCHAR" property="picture" />
     <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, create_at, description, name, owner_id, picture, update_at
+    id, create_at, description, group_name, owner_id, picture, update_at
   </sql>
   <select id="selectByExample" parameterType="com.zzj.muxin.domain.TbGroupExample" resultMap="BaseResultMap">
     select
@@ -93,10 +93,10 @@
   </delete>
   <insert id="insert" parameterType="com.zzj.muxin.domain.TbGroup">
     insert into tb_group (id, create_at, description, 
-      name, owner_id, picture, 
+      group_name, owner_id, picture, 
       update_at)
     values (#{id,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{ownerId,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
+      #{groupName,jdbcType=VARCHAR}, #{ownerId,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
       #{updateAt,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.zzj.muxin.domain.TbGroup">
@@ -111,8 +111,8 @@
       <if test="description != null">
         description,
       </if>
-      <if test="name != null">
-        name,
+      <if test="groupName != null">
+        group_name,
       </if>
       <if test="ownerId != null">
         owner_id,
@@ -134,8 +134,8 @@
       <if test="description != null">
         #{description,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
       </if>
       <if test="ownerId != null">
         #{ownerId,jdbcType=VARCHAR},
@@ -166,8 +166,8 @@
       <if test="record.description != null">
         description = #{record.description,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.groupName != null">
+        group_name = #{record.groupName,jdbcType=VARCHAR},
       </if>
       <if test="record.ownerId != null">
         owner_id = #{record.ownerId,jdbcType=VARCHAR},
@@ -188,7 +188,7 @@
     set id = #{record.id,jdbcType=VARCHAR},
       create_at = #{record.createAt,jdbcType=TIMESTAMP},
       description = #{record.description,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
+      group_name = #{record.groupName,jdbcType=VARCHAR},
       owner_id = #{record.ownerId,jdbcType=VARCHAR},
       picture = #{record.picture,jdbcType=VARCHAR},
       update_at = #{record.updateAt,jdbcType=TIMESTAMP}
@@ -196,4 +196,5 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
 </mapper>

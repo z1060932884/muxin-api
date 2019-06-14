@@ -1,7 +1,5 @@
 package com.zzj.muxin.domain;
 
-import com.zzj.muxin.bo.GroupCreateModel;
-
 import java.util.Date;
 
 public class TbGroup {
@@ -11,26 +9,13 @@ public class TbGroup {
 
     private String description;
 
-    private String name;
+    private String groupName;
 
     private String ownerId;
 
     private String picture;
 
     private Date updateAt;
-
-    public TbGroup(){
-
-    }
-    public TbGroup(String userId, GroupCreateModel createModel){
-        this.ownerId = userId;
-        this.name = createModel.getName();
-        this.description = createModel.getDesc();
-        this.picture = createModel.getPicture();
-        this.createAt = new Date();
-        this.updateAt = new Date();
-
-    }
 
     public String getId() {
         return id;
@@ -56,12 +41,12 @@ public class TbGroup {
         this.description = description == null ? null : description.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getGroupName() {
+        return groupName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setGroupName(String groupName) {
+        this.groupName = groupName == null ? null : groupName.trim();
     }
 
     public String getOwnerId() {

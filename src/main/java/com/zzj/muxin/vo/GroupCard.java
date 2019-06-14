@@ -40,12 +40,12 @@ public class GroupCard {
 
     public GroupCard(TbGroup group, TbGroupMember member) {
         this.id = group.getId();
-        this.name = group.getName();
+        this.name = group.getGroupName();
         this.desc = group.getDescription();
         this.picture = group.getPicture();
         this.ownerId = group.getOwnerId();
-        this.notifyLevel = member != null ? member.getNotifyLevel() : 0;
-        this.joinAt = member != null ? member.getCreateAt() : null;
+        this.notifyLevel = member != null ? member.getNotifylevel() : 0;
+        this.joinAt = member != null ? member.getCreateat() : null;
         this.modifyAt = group.getUpdateAt();
     }
 

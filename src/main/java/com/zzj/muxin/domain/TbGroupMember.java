@@ -7,27 +7,17 @@ public class TbGroupMember {
 
     private String alias;
 
-    private Date createAt;
+    private Date createat;
 
-    private String groupId;
+    private String groupid;
 
-    private Integer notifyLevel = 0;
+    private Integer notifylevel;
 
-    private Integer permissionType;
+    private Integer permissiontype;
 
-    private Date updateAt;
+    private Date updateat;
 
-    private String userId;
-
-    public TbGroupMember(){
-
-    }
-    public TbGroupMember(String userId,String groupId){
-        this.userId = userId;
-        this.groupId = groupId;
-        this.createAt = new Date();
-        this.updateAt = new Date();
-    }
+    private String userid;
 
     public String getId() {
         return id;
@@ -45,51 +35,51 @@ public class TbGroupMember {
         this.alias = alias == null ? null : alias.trim();
     }
 
-    public Date getCreateAt() {
-        return createAt;
+    public Date getCreateat() {
+        return createat;
     }
 
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
+    public void setCreateat(Date createat) {
+        this.createat = createat;
     }
 
-    public String getGroupId() {
-        return groupId;
+    public String getGroupid() {
+        return groupid;
     }
 
-    public void setGroupId(String groupId) {
-        this.groupId = groupId == null ? null : groupId.trim();
+    public void setGroupid(String groupid) {
+        this.groupid = groupid == null ? null : groupid.trim();
     }
 
-    public Integer getNotifyLevel() {
-        return notifyLevel;
+    public Integer getNotifylevel() {
+        return notifylevel;
     }
 
-    public void setNotifyLevel(Integer notifyLevel) {
-        this.notifyLevel = notifyLevel;
+    public void setNotifylevel(Integer notifylevel) {
+        this.notifylevel = notifylevel;
     }
 
-    public Integer getPermissionType() {
-        return permissionType;
+    public Integer getPermissiontype() {
+        return permissiontype;
     }
 
-    public void setPermissionType(Integer permissionType) {
-        this.permissionType = permissionType;
+    public void setPermissiontype(Integer permissiontype) {
+        this.permissiontype = permissiontype;
     }
 
-    public Date getUpdateAt() {
-        return updateAt;
+    public Date getUpdateat() {
+        return updateat;
     }
 
-    public void setUpdateAt(Date updateAt) {
-        this.updateAt = updateAt;
+    public void setUpdateat(Date updateat) {
+        this.updateat = updateat;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUserid() {
+        return userid;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId == null ? null : userId.trim();
+    public void setUserid(String userid) {
+        this.userid = userid == null ? null : userid.trim();
     }
 }

@@ -61,11 +61,11 @@ public class PushFactory {
         Sid sid = new Sid();
         for(TbGroupMember groupMember : groupMembers){
             //去除发送者的id,发送者不再接收消息
-            if(senderId.equals(groupMember.getUserId())){
+            if(senderId.equals(groupMember.getUserid())){
                 continue;
             }
             //1、接收者Id
-            String receicerId = groupMember.getUserId();
+            String receicerId = groupMember.getUserid();
             //2、接收者通道
             Channel channel = UserChannelRel.get(receicerId);
             //3、准备发送消息

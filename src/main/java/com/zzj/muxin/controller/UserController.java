@@ -101,7 +101,7 @@ public class UserController {
         System.out.println(url);
 
         //获取缩略图的url
-        String thump = "_80x80.";
+        String thump = "_200x200.";
         String arr[]  = url.split("\\.");
         String thumpImageUrl = arr[0] + thump+arr[1];
 
@@ -274,7 +274,7 @@ public class UserController {
     }
 
 
-    /**
+    /*
      * 获取首页卡片列表
      * @return
      */

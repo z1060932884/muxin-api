@@ -33,11 +33,11 @@ public class GroupMemberCard {
     public GroupMemberCard(TbGroupMember member) {
         this.id = member.getId();
         this.alias = member.getAlias();
-        this.isAdmin = member.getPermissionType() == GroupMember.PERMISSION_TYPE_ADMIN;
-        this.isOwner = member.getPermissionType() == GroupMember.PERMISSION_TYPE_ADMIN_SU;
-        this.userId = member.getUserId();
-        this.groupId = member.getGroupId();
-        this.modifyAt = member.getUpdateAt();
+        this.isAdmin = member.getPermissiontype() == GroupMember.PERMISSION_TYPE_ADMIN;
+        this.isOwner = member.getPermissiontype() == GroupMember.PERMISSION_TYPE_ADMIN_SU;
+        this.userId = member.getUserid();
+        this.groupId = member.getGroupid();
+        this.modifyAt = member.getUpdateat();
     }
 
     public ChatUsers getUsers() {
