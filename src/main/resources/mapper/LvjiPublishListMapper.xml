@@ -10,6 +10,8 @@
     <result column="publish_content" jdbcType="VARCHAR" property="publishContent" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="publish_location" jdbcType="VARCHAR" property="publishLocation" />
+    <result column="publish_city" jdbcType="VARCHAR" property="publishCity" />
+    <result column="publish_topic" jdbcType="VARCHAR" property="publishTopic" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zzj.muxin.domain.LvjiPublishList">
     <result column="picture_url_list" jdbcType="LONGVARCHAR" property="pictureUrlList" />
@@ -73,7 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, create_at, update_at, comment_num, like_num, publish_content, user_id, publish_location
+    id, create_at, update_at, comment_num, like_num, publish_content, user_id, publish_location, 
+    publish_city, publish_topic
   </sql>
   <sql id="Blob_Column_List">
     picture_url_list
@@ -123,12 +126,12 @@
   <insert id="insert" parameterType="com.zzj.muxin.domain.LvjiPublishList">
     insert into lvji_publish_list (id, create_at, update_at, 
       comment_num, like_num, publish_content, 
-      user_id, publish_location, picture_url_list
-      )
+      user_id, publish_location, publish_city, 
+      publish_topic, picture_url_list)
     values (#{id,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}, 
       #{commentNum,jdbcType=INTEGER}, #{likeNum,jdbcType=INTEGER}, #{publishContent,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=VARCHAR}, #{publishLocation,jdbcType=VARCHAR}, #{pictureUrlList,jdbcType=LONGVARCHAR}
-      )
+      #{userId,jdbcType=VARCHAR}, #{publishLocation,jdbcType=VARCHAR}, #{publishCity,jdbcType=VARCHAR}, 
+      #{publishTopic,jdbcType=VARCHAR}, #{pictureUrlList,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zzj.muxin.domain.LvjiPublishList">
     insert into lvji_publish_list
@@ -156,6 +159,12 @@
       </if>
       <if test="publishLocation != null">
         publish_location,
+      </if>
+      <if test="publishCity != null">
+        publish_city,
+      </if>
+      <if test="publishTopic != null">
+        publish_topic,
       </if>
       <if test="pictureUrlList != null">
         picture_url_list,
@@ -185,6 +194,12 @@
       </if>
       <if test="publishLocation != null">
         #{publishLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="publishCity != null">
+        #{publishCity,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTopic != null">
+        #{publishTopic,jdbcType=VARCHAR},
       </if>
       <if test="pictureUrlList != null">
         #{pictureUrlList,jdbcType=LONGVARCHAR},
@@ -224,6 +239,12 @@
       <if test="record.publishLocation != null">
         publish_location = #{record.publishLocation,jdbcType=VARCHAR},
       </if>
+      <if test="record.publishCity != null">
+        publish_city = #{record.publishCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishTopic != null">
+        publish_topic = #{record.publishTopic,jdbcType=VARCHAR},
+      </if>
       <if test="record.pictureUrlList != null">
         picture_url_list = #{record.pictureUrlList,jdbcType=LONGVARCHAR},
       </if>
@@ -242,6 +263,8 @@
       publish_content = #{record.publishContent,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=VARCHAR},
       publish_location = #{record.publishLocation,jdbcType=VARCHAR},
+      publish_city = #{record.publishCity,jdbcType=VARCHAR},
+      publish_topic = #{record.publishTopic,jdbcType=VARCHAR},
       picture_url_list = #{record.pictureUrlList,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -256,7 +279,9 @@
       like_num = #{record.likeNum,jdbcType=INTEGER},
       publish_content = #{record.publishContent,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=VARCHAR},
-      publish_location = #{record.publishLocation,jdbcType=VARCHAR}
+      publish_location = #{record.publishLocation,jdbcType=VARCHAR},
+      publish_city = #{record.publishCity,jdbcType=VARCHAR},
+      publish_topic = #{record.publishTopic,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

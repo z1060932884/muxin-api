@@ -2,7 +2,10 @@ package com.zzj.muxin.serviceImp;
 
 import com.zzj.muxin.domain.LvjiPublishList;
 import com.zzj.muxin.domain.LvjiPublishListExample;
+import com.zzj.muxin.domain.LvjiPublishTopic;
+import com.zzj.muxin.domain.LvjiPublishTopicExample;
 import com.zzj.muxin.mapper.LvjiPublishListMapper;
+import com.zzj.muxin.mapper.LvjiPublishTopicMapper;
 import com.zzj.muxin.mapper.TbGroupMapper;
 import com.zzj.muxin.mapper.ZzjImageManagerMapper;
 import com.zzj.muxin.service.LvJiService;
@@ -24,6 +27,8 @@ public class LvJiServiceImp implements LvJiService {
 
     @Autowired
     private LvjiPublishListMapper lvjiPublishListMapper;
+    @Autowired
+    private LvjiPublishTopicMapper topicMapper;
 
 
     @Override
@@ -32,7 +37,7 @@ public class LvJiServiceImp implements LvJiService {
     }
 
     @Override
-    public LvjiPublishList publish(String userId, String imageUrlList, String content,String location) {
+    public LvjiPublishList publish(String userId, String imageUrlList, String content,String location,String city,String topic) {
         String id = sid.nextShort();
         LvjiPublishList publishList = new LvjiPublishList();
         publishList.setId(id);
@@ -42,6 +47,8 @@ public class LvJiServiceImp implements LvJiService {
         publishList.setPictureUrlList(imageUrlList);
         publishList.setPublishContent(content);
         publishList.setPublishLocation(location);
+        publishList.setPublishCity(city);
+        publishList.setPublishTopic(topic);
         lvjiPublishListMapper.insert(publishList);
 
         return publishList;
@@ -57,5 +64,18 @@ public class LvJiServiceImp implements LvJiService {
         List<LvjiPublishList> lvjiPublishLists = lvjiPublishListMapper.selectByExampleWithBLOBs(example);
         return lvjiPublishLists;
     }
+
+    @Override
+    public List<LvjiPublishTopic> getTopicList() {
+
+        return topicMapper.selectByExample(new LvjiPublishTopicExample());
+    }
+
+    @Override
+    public LvjiPublishTopic createTopic(LvjiPublishTopic topic) {
+        topicMapper.insert(topic);
+        return topic;
+    }
+
 
 }

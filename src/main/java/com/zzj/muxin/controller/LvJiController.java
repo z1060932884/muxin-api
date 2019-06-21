@@ -2,6 +2,8 @@ package com.zzj.muxin.controller;
 
 import com.zzj.muxin.domain.ChatUsers;
 import com.zzj.muxin.domain.LvjiPublishList;
+import com.zzj.muxin.domain.LvjiPublishTopic;
+import com.zzj.muxin.domain.LvjiPublishTopicExample;
 import com.zzj.muxin.service.LvJiService;
 import com.zzj.muxin.service.UserService;
 import com.zzj.muxin.utils.FastDFSClient;
@@ -9,10 +11,7 @@ import com.zzj.muxin.utils.IMoocJSONResult;
 import com.zzj.muxin.vo.LvjiPublishCard;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.GET;
 import java.util.List;
@@ -40,7 +39,8 @@ public class LvJiController {
      * @return
      */
     @PostMapping("/publish")
-    public IMoocJSONResult publish(String userId, String imageUrlList, String content,String location){
+    public IMoocJSONResult publish(String userId, String imageUrlList
+            , String content,String location,String city,String topic){
         if(imageUrlList.isEmpty()&&content.isEmpty()){
             return IMoocJSONResult.errorMsg("内容不能为空");
         }
@@ -52,7 +52,7 @@ public class LvJiController {
             return IMoocJSONResult.errorMsg("用户信息错误");
 
         }
-        LvjiPublishList publishList = lvJiService.publish(userId,imageUrlList,content, location);
+        LvjiPublishList publishList = lvJiService.publish(userId,imageUrlList,content, location,city,topic);
         if(publishList == null){
             return IMoocJSONResult.errorMsg("服务器错误");
         }
@@ -84,4 +84,24 @@ public class LvJiController {
        return IMoocJSONResult.ok(finalPublishLists);
 
     }
+    /**
+     * 获取话题列表
+     * @return
+     */
+    @GetMapping("/getTopicList")
+    public IMoocJSONResult getTopicList(){
+
+        return IMoocJSONResult.ok(lvJiService.getTopicList());
+    }
+
+    /**
+     * 创建话题
+     * @return
+     */
+    @PostMapping("/createTopic")
+    public IMoocJSONResult createTopic(@RequestBody LvjiPublishTopic topic){
+
+        return IMoocJSONResult.ok(lvJiService.createTopic(topic));
+    }
+
 }

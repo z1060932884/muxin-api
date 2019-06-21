@@ -4,31 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class LvjiPublishListExample {
+public class LvjiPublishTopicExample {
     protected String orderByClause;
 
     protected boolean distinct;
-    protected int startRow;
-    protected int pageSize;
 
-    public int getStartRow() {
-        return startRow;
-    }
-
-    public void setStartRow(int startRow) {
-        this.startRow = startRow;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
     protected List<Criteria> oredCriteria;
 
-    public LvjiPublishListExample() {
+    public LvjiPublishTopicExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -312,193 +295,213 @@ public class LvjiPublishListExample {
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumIsNull() {
-            addCriterion("comment_num is null");
+        public Criteria andTopicContentIsNull() {
+            addCriterion("topic_content is null");
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumIsNotNull() {
-            addCriterion("comment_num is not null");
+        public Criteria andTopicContentIsNotNull() {
+            addCriterion("topic_content is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumEqualTo(Integer value) {
-            addCriterion("comment_num =", value, "commentNum");
+        public Criteria andTopicContentEqualTo(String value) {
+            addCriterion("topic_content =", value, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumNotEqualTo(Integer value) {
-            addCriterion("comment_num <>", value, "commentNum");
+        public Criteria andTopicContentNotEqualTo(String value) {
+            addCriterion("topic_content <>", value, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumGreaterThan(Integer value) {
-            addCriterion("comment_num >", value, "commentNum");
+        public Criteria andTopicContentGreaterThan(String value) {
+            addCriterion("topic_content >", value, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumGreaterThanOrEqualTo(Integer value) {
-            addCriterion("comment_num >=", value, "commentNum");
+        public Criteria andTopicContentGreaterThanOrEqualTo(String value) {
+            addCriterion("topic_content >=", value, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumLessThan(Integer value) {
-            addCriterion("comment_num <", value, "commentNum");
+        public Criteria andTopicContentLessThan(String value) {
+            addCriterion("topic_content <", value, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumLessThanOrEqualTo(Integer value) {
-            addCriterion("comment_num <=", value, "commentNum");
+        public Criteria andTopicContentLessThanOrEqualTo(String value) {
+            addCriterion("topic_content <=", value, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumIn(List<Integer> values) {
-            addCriterion("comment_num in", values, "commentNum");
+        public Criteria andTopicContentLike(String value) {
+            addCriterion("topic_content like", value, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumNotIn(List<Integer> values) {
-            addCriterion("comment_num not in", values, "commentNum");
+        public Criteria andTopicContentNotLike(String value) {
+            addCriterion("topic_content not like", value, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumBetween(Integer value1, Integer value2) {
-            addCriterion("comment_num between", value1, value2, "commentNum");
+        public Criteria andTopicContentIn(List<String> values) {
+            addCriterion("topic_content in", values, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andCommentNumNotBetween(Integer value1, Integer value2) {
-            addCriterion("comment_num not between", value1, value2, "commentNum");
+        public Criteria andTopicContentNotIn(List<String> values) {
+            addCriterion("topic_content not in", values, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumIsNull() {
-            addCriterion("like_num is null");
+        public Criteria andTopicContentBetween(String value1, String value2) {
+            addCriterion("topic_content between", value1, value2, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumIsNotNull() {
-            addCriterion("like_num is not null");
+        public Criteria andTopicContentNotBetween(String value1, String value2) {
+            addCriterion("topic_content not between", value1, value2, "topicContent");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumEqualTo(Integer value) {
-            addCriterion("like_num =", value, "likeNum");
+        public Criteria andTopicPictureIsNull() {
+            addCriterion("topic_picture is null");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumNotEqualTo(Integer value) {
-            addCriterion("like_num <>", value, "likeNum");
+        public Criteria andTopicPictureIsNotNull() {
+            addCriterion("topic_picture is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumGreaterThan(Integer value) {
-            addCriterion("like_num >", value, "likeNum");
+        public Criteria andTopicPictureEqualTo(String value) {
+            addCriterion("topic_picture =", value, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumGreaterThanOrEqualTo(Integer value) {
-            addCriterion("like_num >=", value, "likeNum");
+        public Criteria andTopicPictureNotEqualTo(String value) {
+            addCriterion("topic_picture <>", value, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumLessThan(Integer value) {
-            addCriterion("like_num <", value, "likeNum");
+        public Criteria andTopicPictureGreaterThan(String value) {
+            addCriterion("topic_picture >", value, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumLessThanOrEqualTo(Integer value) {
-            addCriterion("like_num <=", value, "likeNum");
+        public Criteria andTopicPictureGreaterThanOrEqualTo(String value) {
+            addCriterion("topic_picture >=", value, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumIn(List<Integer> values) {
-            addCriterion("like_num in", values, "likeNum");
+        public Criteria andTopicPictureLessThan(String value) {
+            addCriterion("topic_picture <", value, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumNotIn(List<Integer> values) {
-            addCriterion("like_num not in", values, "likeNum");
+        public Criteria andTopicPictureLessThanOrEqualTo(String value) {
+            addCriterion("topic_picture <=", value, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumBetween(Integer value1, Integer value2) {
-            addCriterion("like_num between", value1, value2, "likeNum");
+        public Criteria andTopicPictureLike(String value) {
+            addCriterion("topic_picture like", value, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andLikeNumNotBetween(Integer value1, Integer value2) {
-            addCriterion("like_num not between", value1, value2, "likeNum");
+        public Criteria andTopicPictureNotLike(String value) {
+            addCriterion("topic_picture not like", value, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentIsNull() {
-            addCriterion("publish_content is null");
+        public Criteria andTopicPictureIn(List<String> values) {
+            addCriterion("topic_picture in", values, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentIsNotNull() {
-            addCriterion("publish_content is not null");
+        public Criteria andTopicPictureNotIn(List<String> values) {
+            addCriterion("topic_picture not in", values, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentEqualTo(String value) {
-            addCriterion("publish_content =", value, "publishContent");
+        public Criteria andTopicPictureBetween(String value1, String value2) {
+            addCriterion("topic_picture between", value1, value2, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentNotEqualTo(String value) {
-            addCriterion("publish_content <>", value, "publishContent");
+        public Criteria andTopicPictureNotBetween(String value1, String value2) {
+            addCriterion("topic_picture not between", value1, value2, "topicPicture");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentGreaterThan(String value) {
-            addCriterion("publish_content >", value, "publishContent");
+        public Criteria andTopicTitleIsNull() {
+            addCriterion("topic_title is null");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentGreaterThanOrEqualTo(String value) {
-            addCriterion("publish_content >=", value, "publishContent");
+        public Criteria andTopicTitleIsNotNull() {
+            addCriterion("topic_title is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentLessThan(String value) {
-            addCriterion("publish_content <", value, "publishContent");
+        public Criteria andTopicTitleEqualTo(String value) {
+            addCriterion("topic_title =", value, "topicTitle");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentLessThanOrEqualTo(String value) {
-            addCriterion("publish_content <=", value, "publishContent");
+        public Criteria andTopicTitleNotEqualTo(String value) {
+            addCriterion("topic_title <>", value, "topicTitle");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentLike(String value) {
-            addCriterion("publish_content like", value, "publishContent");
+        public Criteria andTopicTitleGreaterThan(String value) {
+            addCriterion("topic_title >", value, "topicTitle");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentNotLike(String value) {
-            addCriterion("publish_content not like", value, "publishContent");
+        public Criteria andTopicTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("topic_title >=", value, "topicTitle");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentIn(List<String> values) {
-            addCriterion("publish_content in", values, "publishContent");
+        public Criteria andTopicTitleLessThan(String value) {
+            addCriterion("topic_title <", value, "topicTitle");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentNotIn(List<String> values) {
-            addCriterion("publish_content not in", values, "publishContent");
+        public Criteria andTopicTitleLessThanOrEqualTo(String value) {
+            addCriterion("topic_title <=", value, "topicTitle");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentBetween(String value1, String value2) {
-            addCriterion("publish_content between", value1, value2, "publishContent");
+        public Criteria andTopicTitleLike(String value) {
+            addCriterion("topic_title like", value, "topicTitle");
             return (Criteria) this;
         }
 
-        public Criteria andPublishContentNotBetween(String value1, String value2) {
-            addCriterion("publish_content not between", value1, value2, "publishContent");
+        public Criteria andTopicTitleNotLike(String value) {
+            addCriterion("topic_title not like", value, "topicTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTitleIn(List<String> values) {
+            addCriterion("topic_title in", values, "topicTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTitleNotIn(List<String> values) {
+            addCriterion("topic_title not in", values, "topicTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTitleBetween(String value1, String value2) {
+            addCriterion("topic_title between", value1, value2, "topicTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicTitleNotBetween(String value1, String value2) {
+            addCriterion("topic_title not between", value1, value2, "topicTitle");
             return (Criteria) this;
         }
 
@@ -569,216 +572,6 @@ public class LvjiPublishListExample {
 
         public Criteria andUserIdNotBetween(String value1, String value2) {
             addCriterion("user_id not between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationIsNull() {
-            addCriterion("publish_location is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationIsNotNull() {
-            addCriterion("publish_location is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationEqualTo(String value) {
-            addCriterion("publish_location =", value, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationNotEqualTo(String value) {
-            addCriterion("publish_location <>", value, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationGreaterThan(String value) {
-            addCriterion("publish_location >", value, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationGreaterThanOrEqualTo(String value) {
-            addCriterion("publish_location >=", value, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationLessThan(String value) {
-            addCriterion("publish_location <", value, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationLessThanOrEqualTo(String value) {
-            addCriterion("publish_location <=", value, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationLike(String value) {
-            addCriterion("publish_location like", value, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationNotLike(String value) {
-            addCriterion("publish_location not like", value, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationIn(List<String> values) {
-            addCriterion("publish_location in", values, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationNotIn(List<String> values) {
-            addCriterion("publish_location not in", values, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationBetween(String value1, String value2) {
-            addCriterion("publish_location between", value1, value2, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishLocationNotBetween(String value1, String value2) {
-            addCriterion("publish_location not between", value1, value2, "publishLocation");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityIsNull() {
-            addCriterion("publish_city is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityIsNotNull() {
-            addCriterion("publish_city is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityEqualTo(String value) {
-            addCriterion("publish_city =", value, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityNotEqualTo(String value) {
-            addCriterion("publish_city <>", value, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityGreaterThan(String value) {
-            addCriterion("publish_city >", value, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityGreaterThanOrEqualTo(String value) {
-            addCriterion("publish_city >=", value, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityLessThan(String value) {
-            addCriterion("publish_city <", value, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityLessThanOrEqualTo(String value) {
-            addCriterion("publish_city <=", value, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityLike(String value) {
-            addCriterion("publish_city like", value, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityNotLike(String value) {
-            addCriterion("publish_city not like", value, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityIn(List<String> values) {
-            addCriterion("publish_city in", values, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityNotIn(List<String> values) {
-            addCriterion("publish_city not in", values, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityBetween(String value1, String value2) {
-            addCriterion("publish_city between", value1, value2, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishCityNotBetween(String value1, String value2) {
-            addCriterion("publish_city not between", value1, value2, "publishCity");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicIsNull() {
-            addCriterion("publish_topic is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicIsNotNull() {
-            addCriterion("publish_topic is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicEqualTo(String value) {
-            addCriterion("publish_topic =", value, "publishTopic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicNotEqualTo(String value) {
-            addCriterion("publish_topic <>", value, "publishTopic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicGreaterThan(String value) {
-            addCriterion("publish_topic >", value, "publishTopic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicGreaterThanOrEqualTo(String value) {
-            addCriterion("publish_topic >=", value, "publishTopic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicLessThan(String value) {
-            addCriterion("publish_topic <", value, "publishTopic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicLessThanOrEqualTo(String value) {
-            addCriterion("publish_topic <=", value, "publishTopic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicLike(String value) {
-            addCriterion("publish_topic like", value, "publishTopic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicNotLike(String value) {
-            addCriterion("publish_topic not like", value, "publishTopic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicIn(List<String> values) {
-            addCriterion("publish_topic in", values, "publishTopic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicNotIn(List<String> values) {
-            addCriterion("publish_topic not in", values, "publishTopic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicBetween(String value1, String value2) {
-            addCriterion("publish_topic between", value1, value2, "publishTopic");
-            return (Criteria) this;
-        }
-
-        public Criteria andPublishTopicNotBetween(String value1, String value2) {
-            addCriterion("publish_topic not between", value1, value2, "publishTopic");
             return (Criteria) this;
         }
     }

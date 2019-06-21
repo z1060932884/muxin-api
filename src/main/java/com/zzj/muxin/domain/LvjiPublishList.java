@@ -19,6 +19,10 @@ public class LvjiPublishList {
 
     private String publishLocation;
 
+    private String publishCity;
+
+    private String publishTopic;
+
     private String pictureUrlList;
 
     public String getId() {
@@ -83,6 +87,22 @@ public class LvjiPublishList {
 
     public void setPublishLocation(String publishLocation) {
         this.publishLocation = publishLocation == null ? null : publishLocation.trim();
+    }
+
+    public String getPublishCity() {
+        return publishCity;
+    }
+
+    public void setPublishCity(String publishCity) {
+        this.publishCity = publishCity == null ? null : publishCity.trim();
+    }
+
+    public String getPublishTopic() {
+        return publishTopic;
+    }
+
+    public void setPublishTopic(String publishTopic) {
+        this.publishTopic = publishTopic == null ? null : publishTopic.trim();
     }
 
     public String getPictureUrlList() {
