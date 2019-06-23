@@ -9,11 +9,13 @@ import com.zzj.muxin.service.UserService;
 import com.zzj.muxin.utils.FastDFSClient;
 import com.zzj.muxin.utils.IMoocJSONResult;
 import com.zzj.muxin.vo.LvjiPublishCard;
+import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.GET;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -30,6 +32,8 @@ public class LvJiController {
 
     @Autowired
     private LvJiService lvJiService;
+    @Autowired
+    private Sid sid;
 
     /**
      * 发布动态
@@ -102,6 +106,12 @@ public class LvJiController {
     @PostMapping("/createTopic")
     public IMoocJSONResult createTopic(@RequestBody LvjiPublishTopic topic){
 
+        if(topic.getUserId() == null||topic.getUserId().equals("")){
+            return IMoocJSONResult.errorMsg("用户信息错误");
+        }
+        topic.setId(sid.nextShort());
+        topic.setCreateAt(new Date());
+        topic.setUpdateAt(new Date());
         return IMoocJSONResult.ok(lvJiService.createTopic(topic));
     }
 

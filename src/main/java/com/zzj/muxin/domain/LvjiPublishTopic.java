@@ -11,6 +11,8 @@ public class LvjiPublishTopic {
 
     private String topicContent;
 
+    private String topicLocation;
+
     private String topicPicture;
 
     private String topicTitle;
@@ -47,6 +49,14 @@ public class LvjiPublishTopic {
 
     public void setTopicContent(String topicContent) {
         this.topicContent = topicContent == null ? null : topicContent.trim();
+    }
+
+    public String getTopicLocation() {
+        return topicLocation;
+    }
+
+    public void setTopicLocation(String topicLocation) {
+        this.topicLocation = topicLocation == null ? null : topicLocation.trim();
     }
 
     public String getTopicPicture() {

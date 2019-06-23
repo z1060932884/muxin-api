@@ -101,7 +101,7 @@ public class UserController {
         System.out.println(url);
 
         //获取缩略图的url
-        String thump = "_200x200.";
+        String thump = "_80x80.";
         String arr[]  = url.split("\\.");
         String thumpImageUrl = arr[0] + thump+arr[1];
 
@@ -112,6 +112,36 @@ public class UserController {
         users.setFaceImage(thumpImageUrl);
 
         return IMoocJSONResult.ok(userService.updateUserInfo(users));
+    }
+
+    /**
+     * 上传图片接口
+     * @param base64Image
+     * @return
+     * @throws Exception
+     */
+    @PostMapping("/uploadImage")
+    private IMoocJSONResult uploadImage(String base64Image) throws Exception{
+
+        //获取前端传过来的base64字符串，然后转换成文件对象再上传
+
+        String userFacePath = "D:\\"+ System.currentTimeMillis()+"userFace64.png";
+//        String userFacePath = "/fastdfs/tmp/"+ usersBo.getUserId()+"userFace64.png";
+
+        FileUtils.base64ToFile(userFacePath,base64Image);
+        //上传文件到fastdfs
+        MultipartFile file = FileUtils.fileToMultipart(userFacePath);
+
+        String url = fastDFSClient.uploadBase64(file);
+        System.out.println(url);
+
+        //获取缩略图的url
+        String thump = "_80x80.";
+        String arr[]  = url.split("\\.");
+        String thumpImageUrl = arr[0] + thump+arr[1];
+
+
+        return IMoocJSONResult.ok(url);
     }
 
     /**

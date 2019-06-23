@@ -365,6 +365,76 @@ public class LvjiPublishTopicExample {
             return (Criteria) this;
         }
 
+        public Criteria andTopicLocationIsNull() {
+            addCriterion("topic_location is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationIsNotNull() {
+            addCriterion("topic_location is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationEqualTo(String value) {
+            addCriterion("topic_location =", value, "topicLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationNotEqualTo(String value) {
+            addCriterion("topic_location <>", value, "topicLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationGreaterThan(String value) {
+            addCriterion("topic_location >", value, "topicLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationGreaterThanOrEqualTo(String value) {
+            addCriterion("topic_location >=", value, "topicLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationLessThan(String value) {
+            addCriterion("topic_location <", value, "topicLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationLessThanOrEqualTo(String value) {
+            addCriterion("topic_location <=", value, "topicLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationLike(String value) {
+            addCriterion("topic_location like", value, "topicLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationNotLike(String value) {
+            addCriterion("topic_location not like", value, "topicLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationIn(List<String> values) {
+            addCriterion("topic_location in", values, "topicLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationNotIn(List<String> values) {
+            addCriterion("topic_location not in", values, "topicLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationBetween(String value1, String value2) {
+            addCriterion("topic_location between", value1, value2, "topicLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicLocationNotBetween(String value1, String value2) {
+            addCriterion("topic_location not between", value1, value2, "topicLocation");
+            return (Criteria) this;
+        }
+
         public Criteria andTopicPictureIsNull() {
             addCriterion("topic_picture is null");
             return (Criteria) this;

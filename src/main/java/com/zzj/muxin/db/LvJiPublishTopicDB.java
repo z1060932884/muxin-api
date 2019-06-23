@@ -18,11 +18,52 @@ public class LvJiPublishTopicDB extends BaseEntity {
     @Column()
     private String topicPicture;
 
+    @Column()
+    private String topicLocation;
     /**
      * 话题发起者
      */
     @Column(nullable = false)
     private String userId;
 
+    public String getTopicContent() {
+        return topicContent;
+    }
 
+    public void setTopicContent(String topicContent) {
+        this.topicContent = topicContent;
+    }
+
+    public String getTopicTitle() {
+        return topicTitle;
+    }
+
+    public void setTopicTitle(String topicTitle) {
+        this.topicTitle = topicTitle;
+    }
+
+    public String getTopicPicture() {
+        return topicPicture;
+    }
+
+    public void setTopicPicture(String topicPicture) {
+        this.topicPicture = topicPicture;
+    }
+
+
+    public String getTopicLocation() {
+        return topicLocation;
+    }
+
+    public void setTopicLocation(String topicLocation) {
+        this.topicLocation = topicLocation;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 }

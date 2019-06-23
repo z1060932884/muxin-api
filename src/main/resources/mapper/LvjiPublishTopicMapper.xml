@@ -6,6 +6,7 @@
     <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
     <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
     <result column="topic_content" jdbcType="VARCHAR" property="topicContent" />
+    <result column="topic_location" jdbcType="VARCHAR" property="topicLocation" />
     <result column="topic_picture" jdbcType="VARCHAR" property="topicPicture" />
     <result column="topic_title" jdbcType="VARCHAR" property="topicTitle" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
@@ -69,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, create_at, update_at, topic_content, topic_picture, topic_title, user_id
+    id, create_at, update_at, topic_content, topic_location, topic_picture, topic_title, 
+    user_id
   </sql>
   <select id="selectByExample" parameterType="com.zzj.muxin.domain.LvjiPublishTopicExample" resultMap="BaseResultMap">
     select
@@ -93,11 +95,11 @@
   </delete>
   <insert id="insert" parameterType="com.zzj.muxin.domain.LvjiPublishTopic">
     insert into lvji_publish_topic (id, create_at, update_at, 
-      topic_content, topic_picture, topic_title, 
-      user_id)
+      topic_content, topic_location, topic_picture, 
+      topic_title, user_id)
     values (#{id,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}, 
-      #{topicContent,jdbcType=VARCHAR}, #{topicPicture,jdbcType=VARCHAR}, #{topicTitle,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=VARCHAR})
+      #{topicContent,jdbcType=VARCHAR}, #{topicLocation,jdbcType=VARCHAR}, #{topicPicture,jdbcType=VARCHAR}, 
+      #{topicTitle,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zzj.muxin.domain.LvjiPublishTopic">
     insert into lvji_publish_topic
@@ -113,6 +115,9 @@
       </if>
       <if test="topicContent != null">
         topic_content,
+      </if>
+      <if test="topicLocation != null">
+        topic_location,
       </if>
       <if test="topicPicture != null">
         topic_picture,
@@ -136,6 +141,9 @@
       </if>
       <if test="topicContent != null">
         #{topicContent,jdbcType=VARCHAR},
+      </if>
+      <if test="topicLocation != null">
+        #{topicLocation,jdbcType=VARCHAR},
       </if>
       <if test="topicPicture != null">
         #{topicPicture,jdbcType=VARCHAR},
@@ -169,6 +177,9 @@
       <if test="record.topicContent != null">
         topic_content = #{record.topicContent,jdbcType=VARCHAR},
       </if>
+      <if test="record.topicLocation != null">
+        topic_location = #{record.topicLocation,jdbcType=VARCHAR},
+      </if>
       <if test="record.topicPicture != null">
         topic_picture = #{record.topicPicture,jdbcType=VARCHAR},
       </if>
@@ -189,6 +200,7 @@
       create_at = #{record.createAt,jdbcType=TIMESTAMP},
       update_at = #{record.updateAt,jdbcType=TIMESTAMP},
       topic_content = #{record.topicContent,jdbcType=VARCHAR},
+      topic_location = #{record.topicLocation,jdbcType=VARCHAR},
       topic_picture = #{record.topicPicture,jdbcType=VARCHAR},
       topic_title = #{record.topicTitle,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=VARCHAR}
