@@ -2,6 +2,7 @@ package com.zzj.muxin.service;
 
 import com.zzj.muxin.domain.LvjiPublishList;
 import com.zzj.muxin.domain.LvjiPublishTopic;
+import com.zzj.muxin.domain.LvjiTopicType;
 
 import java.util.List;
 
@@ -41,4 +42,11 @@ public interface LvJiService {
      * @return
      */
     LvjiPublishTopic createTopic(LvjiPublishTopic topic);
+
+
+    /**
+     * 获取话题类型数据
+     */
+    List<LvjiTopicType> getTopicTypeList();
+
 }

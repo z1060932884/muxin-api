@@ -18,6 +18,16 @@ public class LvJiPublishTopicDB extends BaseEntity {
     @Column()
     private String topicPicture;
 
+    @Column(nullable = false)
+    private String typeId;
+
+    /**
+     * 话题是系统发起   还是用户发起的
+     * sys 是系统    user 是 用户
+     */
+    @Column(nullable = false)
+    private String topicKind;
+
     @Column()
     private String topicLocation;
     /**
@@ -50,6 +60,13 @@ public class LvJiPublishTopicDB extends BaseEntity {
         this.topicPicture = topicPicture;
     }
 
+    public String getTopicKind() {
+        return topicKind;
+    }
+
+    public void setTopicKind(String topicKind) {
+        this.topicKind = topicKind;
+    }
 
     public String getTopicLocation() {
         return topicLocation;
@@ -65,5 +82,13 @@ public class LvJiPublishTopicDB extends BaseEntity {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
     }
 }

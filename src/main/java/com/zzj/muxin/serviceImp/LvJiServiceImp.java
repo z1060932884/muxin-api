@@ -1,13 +1,7 @@
 package com.zzj.muxin.serviceImp;
 
-import com.zzj.muxin.domain.LvjiPublishList;
-import com.zzj.muxin.domain.LvjiPublishListExample;
-import com.zzj.muxin.domain.LvjiPublishTopic;
-import com.zzj.muxin.domain.LvjiPublishTopicExample;
-import com.zzj.muxin.mapper.LvjiPublishListMapper;
-import com.zzj.muxin.mapper.LvjiPublishTopicMapper;
-import com.zzj.muxin.mapper.TbGroupMapper;
-import com.zzj.muxin.mapper.ZzjImageManagerMapper;
+import com.zzj.muxin.domain.*;
+import com.zzj.muxin.mapper.*;
 import com.zzj.muxin.service.LvJiService;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +23,8 @@ public class LvJiServiceImp implements LvJiService {
     private LvjiPublishListMapper lvjiPublishListMapper;
     @Autowired
     private LvjiPublishTopicMapper topicMapper;
+    @Autowired
+    private LvjiTopicTypeMapper topicTypeMapper;
 
 
     @Override
@@ -75,6 +71,12 @@ public class LvJiServiceImp implements LvJiService {
     public LvjiPublishTopic createTopic(LvjiPublishTopic topic) {
         topicMapper.insert(topic);
         return topic;
+    }
+
+    @Override
+    public List<LvjiTopicType> getTopicTypeList() {
+
+        return topicTypeMapper.selectByExample(new LvjiTopicTypeExample());
     }
 
 

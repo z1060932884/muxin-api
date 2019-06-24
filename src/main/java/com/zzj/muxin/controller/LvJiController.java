@@ -115,4 +115,13 @@ public class LvJiController {
         return IMoocJSONResult.ok(lvJiService.createTopic(topic));
     }
 
+    /**
+     * 获取话题类型列表
+     * @return
+     */
+    @GetMapping("/getTopicTypeList")
+    public IMoocJSONResult getTopicTypeList(){
+
+        return IMoocJSONResult.ok(lvJiService.getTopicTypeList());
+    }
 }
