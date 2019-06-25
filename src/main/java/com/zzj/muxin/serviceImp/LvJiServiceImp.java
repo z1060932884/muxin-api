@@ -3,12 +3,18 @@ package com.zzj.muxin.serviceImp;
 import com.zzj.muxin.domain.*;
 import com.zzj.muxin.mapper.*;
 import com.zzj.muxin.service.LvJiService;
+import com.zzj.muxin.vo.LvjiPublishTopicCard;
 import org.n3r.idworker.Sid;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class LvJiServiceImp implements LvJiService {
@@ -26,12 +32,14 @@ public class LvJiServiceImp implements LvJiService {
     @Autowired
     private LvjiTopicTypeMapper topicTypeMapper;
 
-
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public String addImage(String userId, String imageUrl) {
         return null;
     }
 
+
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public LvjiPublishList publish(String userId, String imageUrlList, String content,String location,String city,String topic) {
         String id = sid.nextShort();
@@ -50,6 +58,7 @@ public class LvJiServiceImp implements LvJiService {
         return publishList;
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public List<LvjiPublishList> getPublishList(int page,int pagesize) {
         LvjiPublishListExample example = new LvjiPublishListExample();
@@ -61,22 +70,42 @@ public class LvJiServiceImp implements LvJiService {
         return lvjiPublishLists;
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public List<LvjiPublishTopic> getTopicList() {
+    public List<LvjiPublishTopic> getTopicList(String topicKind) {
+        LvjiPublishTopicExample example = new LvjiPublishTopicExample();
+        LvjiPublishTopicExample.Criteria criteria = example.createCriteria();
+        criteria.andTopicKindEqualTo(topicKind);
+        List<LvjiPublishTopic> topicList = topicMapper.selectByExample(example);
 
-        return topicMapper.selectByExample(new LvjiPublishTopicExample());
+        return topicList;
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public LvjiPublishTopic createTopic(LvjiPublishTopic topic) {
         topicMapper.insert(topic);
         return topic;
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public List<LvjiTopicType> getTopicTypeList() {
 
         return topicTypeMapper.selectByExample(new LvjiTopicTypeExample());
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public LvjiTopicType queryTopicTypeByTypeId(String typeId) {
+        LvjiTopicTypeExample example = new LvjiTopicTypeExample();
+        LvjiTopicTypeExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(typeId);
+        List<LvjiTopicType> lvjiTopicTypes = topicTypeMapper.selectByExample(example);
+        if(lvjiTopicTypes!=null&&lvjiTopicTypes.size()>0){
+            return lvjiTopicTypes.get(0);
+        }
+        return null;
     }
 
 

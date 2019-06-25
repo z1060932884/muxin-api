@@ -6,9 +6,11 @@
     <result column="create_at" jdbcType="TIMESTAMP" property="createAt" />
     <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
     <result column="topic_content" jdbcType="VARCHAR" property="topicContent" />
+    <result column="topic_kind" jdbcType="VARCHAR" property="topicKind" />
     <result column="topic_location" jdbcType="VARCHAR" property="topicLocation" />
     <result column="topic_picture" jdbcType="VARCHAR" property="topicPicture" />
     <result column="topic_title" jdbcType="VARCHAR" property="topicTitle" />
+    <result column="type_id" jdbcType="VARCHAR" property="typeId" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -70,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, create_at, update_at, topic_content, topic_location, topic_picture, topic_title, 
-    user_id
+    id, create_at, update_at, topic_content, topic_kind, topic_location, topic_picture, 
+    topic_title, type_id, user_id
   </sql>
   <select id="selectByExample" parameterType="com.zzj.muxin.domain.LvjiPublishTopicExample" resultMap="BaseResultMap">
     select
@@ -95,11 +97,13 @@
   </delete>
   <insert id="insert" parameterType="com.zzj.muxin.domain.LvjiPublishTopic">
     insert into lvji_publish_topic (id, create_at, update_at, 
-      topic_content, topic_location, topic_picture, 
-      topic_title, user_id)
+      topic_content, topic_kind, topic_location, 
+      topic_picture, topic_title, type_id, 
+      user_id)
     values (#{id,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, #{updateAt,jdbcType=TIMESTAMP}, 
-      #{topicContent,jdbcType=VARCHAR}, #{topicLocation,jdbcType=VARCHAR}, #{topicPicture,jdbcType=VARCHAR}, 
-      #{topicTitle,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR})
+      #{topicContent,jdbcType=VARCHAR}, #{topicKind,jdbcType=VARCHAR}, #{topicLocation,jdbcType=VARCHAR}, 
+      #{topicPicture,jdbcType=VARCHAR}, #{topicTitle,jdbcType=VARCHAR}, #{typeId,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zzj.muxin.domain.LvjiPublishTopic">
     insert into lvji_publish_topic
@@ -116,6 +120,9 @@
       <if test="topicContent != null">
         topic_content,
       </if>
+      <if test="topicKind != null">
+        topic_kind,
+      </if>
       <if test="topicLocation != null">
         topic_location,
       </if>
@@ -124,6 +131,9 @@
       </if>
       <if test="topicTitle != null">
         topic_title,
+      </if>
+      <if test="typeId != null">
+        type_id,
       </if>
       <if test="userId != null">
         user_id,
@@ -142,6 +152,9 @@
       <if test="topicContent != null">
         #{topicContent,jdbcType=VARCHAR},
       </if>
+      <if test="topicKind != null">
+        #{topicKind,jdbcType=VARCHAR},
+      </if>
       <if test="topicLocation != null">
         #{topicLocation,jdbcType=VARCHAR},
       </if>
@@ -150,6 +163,9 @@
       </if>
       <if test="topicTitle != null">
         #{topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=VARCHAR},
       </if>
       <if test="userId != null">
         #{userId,jdbcType=VARCHAR},
@@ -177,6 +193,9 @@
       <if test="record.topicContent != null">
         topic_content = #{record.topicContent,jdbcType=VARCHAR},
       </if>
+      <if test="record.topicKind != null">
+        topic_kind = #{record.topicKind,jdbcType=VARCHAR},
+      </if>
       <if test="record.topicLocation != null">
         topic_location = #{record.topicLocation,jdbcType=VARCHAR},
       </if>
@@ -185,6 +204,9 @@
       </if>
       <if test="record.topicTitle != null">
         topic_title = #{record.topicTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeId != null">
+        type_id = #{record.typeId,jdbcType=VARCHAR},
       </if>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=VARCHAR},
@@ -200,9 +222,11 @@
       create_at = #{record.createAt,jdbcType=TIMESTAMP},
       update_at = #{record.updateAt,jdbcType=TIMESTAMP},
       topic_content = #{record.topicContent,jdbcType=VARCHAR},
+      topic_kind = #{record.topicKind,jdbcType=VARCHAR},
       topic_location = #{record.topicLocation,jdbcType=VARCHAR},
       topic_picture = #{record.topicPicture,jdbcType=VARCHAR},
       topic_title = #{record.topicTitle,jdbcType=VARCHAR},
+      type_id = #{record.typeId,jdbcType=VARCHAR},
       user_id = #{record.userId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />

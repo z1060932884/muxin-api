@@ -3,6 +3,7 @@ package com.zzj.muxin.service;
 import com.zzj.muxin.domain.LvjiPublishList;
 import com.zzj.muxin.domain.LvjiPublishTopic;
 import com.zzj.muxin.domain.LvjiTopicType;
+import com.zzj.muxin.vo.LvjiPublishTopicCard;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public interface LvJiService {
      * 获取话题列表
      * @return
      */
-    List<LvjiPublishTopic> getTopicList();
+    List<LvjiPublishTopic> getTopicList(String topicKind);
 
     /**
      * 创建话题
@@ -49,4 +50,11 @@ public interface LvJiService {
      */
     List<LvjiTopicType> getTopicTypeList();
 
+    /**
+     * 根据分类id查询话题分类
+     * @param typeId
+     * @return
+     */
+    LvjiTopicType queryTopicTypeByTypeId(String typeId);
 }
+

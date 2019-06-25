@@ -1,8 +1,8 @@
-package com.zzj.muxin.domain;
+package com.zzj.muxin.vo;
 
 import java.util.Date;
 
-public class LvjiPublishTopic {
+public class LvjiPublishTopicCard {
     private String id;
 
     private Date createAt;
@@ -21,7 +21,29 @@ public class LvjiPublishTopic {
 
     private String typeId;
 
+    private String type;
+
     private String userId;
+
+    private String userName;
+
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getId() {
         return id;

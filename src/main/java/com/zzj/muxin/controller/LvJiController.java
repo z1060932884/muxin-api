@@ -1,14 +1,12 @@
 package com.zzj.muxin.controller;
 
-import com.zzj.muxin.domain.ChatUsers;
-import com.zzj.muxin.domain.LvjiPublishList;
-import com.zzj.muxin.domain.LvjiPublishTopic;
-import com.zzj.muxin.domain.LvjiPublishTopicExample;
+import com.zzj.muxin.domain.*;
 import com.zzj.muxin.service.LvJiService;
 import com.zzj.muxin.service.UserService;
 import com.zzj.muxin.utils.FastDFSClient;
 import com.zzj.muxin.utils.IMoocJSONResult;
 import com.zzj.muxin.vo.LvjiPublishCard;
+import com.zzj.muxin.vo.LvjiPublishTopicCard;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,14 +86,27 @@ public class LvJiController {
        return IMoocJSONResult.ok(finalPublishLists);
 
     }
+
     /**
      * 获取话题列表
      * @return
      */
     @GetMapping("/getTopicList")
-    public IMoocJSONResult getTopicList(){
-
-        return IMoocJSONResult.ok(lvJiService.getTopicList());
+    public IMoocJSONResult getTopicList(String topicKind){
+        List<LvjiPublishTopic> topicList = lvJiService.getTopicList(topicKind);
+        List<LvjiPublishTopicCard> topicCards = topicList.stream().map(new Function<LvjiPublishTopic, LvjiPublishTopicCard>() {
+            @Override
+            public LvjiPublishTopicCard apply(LvjiPublishTopic topic) {
+                LvjiPublishTopicCard topicCard = new LvjiPublishTopicCard();
+                BeanUtils.copyProperties(topic,topicCard);
+                ChatUsers users = userService.queryUserInfoByUserId(topic.getUserId());
+                topicCard.setUserName(users.getNickname());
+                LvjiTopicType topicType = lvJiService.queryTopicTypeByTypeId(topic.getTypeId());
+                topicCard.setType(topicType.getTypeTitle());
+                return topicCard;
+            }
+        }).collect(Collectors.toList());
+        return IMoocJSONResult.ok(topicCards);
     }
 
 

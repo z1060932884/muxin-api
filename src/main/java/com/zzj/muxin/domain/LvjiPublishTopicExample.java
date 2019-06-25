@@ -365,6 +365,76 @@ public class LvjiPublishTopicExample {
             return (Criteria) this;
         }
 
+        public Criteria andTopicKindIsNull() {
+            addCriterion("topic_kind is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindIsNotNull() {
+            addCriterion("topic_kind is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindEqualTo(String value) {
+            addCriterion("topic_kind =", value, "topicKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindNotEqualTo(String value) {
+            addCriterion("topic_kind <>", value, "topicKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindGreaterThan(String value) {
+            addCriterion("topic_kind >", value, "topicKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindGreaterThanOrEqualTo(String value) {
+            addCriterion("topic_kind >=", value, "topicKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindLessThan(String value) {
+            addCriterion("topic_kind <", value, "topicKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindLessThanOrEqualTo(String value) {
+            addCriterion("topic_kind <=", value, "topicKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindLike(String value) {
+            addCriterion("topic_kind like", value, "topicKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindNotLike(String value) {
+            addCriterion("topic_kind not like", value, "topicKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindIn(List<String> values) {
+            addCriterion("topic_kind in", values, "topicKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindNotIn(List<String> values) {
+            addCriterion("topic_kind not in", values, "topicKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindBetween(String value1, String value2) {
+            addCriterion("topic_kind between", value1, value2, "topicKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andTopicKindNotBetween(String value1, String value2) {
+            addCriterion("topic_kind not between", value1, value2, "topicKind");
+            return (Criteria) this;
+        }
+
         public Criteria andTopicLocationIsNull() {
             addCriterion("topic_location is null");
             return (Criteria) this;
@@ -572,6 +642,76 @@ public class LvjiPublishTopicExample {
 
         public Criteria andTopicTitleNotBetween(String value1, String value2) {
             addCriterion("topic_title not between", value1, value2, "topicTitle");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdIsNull() {
+            addCriterion("type_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdIsNotNull() {
+            addCriterion("type_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdEqualTo(String value) {
+            addCriterion("type_id =", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdNotEqualTo(String value) {
+            addCriterion("type_id <>", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdGreaterThan(String value) {
+            addCriterion("type_id >", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdGreaterThanOrEqualTo(String value) {
+            addCriterion("type_id >=", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdLessThan(String value) {
+            addCriterion("type_id <", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdLessThanOrEqualTo(String value) {
+            addCriterion("type_id <=", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdLike(String value) {
+            addCriterion("type_id like", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdNotLike(String value) {
+            addCriterion("type_id not like", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdIn(List<String> values) {
+            addCriterion("type_id in", values, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdNotIn(List<String> values) {
+            addCriterion("type_id not in", values, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdBetween(String value1, String value2) {
+            addCriterion("type_id between", value1, value2, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdNotBetween(String value1, String value2) {
+            addCriterion("type_id not between", value1, value2, "typeId");
             return (Criteria) this;
         }
 
