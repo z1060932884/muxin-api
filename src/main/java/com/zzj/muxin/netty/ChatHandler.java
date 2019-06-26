@@ -69,7 +69,10 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             notifyData.setAction(MsgActionEnum.MSG_Received.type);
 
             notifyData.setExtand(chatMsg.getMsgId());
-            UserChannelRel.get(senderId).writeAndFlush(new TextWebSocketFrame(JsonUtils.objectToJson(notifyData)));
+            Channel senderChannel = UserChannelRel.get(senderId);
+            if(senderChannel!=null){
+                senderChannel.writeAndFlush(new TextWebSocketFrame(JsonUtils.objectToJson(notifyData)));
+            }
             if(receiverChannel == null){
                 // TODO channel为空  代表用户离线
             }else {
@@ -152,6 +155,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         super.handlerRemoved(ctx);
+        System.out.println("handlerRemoved--->"+ctx.channel().id());
         //当触发handlerRemoved，channelGroup会自动移除对应客户端的channel
         users.remove(ctx.channel());
      
@@ -160,6 +164,8 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         cause.printStackTrace();
+        System.out.println("exceptionCaught--->"+ctx.channel().id());
+
         users.remove(ctx.channel());
     }
 }
