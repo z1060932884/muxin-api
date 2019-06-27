@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("u")
@@ -300,7 +302,18 @@ public class UserController {
         // 查询列表
         List<ChatMsg> unreadMsgList = userService.getUnReadMsgList(acceptUserId);
 
-        return IMoocJSONResult.ok(unreadMsgList);
+
+        return IMoocJSONResult.ok( unreadMsgList.stream().map(new Function<ChatMsg, com.zzj.muxin.netty.ChatMsg>() {
+            @Override
+            public com.zzj.muxin.netty.ChatMsg apply(ChatMsg chatMsg) {
+                ChatUsers users = userService.queryUserInfoByUserId(chatMsg.getSendUserId());
+                com.zzj.muxin.netty.ChatMsg chatMsgCard = new com.zzj.muxin.netty.ChatMsg();
+                BeanUtils.copyProperties(chatMsg,chatMsgCard);
+                chatMsgCard.setUserName(users.getNickname());
+                chatMsgCard.setFaceImage(users.getFaceImage());
+                return chatMsgCard;
+            }
+        }).collect(Collectors.toList()));
     }
 
 

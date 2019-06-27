@@ -2,6 +2,7 @@ package com.zzj.muxin.netty;
 
 import cn.hutool.core.date.DateUtil;
 import com.sun.xml.internal.bind.v2.TODO;
+import com.zzj.muxin.domain.ChatUsers;
 import com.zzj.muxin.enums.MsgActionEnum;
 import com.zzj.muxin.factory.PushFactory;
 import com.zzj.muxin.service.UserService;
@@ -57,6 +58,9 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             //单聊
             UserService userService = (UserService) SpringUtil.getBean("userServiceImp");
             userService.saveMsg(chatMsg);
+            ChatUsers senderUser = userService.queryUserInfoByUserId(senderId);
+            chatMsg.setFaceImage(senderUser.getFaceImage());
+            chatMsg.setUserName(senderUser.getNickname());
             //发送消息
             //从全局用户Channel关系中获取接收方channel
             Channel receiverChannel =  UserChannelRel.get(receiverId);
@@ -76,6 +80,7 @@ public class ChatHandler extends SimpleChannelInboundHandler<TextWebSocketFrame>
             if(receiverChannel == null){
                 // TODO channel为空  代表用户离线
             }else {
+
                 receiverChannel.writeAndFlush(new TextWebSocketFrame(sendMessage));
 //                //当receiverChannel 不为空，从userGroup中查找channel
 //                Channel findChannel = users.find(receiverChannel.id());

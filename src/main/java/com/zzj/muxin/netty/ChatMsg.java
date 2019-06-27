@@ -30,6 +30,26 @@ public class ChatMsg implements Serializable {
     @JsonProperty(value = "isRead")
     private boolean isRead;
 
+    private String userName;//用户名
+
+    private String faceImage;//头像
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getFaceImage() {
+        return faceImage;
+    }
+
+    public void setFaceImage(String faceImage) {
+        this.faceImage = faceImage;
+    }
+
     public boolean isSendFails() {
         return sendFails;
     }
