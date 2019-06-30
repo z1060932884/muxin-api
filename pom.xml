@@ -7,7 +7,7 @@
     <groupId>com.zzj</groupId>
     <artifactId>muxin</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <!--<packaging>war</packaging>-->
     <!-- Spring Boot 启动父依赖 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -44,12 +44,22 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
+                <!--<exclusion>-->
+                    <!--<groupId>org.springframework.boot</groupId>-->
+                    <!--<artifactId>spring-boot-starter-logging</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<groupId>org.springframework.boot</groupId>-->
+                    <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+                <!--</exclusion>-->
             </exclusions>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-tomcat</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -130,11 +140,11 @@
             <version>3.3.3</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator</artifactId>
-            <version>1.3.7</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.mybatis.generator</groupId>-->
+            <!--<artifactId>mybatis-generator</artifactId>-->
+            <!--<version>1.3.7</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.mybatis.generator</groupId>
@@ -227,9 +237,32 @@
             <artifactId>nekohtml</artifactId>
             <version>1.9.22</version>
         </dependency>
-
+        <!--//添加依赖，为了打war包-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
-
-
+    <build>
+        <!-- 应与application.properties(或application.yml)中context-path保持一致 -->
+        <finalName>bengshiwei</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.zzj.muxin.App</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
