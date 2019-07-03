@@ -17,6 +17,10 @@
     <result column="bsw_age" jdbcType="INTEGER" property="bswAge" />
     <result column="picture_num" jdbcType="INTEGER" property="pictureNum" />
     <result column="bsw_constellation" jdbcType="VARCHAR" property="bswConstellation" />
+    <result column="bsw_address" jdbcType="VARCHAR" property="bswAddress" />
+    <result column="bsw_longitude" jdbcType="DOUBLE" property="bswLongitude" />
+    <result column="bsw_latitude" jdbcType="DOUBLE" property="bswLatitude" />
+    <result column="bsw_city" jdbcType="VARCHAR" property="bswCity" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -78,7 +82,8 @@
   </sql>
   <sql id="Base_Column_List">
     id, username, password, face_image, face_image_big, nickname, qrcode, cid, description, 
-    phone, chat_sex, professional, bsw_age, picture_num, bsw_constellation
+    phone, chat_sex, professional, bsw_age, picture_num, bsw_constellation, bsw_address, 
+    bsw_longitude, bsw_latitude, bsw_city
   </sql>
   <select id="selectByExample" parameterType="com.zzj.muxin.domain.ChatUsersExample" resultMap="BaseResultMap">
     select
@@ -105,14 +110,16 @@
       face_image, face_image_big, nickname, 
       qrcode, cid, description, 
       phone, chat_sex, professional, 
-      bsw_age, picture_num, bsw_constellation
-      )
+      bsw_age, picture_num, bsw_constellation, 
+      bsw_address, bsw_longitude, bsw_latitude, 
+      bsw_city)
     values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{faceImage,jdbcType=VARCHAR}, #{faceImageBig,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
       #{qrcode,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{chatSex,jdbcType=INTEGER}, #{professional,jdbcType=VARCHAR}, 
-      #{bswAge,jdbcType=INTEGER}, #{pictureNum,jdbcType=INTEGER}, #{bswConstellation,jdbcType=VARCHAR}
-      )
+      #{bswAge,jdbcType=INTEGER}, #{pictureNum,jdbcType=INTEGER}, #{bswConstellation,jdbcType=VARCHAR}, 
+      #{bswAddress,jdbcType=VARCHAR}, #{bswLongitude,jdbcType=DOUBLE}, #{bswLatitude,jdbcType=DOUBLE}, 
+      #{bswCity,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zzj.muxin.domain.ChatUsers">
     insert into chat_users
@@ -162,6 +169,18 @@
       <if test="bswConstellation != null">
         bsw_constellation,
       </if>
+      <if test="bswAddress != null">
+        bsw_address,
+      </if>
+      <if test="bswLongitude != null">
+        bsw_longitude,
+      </if>
+      <if test="bswLatitude != null">
+        bsw_latitude,
+      </if>
+      <if test="bswCity != null">
+        bsw_city,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -208,6 +227,18 @@
       </if>
       <if test="bswConstellation != null">
         #{bswConstellation,jdbcType=VARCHAR},
+      </if>
+      <if test="bswAddress != null">
+        #{bswAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bswLongitude != null">
+        #{bswLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="bswLatitude != null">
+        #{bswLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="bswCity != null">
+        #{bswCity,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -265,6 +296,18 @@
       <if test="record.bswConstellation != null">
         bsw_constellation = #{record.bswConstellation,jdbcType=VARCHAR},
       </if>
+      <if test="record.bswAddress != null">
+        bsw_address = #{record.bswAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bswLongitude != null">
+        bsw_longitude = #{record.bswLongitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bswLatitude != null">
+        bsw_latitude = #{record.bswLatitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bswCity != null">
+        bsw_city = #{record.bswCity,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -286,7 +329,11 @@
       professional = #{record.professional,jdbcType=VARCHAR},
       bsw_age = #{record.bswAge,jdbcType=INTEGER},
       picture_num = #{record.pictureNum,jdbcType=INTEGER},
-      bsw_constellation = #{record.bswConstellation,jdbcType=VARCHAR}
+      bsw_constellation = #{record.bswConstellation,jdbcType=VARCHAR},
+      bsw_address = #{record.bswAddress,jdbcType=VARCHAR},
+      bsw_longitude = #{record.bswLongitude,jdbcType=DOUBLE},
+      bsw_latitude = #{record.bswLatitude,jdbcType=DOUBLE},
+      bsw_city = #{record.bswCity,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

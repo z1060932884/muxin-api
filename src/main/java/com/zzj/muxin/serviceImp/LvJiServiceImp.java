@@ -1,9 +1,11 @@
 package com.zzj.muxin.serviceImp;
 
+import com.zzj.muxin.bo.NearbyUserBo;
 import com.zzj.muxin.domain.*;
 import com.zzj.muxin.mapper.*;
 import com.zzj.muxin.service.LvJiService;
 import com.zzj.muxin.vo.LvjiPublishTopicCard;
+import com.zzj.muxin.vo.UsersVO;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class LvJiServiceImp implements LvJiService {
     private LvjiPublishTopicMapper topicMapper;
     @Autowired
     private LvjiTopicTypeMapper topicTypeMapper;
+    @Autowired
+    private ChatUsersMapper usersMapper;
+
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
@@ -106,6 +111,16 @@ public class LvJiServiceImp implements LvJiService {
             return lvjiTopicTypes.get(0);
         }
         return null;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<ChatUsers> queryNearbyPerson(NearbyUserBo userBo) {
+        ChatUsersExample usersExample = new ChatUsersExample();
+        ChatUsersExample.Criteria criteria = usersExample.createCriteria();
+        criteria.andBswCityEqualTo(userBo.getAddress());
+        criteria.andIdNotEqualTo(userBo.getUserId());
+        return usersMapper.selectByExample(usersExample);
     }
 
 

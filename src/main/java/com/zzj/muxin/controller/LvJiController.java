@@ -1,5 +1,6 @@
 package com.zzj.muxin.controller;
 
+import com.zzj.muxin.bo.NearbyUserBo;
 import com.zzj.muxin.domain.*;
 import com.zzj.muxin.service.LvJiService;
 import com.zzj.muxin.service.UserService;
@@ -7,6 +8,7 @@ import com.zzj.muxin.utils.FastDFSClient;
 import com.zzj.muxin.utils.IMoocJSONResult;
 import com.zzj.muxin.vo.LvjiPublishCard;
 import com.zzj.muxin.vo.LvjiPublishTopicCard;
+import com.zzj.muxin.vo.UsersVO;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -134,5 +136,26 @@ public class LvJiController {
     public IMoocJSONResult getTopicTypeList(){
 
         return IMoocJSONResult.ok(lvJiService.getTopicTypeList());
+    }
+
+    /**
+     * 查询附近的人
+     * @param userBo
+     * @return
+     */
+    @GetMapping("/getNearbyPersonList")
+    public IMoocJSONResult getNearbyPersonList(@RequestBody NearbyUserBo userBo){
+
+        List<ChatUsers> usersList = lvJiService.queryNearbyPerson(userBo);
+
+        return IMoocJSONResult.ok(usersList.stream().map(new Function<ChatUsers, UsersVO>() {
+            @Override
+            public UsersVO apply(ChatUsers chatUsers) {
+                UsersVO usersVO = new UsersVO();
+                BeanUtils.copyProperties(chatUsers,usersVO);
+                return usersVO;
+            }
+        }));
+
     }
 }

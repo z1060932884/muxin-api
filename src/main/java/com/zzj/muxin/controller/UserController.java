@@ -53,8 +53,7 @@ public class UserController {
 
         }else {
             //注册
-
-            users.setNickname(users.getNickname());
+            users.setNickname("");
             users.setFaceImage("");
             users.setFaceImageBig("");
             users.setPassword(MD5Utils.getMD5Str(users.getPassword()));

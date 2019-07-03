@@ -31,6 +31,14 @@ public class ChatUsers {
 
     private String bswConstellation;
 
+    private String bswAddress;
+
+    private Double bswLongitude;
+
+    private Double bswLatitude;
+
+    private String bswCity;
+
     public String getId() {
         return id;
     }
@@ -149,5 +157,37 @@ public class ChatUsers {
 
     public void setBswConstellation(String bswConstellation) {
         this.bswConstellation = bswConstellation == null ? null : bswConstellation.trim();
+    }
+
+    public String getBswAddress() {
+        return bswAddress;
+    }
+
+    public void setBswAddress(String bswAddress) {
+        this.bswAddress = bswAddress == null ? null : bswAddress.trim();
+    }
+
+    public Double getBswLongitude() {
+        return bswLongitude;
+    }
+
+    public void setBswLongitude(Double bswLongitude) {
+        this.bswLongitude = bswLongitude;
+    }
+
+    public Double getBswLatitude() {
+        return bswLatitude;
+    }
+
+    public void setBswLatitude(Double bswLatitude) {
+        this.bswLatitude = bswLatitude;
+    }
+
+    public String getBswCity() {
+        return bswCity;
+    }
+
+    public void setBswCity(String bswCity) {
+        this.bswCity = bswCity == null ? null : bswCity.trim();
     }
 }

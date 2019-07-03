@@ -1123,6 +1123,266 @@ public class ChatUsersExample {
             addCriterion("bsw_constellation not between", value1, value2, "bswConstellation");
             return (Criteria) this;
         }
+
+        public Criteria andBswAddressIsNull() {
+            addCriterion("bsw_address is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressIsNotNull() {
+            addCriterion("bsw_address is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressEqualTo(String value) {
+            addCriterion("bsw_address =", value, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressNotEqualTo(String value) {
+            addCriterion("bsw_address <>", value, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressGreaterThan(String value) {
+            addCriterion("bsw_address >", value, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressGreaterThanOrEqualTo(String value) {
+            addCriterion("bsw_address >=", value, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressLessThan(String value) {
+            addCriterion("bsw_address <", value, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressLessThanOrEqualTo(String value) {
+            addCriterion("bsw_address <=", value, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressLike(String value) {
+            addCriterion("bsw_address like", value, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressNotLike(String value) {
+            addCriterion("bsw_address not like", value, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressIn(List<String> values) {
+            addCriterion("bsw_address in", values, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressNotIn(List<String> values) {
+            addCriterion("bsw_address not in", values, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressBetween(String value1, String value2) {
+            addCriterion("bsw_address between", value1, value2, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswAddressNotBetween(String value1, String value2) {
+            addCriterion("bsw_address not between", value1, value2, "bswAddress");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeIsNull() {
+            addCriterion("bsw_longitude is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeIsNotNull() {
+            addCriterion("bsw_longitude is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeEqualTo(Double value) {
+            addCriterion("bsw_longitude =", value, "bswLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeNotEqualTo(Double value) {
+            addCriterion("bsw_longitude <>", value, "bswLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeGreaterThan(Double value) {
+            addCriterion("bsw_longitude >", value, "bswLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeGreaterThanOrEqualTo(Double value) {
+            addCriterion("bsw_longitude >=", value, "bswLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeLessThan(Double value) {
+            addCriterion("bsw_longitude <", value, "bswLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeLessThanOrEqualTo(Double value) {
+            addCriterion("bsw_longitude <=", value, "bswLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeIn(List<Double> values) {
+            addCriterion("bsw_longitude in", values, "bswLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeNotIn(List<Double> values) {
+            addCriterion("bsw_longitude not in", values, "bswLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeBetween(Double value1, Double value2) {
+            addCriterion("bsw_longitude between", value1, value2, "bswLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLongitudeNotBetween(Double value1, Double value2) {
+            addCriterion("bsw_longitude not between", value1, value2, "bswLongitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeIsNull() {
+            addCriterion("bsw_latitude is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeIsNotNull() {
+            addCriterion("bsw_latitude is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeEqualTo(Double value) {
+            addCriterion("bsw_latitude =", value, "bswLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeNotEqualTo(Double value) {
+            addCriterion("bsw_latitude <>", value, "bswLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeGreaterThan(Double value) {
+            addCriterion("bsw_latitude >", value, "bswLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeGreaterThanOrEqualTo(Double value) {
+            addCriterion("bsw_latitude >=", value, "bswLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeLessThan(Double value) {
+            addCriterion("bsw_latitude <", value, "bswLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeLessThanOrEqualTo(Double value) {
+            addCriterion("bsw_latitude <=", value, "bswLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeIn(List<Double> values) {
+            addCriterion("bsw_latitude in", values, "bswLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeNotIn(List<Double> values) {
+            addCriterion("bsw_latitude not in", values, "bswLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeBetween(Double value1, Double value2) {
+            addCriterion("bsw_latitude between", value1, value2, "bswLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLatitudeNotBetween(Double value1, Double value2) {
+            addCriterion("bsw_latitude not between", value1, value2, "bswLatitude");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityIsNull() {
+            addCriterion("bsw_city is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityIsNotNull() {
+            addCriterion("bsw_city is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityEqualTo(String value) {
+            addCriterion("bsw_city =", value, "bswCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityNotEqualTo(String value) {
+            addCriterion("bsw_city <>", value, "bswCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityGreaterThan(String value) {
+            addCriterion("bsw_city >", value, "bswCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityGreaterThanOrEqualTo(String value) {
+            addCriterion("bsw_city >=", value, "bswCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityLessThan(String value) {
+            addCriterion("bsw_city <", value, "bswCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityLessThanOrEqualTo(String value) {
+            addCriterion("bsw_city <=", value, "bswCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityLike(String value) {
+            addCriterion("bsw_city like", value, "bswCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityNotLike(String value) {
+            addCriterion("bsw_city not like", value, "bswCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityIn(List<String> values) {
+            addCriterion("bsw_city in", values, "bswCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityNotIn(List<String> values) {
+            addCriterion("bsw_city not in", values, "bswCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityBetween(String value1, String value2) {
+            addCriterion("bsw_city between", value1, value2, "bswCity");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswCityNotBetween(String value1, String value2) {
+            addCriterion("bsw_city not between", value1, value2, "bswCity");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

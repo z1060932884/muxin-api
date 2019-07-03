@@ -1,9 +1,12 @@
 package com.zzj.muxin.service;
 
+import com.zzj.muxin.bo.NearbyUserBo;
+import com.zzj.muxin.domain.ChatUsers;
 import com.zzj.muxin.domain.LvjiPublishList;
 import com.zzj.muxin.domain.LvjiPublishTopic;
 import com.zzj.muxin.domain.LvjiTopicType;
 import com.zzj.muxin.vo.LvjiPublishTopicCard;
+import com.zzj.muxin.vo.UsersVO;
 
 import java.util.List;
 
@@ -56,5 +59,13 @@ public interface LvJiService {
      * @return
      */
     LvjiTopicType queryTopicTypeByTypeId(String typeId);
+
+    /**
+     * 查询附近的人
+     * @param userBo
+     * @return
+     */
+    List<ChatUsers> queryNearbyPerson(NearbyUserBo userBo);
+
 }
 

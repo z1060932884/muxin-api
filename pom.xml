@@ -238,11 +238,11 @@
             <version>1.9.22</version>
         </dependency>
         <!--//添加依赖，为了打war包-->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javax.servlet</groupId>-->
+            <!--<artifactId>javax.servlet-api</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
     </dependencies>
     <build>
         <!-- 应与application.properties(或application.yml)中context-path保持一致 -->
