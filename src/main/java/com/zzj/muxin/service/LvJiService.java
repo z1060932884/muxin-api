@@ -67,5 +67,11 @@ public interface LvJiService {
      */
     List<ChatUsers> queryNearbyPerson(NearbyUserBo userBo);
 
+    /**
+     * 查询用户信息
+     * @param userId
+     * @return
+     */
+    ChatUsers queryUserById(String userId);
 }
 

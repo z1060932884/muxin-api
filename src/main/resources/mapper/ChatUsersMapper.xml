@@ -21,6 +21,9 @@
     <result column="bsw_longitude" jdbcType="DOUBLE" property="bswLongitude" />
     <result column="bsw_latitude" jdbcType="DOUBLE" property="bswLatitude" />
     <result column="bsw_city" jdbcType="VARCHAR" property="bswCity" />
+    <result column="bsw_like" jdbcType="INTEGER" property="bswLike" />
+    <result column="bsw_follow" jdbcType="INTEGER" property="bswFollow" />
+    <result column="bsw_fans" jdbcType="INTEGER" property="bswFans" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -83,7 +86,7 @@
   <sql id="Base_Column_List">
     id, username, password, face_image, face_image_big, nickname, qrcode, cid, description, 
     phone, chat_sex, professional, bsw_age, picture_num, bsw_constellation, bsw_address, 
-    bsw_longitude, bsw_latitude, bsw_city
+    bsw_longitude, bsw_latitude, bsw_city, bsw_like, bsw_follow, bsw_fans
   </sql>
   <select id="selectByExample" parameterType="com.zzj.muxin.domain.ChatUsersExample" resultMap="BaseResultMap">
     select
@@ -112,14 +115,16 @@
       phone, chat_sex, professional, 
       bsw_age, picture_num, bsw_constellation, 
       bsw_address, bsw_longitude, bsw_latitude, 
-      bsw_city)
+      bsw_city, bsw_like, bsw_follow, 
+      bsw_fans)
     values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{faceImage,jdbcType=VARCHAR}, #{faceImageBig,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
       #{qrcode,jdbcType=VARCHAR}, #{cid,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{chatSex,jdbcType=INTEGER}, #{professional,jdbcType=VARCHAR}, 
       #{bswAge,jdbcType=INTEGER}, #{pictureNum,jdbcType=INTEGER}, #{bswConstellation,jdbcType=VARCHAR}, 
       #{bswAddress,jdbcType=VARCHAR}, #{bswLongitude,jdbcType=DOUBLE}, #{bswLatitude,jdbcType=DOUBLE}, 
-      #{bswCity,jdbcType=VARCHAR})
+      #{bswCity,jdbcType=VARCHAR}, #{bswLike,jdbcType=INTEGER}, #{bswFollow,jdbcType=INTEGER}, 
+      #{bswFans,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zzj.muxin.domain.ChatUsers">
     insert into chat_users
@@ -181,6 +186,15 @@
       <if test="bswCity != null">
         bsw_city,
       </if>
+      <if test="bswLike != null">
+        bsw_like,
+      </if>
+      <if test="bswFollow != null">
+        bsw_follow,
+      </if>
+      <if test="bswFans != null">
+        bsw_fans,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -239,6 +253,15 @@
       </if>
       <if test="bswCity != null">
         #{bswCity,jdbcType=VARCHAR},
+      </if>
+      <if test="bswLike != null">
+        #{bswLike,jdbcType=INTEGER},
+      </if>
+      <if test="bswFollow != null">
+        #{bswFollow,jdbcType=INTEGER},
+      </if>
+      <if test="bswFans != null">
+        #{bswFans,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -308,6 +331,15 @@
       <if test="record.bswCity != null">
         bsw_city = #{record.bswCity,jdbcType=VARCHAR},
       </if>
+      <if test="record.bswLike != null">
+        bsw_like = #{record.bswLike,jdbcType=INTEGER},
+      </if>
+      <if test="record.bswFollow != null">
+        bsw_follow = #{record.bswFollow,jdbcType=INTEGER},
+      </if>
+      <if test="record.bswFans != null">
+        bsw_fans = #{record.bswFans,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -333,7 +365,10 @@
       bsw_address = #{record.bswAddress,jdbcType=VARCHAR},
       bsw_longitude = #{record.bswLongitude,jdbcType=DOUBLE},
       bsw_latitude = #{record.bswLatitude,jdbcType=DOUBLE},
-      bsw_city = #{record.bswCity,jdbcType=VARCHAR}
+      bsw_city = #{record.bswCity,jdbcType=VARCHAR},
+      bsw_like = #{record.bswLike,jdbcType=INTEGER},
+      bsw_follow = #{record.bswFollow,jdbcType=INTEGER},
+      bsw_fans = #{record.bswFans,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -8,6 +8,7 @@
     <result column="picture" jdbcType="VARCHAR" property="picture" />
     <result column="update_at" jdbcType="TIMESTAMP" property="updateAt" />
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="push_id" jdbcType="VARCHAR" property="pushId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, create_at, name, picture, update_at, user_id
+    id, create_at, name, picture, update_at, user_id, push_id
   </sql>
   <select id="selectByExample" parameterType="com.zzj.muxin.domain.ZzjImageManagerExample" resultMap="BaseResultMap">
     select
@@ -92,11 +93,11 @@
   </delete>
   <insert id="insert" parameterType="com.zzj.muxin.domain.ZzjImageManager">
     insert into zzj_image_manager (id, create_at, name, 
-      picture, update_at, user_id
-      )
+      picture, update_at, user_id, 
+      push_id)
     values (#{id,jdbcType=VARCHAR}, #{createAt,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
-      #{picture,jdbcType=VARCHAR}, #{updateAt,jdbcType=TIMESTAMP}, #{userId,jdbcType=VARCHAR}
-      )
+      #{picture,jdbcType=VARCHAR}, #{updateAt,jdbcType=TIMESTAMP}, #{userId,jdbcType=VARCHAR}, 
+      #{pushId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zzj.muxin.domain.ZzjImageManager">
     insert into zzj_image_manager
@@ -119,6 +120,9 @@
       <if test="userId != null">
         user_id,
       </if>
+      <if test="pushId != null">
+        push_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -138,6 +142,9 @@
       </if>
       <if test="userId != null">
         #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="pushId != null">
+        #{pushId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -168,6 +175,9 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=VARCHAR},
       </if>
+      <if test="record.pushId != null">
+        push_id = #{record.pushId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -180,7 +190,8 @@
       name = #{record.name,jdbcType=VARCHAR},
       picture = #{record.picture,jdbcType=VARCHAR},
       update_at = #{record.updateAt,jdbcType=TIMESTAMP},
-      user_id = #{record.userId,jdbcType=VARCHAR}
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      push_id = #{record.pushId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

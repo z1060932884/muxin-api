@@ -39,6 +39,12 @@ public class ChatUsers {
 
     private String bswCity;
 
+    private Integer bswLike;
+
+    private Integer bswFollow;
+
+    private Integer bswFans;
+
     public String getId() {
         return id;
     }
@@ -189,5 +195,29 @@ public class ChatUsers {
 
     public void setBswCity(String bswCity) {
         this.bswCity = bswCity == null ? null : bswCity.trim();
+    }
+
+    public Integer getBswLike() {
+        return bswLike;
+    }
+
+    public void setBswLike(Integer bswLike) {
+        this.bswLike = bswLike;
+    }
+
+    public Integer getBswFollow() {
+        return bswFollow;
+    }
+
+    public void setBswFollow(Integer bswFollow) {
+        this.bswFollow = bswFollow;
+    }
+
+    public Integer getBswFans() {
+        return bswFans;
+    }
+
+    public void setBswFans(Integer bswFans) {
+        this.bswFans = bswFans;
     }
 }

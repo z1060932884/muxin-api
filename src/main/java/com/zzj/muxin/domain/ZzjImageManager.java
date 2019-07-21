@@ -15,6 +15,8 @@ public class ZzjImageManager {
 
     private String userId;
 
+    private String pushId;
+
     public String getId() {
         return id;
     }
@@ -61,5 +63,13 @@ public class ZzjImageManager {
 
     public void setUserId(String userId) {
         this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId == null ? null : pushId.trim();
     }
 }

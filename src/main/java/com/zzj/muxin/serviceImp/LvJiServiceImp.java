@@ -123,5 +123,17 @@ public class LvJiServiceImp implements LvJiService {
         return usersMapper.selectByExample(usersExample);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public ChatUsers queryUserById(String userId){
+        ChatUsersExample usersExample = new ChatUsersExample();
+        ChatUsersExample.Criteria criteria = usersExample.createCriteria();
+        criteria.andIdEqualTo(userId);
+        List<ChatUsers> chatUsers = usersMapper.selectByExample(usersExample);
+        if(chatUsers!=null&&chatUsers.size()!=0){
+            return chatUsers.get(0);
+        }
+        return null;
+    }
 
 }

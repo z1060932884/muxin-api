@@ -1383,6 +1383,186 @@ public class ChatUsersExample {
             addCriterion("bsw_city not between", value1, value2, "bswCity");
             return (Criteria) this;
         }
+
+        public Criteria andBswLikeIsNull() {
+            addCriterion("bsw_like is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLikeIsNotNull() {
+            addCriterion("bsw_like is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLikeEqualTo(Integer value) {
+            addCriterion("bsw_like =", value, "bswLike");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLikeNotEqualTo(Integer value) {
+            addCriterion("bsw_like <>", value, "bswLike");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLikeGreaterThan(Integer value) {
+            addCriterion("bsw_like >", value, "bswLike");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLikeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("bsw_like >=", value, "bswLike");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLikeLessThan(Integer value) {
+            addCriterion("bsw_like <", value, "bswLike");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLikeLessThanOrEqualTo(Integer value) {
+            addCriterion("bsw_like <=", value, "bswLike");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLikeIn(List<Integer> values) {
+            addCriterion("bsw_like in", values, "bswLike");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLikeNotIn(List<Integer> values) {
+            addCriterion("bsw_like not in", values, "bswLike");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLikeBetween(Integer value1, Integer value2) {
+            addCriterion("bsw_like between", value1, value2, "bswLike");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswLikeNotBetween(Integer value1, Integer value2) {
+            addCriterion("bsw_like not between", value1, value2, "bswLike");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowIsNull() {
+            addCriterion("bsw_follow is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowIsNotNull() {
+            addCriterion("bsw_follow is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowEqualTo(Integer value) {
+            addCriterion("bsw_follow =", value, "bswFollow");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowNotEqualTo(Integer value) {
+            addCriterion("bsw_follow <>", value, "bswFollow");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowGreaterThan(Integer value) {
+            addCriterion("bsw_follow >", value, "bswFollow");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowGreaterThanOrEqualTo(Integer value) {
+            addCriterion("bsw_follow >=", value, "bswFollow");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowLessThan(Integer value) {
+            addCriterion("bsw_follow <", value, "bswFollow");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowLessThanOrEqualTo(Integer value) {
+            addCriterion("bsw_follow <=", value, "bswFollow");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowIn(List<Integer> values) {
+            addCriterion("bsw_follow in", values, "bswFollow");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowNotIn(List<Integer> values) {
+            addCriterion("bsw_follow not in", values, "bswFollow");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowBetween(Integer value1, Integer value2) {
+            addCriterion("bsw_follow between", value1, value2, "bswFollow");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFollowNotBetween(Integer value1, Integer value2) {
+            addCriterion("bsw_follow not between", value1, value2, "bswFollow");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansIsNull() {
+            addCriterion("bsw_fans is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansIsNotNull() {
+            addCriterion("bsw_fans is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansEqualTo(Integer value) {
+            addCriterion("bsw_fans =", value, "bswFans");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansNotEqualTo(Integer value) {
+            addCriterion("bsw_fans <>", value, "bswFans");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansGreaterThan(Integer value) {
+            addCriterion("bsw_fans >", value, "bswFans");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansGreaterThanOrEqualTo(Integer value) {
+            addCriterion("bsw_fans >=", value, "bswFans");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansLessThan(Integer value) {
+            addCriterion("bsw_fans <", value, "bswFans");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansLessThanOrEqualTo(Integer value) {
+            addCriterion("bsw_fans <=", value, "bswFans");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansIn(List<Integer> values) {
+            addCriterion("bsw_fans in", values, "bswFans");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansNotIn(List<Integer> values) {
+            addCriterion("bsw_fans not in", values, "bswFans");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansBetween(Integer value1, Integer value2) {
+            addCriterion("bsw_fans between", value1, value2, "bswFans");
+            return (Criteria) this;
+        }
+
+        public Criteria andBswFansNotBetween(Integer value1, Integer value2) {
+            addCriterion("bsw_fans not between", value1, value2, "bswFans");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

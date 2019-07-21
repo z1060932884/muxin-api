@@ -143,10 +143,11 @@ public class LvJiController {
      * @param userBo
      * @return
      */
-    @GetMapping("/getNearbyPersonList")
+    @PostMapping("/getNearbyPersonList")
     public IMoocJSONResult getNearbyPersonList(@RequestBody NearbyUserBo userBo){
 
         List<ChatUsers> usersList = lvJiService.queryNearbyPerson(userBo);
+
 
         return IMoocJSONResult.ok(usersList.stream().map(new Function<ChatUsers, UsersVO>() {
             @Override
@@ -155,7 +156,23 @@ public class LvJiController {
                 BeanUtils.copyProperties(chatUsers,usersVO);
                 return usersVO;
             }
-        }));
+        }).collect(Collectors.toList()));
 
+    }
+
+    /**
+     * 查询人的信息
+     * @param userId
+     * @return
+     */
+    @GetMapping("/getUserInfo")
+    public IMoocJSONResult getUserInfo(String userId){
+        ChatUsers chatUsers = lvJiService.queryUserById(userId);
+        if(chatUsers == null){
+            return IMoocJSONResult.errorMsg("查询不到用户信息,用户信息为空");
+        }
+        UsersVO usersVO = new UsersVO();
+        BeanUtils.copyProperties(chatUsers,usersVO);
+        return IMoocJSONResult.ok(usersVO);
     }
 }
