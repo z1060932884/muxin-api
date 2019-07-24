@@ -59,6 +59,7 @@
         <table  tableName="lvji_publish_list"></table>
         <table  tableName="lvji_publish_topic"></table>
         <table  tableName="lvji_topic_type"></table>
+        <table  tableName="lvji_comment"></table>
 
 
         <!-- 有些表的字段需要指定java类型
