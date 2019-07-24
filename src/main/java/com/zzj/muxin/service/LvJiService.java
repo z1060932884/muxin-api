@@ -1,10 +1,7 @@
 package com.zzj.muxin.service;
 
 import com.zzj.muxin.bo.NearbyUserBo;
-import com.zzj.muxin.domain.ChatUsers;
-import com.zzj.muxin.domain.LvjiPublishList;
-import com.zzj.muxin.domain.LvjiPublishTopic;
-import com.zzj.muxin.domain.LvjiTopicType;
+import com.zzj.muxin.domain.*;
 import com.zzj.muxin.vo.LvjiPublishTopicCard;
 import com.zzj.muxin.vo.UsersVO;
 
@@ -73,5 +70,13 @@ public interface LvJiService {
      * @return
      */
     ChatUsers queryUserById(String userId);
+
+
+    /**
+     * 添加评论
+     * @param comment
+     * @return
+     */
+    LvjiComment addComment(LvjiComment comment);
 }
 

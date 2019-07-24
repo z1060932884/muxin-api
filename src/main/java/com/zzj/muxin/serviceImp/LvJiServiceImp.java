@@ -35,6 +35,8 @@ public class LvJiServiceImp implements LvJiService {
     private LvjiTopicTypeMapper topicTypeMapper;
     @Autowired
     private ChatUsersMapper usersMapper;
+    @Autowired
+    private LvjiCommentMapper commentMapper;
 
 
     @Transactional(propagation = Propagation.SUPPORTS)
@@ -134,6 +136,23 @@ public class LvJiServiceImp implements LvJiService {
             return chatUsers.get(0);
         }
         return null;
+    }
+
+    /**
+     * 添加评论
+     * @param comment
+     * @return
+     */
+    @Override
+    public LvjiComment addComment(LvjiComment comment) {
+
+        try {
+            commentMapper.insert(comment);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return comment;
     }
 
 }

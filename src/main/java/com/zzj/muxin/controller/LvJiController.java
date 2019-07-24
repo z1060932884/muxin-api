@@ -9,6 +9,7 @@ import com.zzj.muxin.utils.IMoocJSONResult;
 import com.zzj.muxin.vo.LvjiPublishCard;
 import com.zzj.muxin.vo.LvjiPublishTopicCard;
 import com.zzj.muxin.vo.UsersVO;
+import org.apache.commons.lang3.StringUtils;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -175,4 +176,28 @@ public class LvJiController {
         BeanUtils.copyProperties(chatUsers,usersVO);
         return IMoocJSONResult.ok(usersVO);
     }
+
+    /**
+     * 添加评论
+     * @param comment
+     * @return
+     */
+    @PostMapping("/addComment")
+    public IMoocJSONResult addComment(@RequestBody LvjiComment comment){
+        if(StringUtils.isBlank(comment.getCommentUserId())
+                ||StringUtils.isBlank(comment.getContent())
+                ||StringUtils.isBlank(comment.getPublishId())){
+            return IMoocJSONResult.errorMsg("评论信息有误");
+        }
+        comment.setId(sid.nextShort());
+        comment.setCreateAt(new Date());
+        comment.setUpdateAt(new Date());
+        LvjiComment lvjiComment = lvJiService.addComment(comment);
+        if(lvjiComment == null){
+            return IMoocJSONResult.errorMsg("服务器错误");
+        }
+        return IMoocJSONResult.ok(lvjiComment);
+
+    }
+
 }
