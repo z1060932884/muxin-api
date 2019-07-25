@@ -30,7 +30,7 @@ public interface LvJiService {
      * 获取动态列表
      * @return
      */
-    List<LvjiPublishList> getPublishList(int page,int pagesize);
+    List<LvjiPublishList> getPublishList(int page,int pagesize,String topicId);
     /**
      * 获取话题列表
      * @return
@@ -78,5 +78,32 @@ public interface LvJiService {
      * @return
      */
     LvjiComment addComment(LvjiComment comment);
+
+    /**
+     * 查询评论列表
+     * @param publishId
+     * @return
+     */
+    List<LvjiComment> queryCommentListByPublishId(String publishId);
+
+    /**
+     * 查询动态信息
+     * @param publishId
+     * @return
+     */
+    LvjiPublishList queryPublishById(String publishId);
+
+    /**
+     * 保存修改的动态信息
+     * @param lvjiPublishList
+     */
+    void updatePublish(LvjiPublishList lvjiPublishList);
+
+    /**
+     * 动态信息点赞
+
+     */
+    LvjiLike addLikePublish(LvjiLike lvjiLike);
+
 }
 

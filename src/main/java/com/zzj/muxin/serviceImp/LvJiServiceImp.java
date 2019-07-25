@@ -6,6 +6,7 @@ import com.zzj.muxin.mapper.*;
 import com.zzj.muxin.service.LvJiService;
 import com.zzj.muxin.vo.LvjiPublishTopicCard;
 import com.zzj.muxin.vo.UsersVO;
+import org.apache.commons.lang3.StringUtils;
 import org.n3r.idworker.Sid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,8 @@ public class LvJiServiceImp implements LvJiService {
     private ChatUsersMapper usersMapper;
     @Autowired
     private LvjiCommentMapper commentMapper;
+    @Autowired
+    private LvjiLikeMapper likeMapper;
 
 
     @Transactional(propagation = Propagation.SUPPORTS)
@@ -67,12 +70,16 @@ public class LvJiServiceImp implements LvJiService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public List<LvjiPublishList> getPublishList(int page,int pagesize) {
+    public List<LvjiPublishList> getPublishList(int page,int pagesize,String topicTitle) {
         LvjiPublishListExample example = new LvjiPublishListExample();
         //按时间倒叙  desc   正序ASC
         example.setOrderByClause("create_at desc");
         example.setPageSize(pagesize);
         example.setStartRow(page);
+        if(StringUtils.isNotBlank(topicTitle)){
+           LvjiPublishListExample.Criteria criteria =  example.createCriteria();
+           criteria.andPublishTopicEqualTo(topicTitle);
+        }
         List<LvjiPublishList> lvjiPublishLists = lvjiPublishListMapper.selectByExampleWithBLOBs(example);
         return lvjiPublishLists;
     }
@@ -143,6 +150,7 @@ public class LvJiServiceImp implements LvJiService {
      * @param comment
      * @return
      */
+    @Transactional(propagation = Propagation.SUPPORTS)
     @Override
     public LvjiComment addComment(LvjiComment comment) {
 
@@ -153,6 +161,50 @@ public class LvJiServiceImp implements LvJiService {
             return null;
         }
         return comment;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<LvjiComment> queryCommentListByPublishId(String publishId) {
+        LvjiCommentExample example = new LvjiCommentExample();
+        LvjiCommentExample.Criteria criteria =  example.createCriteria();
+        criteria.andPublishIdEqualTo(publishId);
+        return commentMapper.selectByExample(example);
+    }
+
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public LvjiPublishList queryPublishById(String publishId) {
+        LvjiPublishListExample example = new LvjiPublishListExample();
+        LvjiPublishListExample.Criteria criteria =  example.createCriteria();
+        criteria.andIdEqualTo(publishId);
+        List<LvjiPublishList> publishLists = lvjiPublishListMapper.selectByExampleWithBLOBs(example);
+        if(publishLists !=null && publishLists.size()!=0 ){
+            return publishLists.get(0);
+        }
+        return null;
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public void updatePublish(LvjiPublishList lvjiPublishList) {
+        LvjiPublishListExample example = new LvjiPublishListExample();
+        LvjiPublishListExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(lvjiPublishList.getId());
+        lvjiPublishListMapper.updateByExample(lvjiPublishList,example);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public LvjiLike addLikePublish(LvjiLike lvjiLike) {
+        try {
+            likeMapper.insert(lvjiLike);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return lvjiLike;
     }
 
 }

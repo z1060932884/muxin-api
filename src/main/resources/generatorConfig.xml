@@ -60,6 +60,7 @@
         <table  tableName="lvji_publish_topic"></table>
         <table  tableName="lvji_topic_type"></table>
         <table  tableName="lvji_comment"></table>
+        <table  tableName="lvji_like"></table>
 
 
         <!-- 有些表的字段需要指定java类型

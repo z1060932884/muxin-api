@@ -1,6 +1,9 @@
 package com.zzj.muxin.vo;
 
+import com.zzj.muxin.domain.LvjiComment;
+
 import java.util.Date;
+import java.util.List;
 
 public class LvjiPublishCard {
     private String id;
@@ -24,6 +27,31 @@ public class LvjiPublishCard {
     private String faceImage;
 
     private String publishLocation;
+
+    /**
+     * 是否点赞字段
+     */
+    private boolean isLike;
+
+
+    //评论列表
+    private List<LvjiComment> comments;
+
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setLike(boolean like) {
+        isLike = like;
+    }
+
+    public List<LvjiComment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<LvjiComment> comments) {
+        this.comments = comments;
+    }
 
     public String getPublishLocation() {
         return publishLocation;
