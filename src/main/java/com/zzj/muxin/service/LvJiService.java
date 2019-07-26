@@ -104,6 +104,20 @@ public interface LvJiService {
 
      */
     LvjiLike addLikePublish(LvjiLike lvjiLike);
+    /**
+     * 动态信息点赞
+
+     */
+    void deleteLikePublish(LvjiLike lvjiLike);
+
+    /**
+     * 根据用户id和动态id查询点赞数据
+     * @param userId
+     * @param publishId
+     * @return
+     */
+
+    LvjiLike queryLikeByUserId(String userId,String publishId);
 
 }
 

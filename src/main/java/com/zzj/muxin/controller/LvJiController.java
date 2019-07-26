@@ -69,7 +69,7 @@ public class LvJiController {
      * @return
      */
     @GetMapping("/getPublishList")
-    public IMoocJSONResult getPublishList(int page,int pagesize,String topicId){
+    public IMoocJSONResult getPublishList(int page,int pagesize,String topicId,String userId){
 
         List<LvjiPublishList> publishLists = lvJiService.getPublishList(page,pagesize,topicId);
 
@@ -79,11 +79,18 @@ public class LvJiController {
                 ChatUsers users = userService.queryUserInfoByUserId(lvjiPublishList.getUserId());
                 //查询评论列表
                 List<LvjiComment> comments = lvJiService.queryCommentListByPublishId(lvjiPublishList.getId());
+                //查询是否点赞
+                LvjiLike like = lvJiService.queryLikeByUserId(userId,lvjiPublishList.getId());
                 LvjiPublishCard publishCard = new LvjiPublishCard();
                 BeanUtils.copyProperties(lvjiPublishList, publishCard);
                 publishCard.setUserName(users.getNickname());
                 publishCard.setFaceImage(users.getFaceImage());
                 publishCard.setComments(comments);
+                if(like!=null){
+                    publishCard.setLike(true);
+                }else {
+                    publishCard.setLike(false);
+                }
                 return publishCard;
             }
         }).collect(Collectors.toList());
@@ -220,16 +227,27 @@ public class LvJiController {
         lvjiLike.setId(sid.nextShort());
         lvjiLike.setCreateAt(new Date());
         lvjiLike.setUpdateAt(new Date());
-        LvjiLike like = lvJiService.addLikePublish(lvjiLike);
-        if(like == null){
-            return IMoocJSONResult.errorMsg("服务器错误");
-        }
+
         LvjiPublishList publish = lvJiService.queryPublishById(lvjiLike.getPublishId());
         if(publish!=null){
-            publish.setLikeNum(publish.getLikeNum()+1);
-            lvJiService.updatePublish(publish);
+            LvjiLike like1 = lvJiService.queryLikeByUserId(lvjiLike.getLikeUserId(),lvjiLike.getPublishId());
+            if(like1 == null){
+                publish.setLikeNum(publish.getLikeNum()+1);
+                lvJiService.updatePublish(publish);
+                LvjiLike like = lvJiService.addLikePublish(lvjiLike);
+                if(like == null){
+                    return IMoocJSONResult.errorMsg("服务器错误");
+                }
+                return IMoocJSONResult.build(0,"点赞成功",null);
+            }else {
+                publish.setLikeNum(publish.getLikeNum()-1);
+                lvJiService.updatePublish(publish);
+                lvJiService.deleteLikePublish(lvjiLike);
+                return IMoocJSONResult.build(1,"取消点赞成功",null);
+            }
         }
-        return IMoocJSONResult.ok(like);
+        return IMoocJSONResult.errorMsg("参数错误");
+
     }
 
 }

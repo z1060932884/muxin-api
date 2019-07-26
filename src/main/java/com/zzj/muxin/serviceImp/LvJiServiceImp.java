@@ -206,5 +206,29 @@ public class LvJiServiceImp implements LvJiService {
         }
         return lvjiLike;
     }
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public void deleteLikePublish(LvjiLike lvjiLike) {
+        LvjiLikeExample example = new LvjiLikeExample();
+        LvjiLikeExample.Criteria criteria = example.createCriteria();
+        criteria.andLikeUserIdEqualTo(lvjiLike.getLikeUserId());
+        criteria.andPublishIdEqualTo(lvjiLike.getPublishId());
+        likeMapper.deleteByExample(example);
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public LvjiLike queryLikeByUserId(String userId, String publishId) {
+        LvjiLikeExample example = new LvjiLikeExample();
+        LvjiLikeExample.Criteria criteria = example.createCriteria();
+        criteria.andLikeUserIdEqualTo(userId);
+        criteria.andPublishIdEqualTo(publishId);
+        List<LvjiLike> lvjiLikes = likeMapper.selectByExample(example);
+
+        if(lvjiLikes!=null&&lvjiLikes.size()!=0){
+            return  lvjiLikes.get(0);
+        }
+        return null;
+    }
 
 }
