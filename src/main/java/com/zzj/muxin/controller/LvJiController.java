@@ -231,20 +231,27 @@ public class LvJiController {
         LvjiPublishList publish = lvJiService.queryPublishById(lvjiLike.getPublishId());
         if(publish!=null){
             LvjiLike like1 = lvJiService.queryLikeByUserId(lvjiLike.getLikeUserId(),lvjiLike.getPublishId());
+            ChatUsers chatUsers = userService.queryUserInfoByUserId(lvjiLike.getLikeUserId());
             if(like1 == null){
                 publish.setLikeNum(publish.getLikeNum()+1);
                 lvJiService.updatePublish(publish);
                 LvjiLike like = lvJiService.addLikePublish(lvjiLike);
+                //个人获赞个数加 1
                 if(like == null){
                     return IMoocJSONResult.errorMsg("服务器错误");
                 }
+                chatUsers.setBswLike(chatUsers.getBswLike()+1);
+                userService.updateUserInfo(chatUsers);
                 return IMoocJSONResult.build(0,"点赞成功",null);
             }else {
                 publish.setLikeNum(publish.getLikeNum()-1);
                 lvJiService.updatePublish(publish);
                 lvJiService.deleteLikePublish(lvjiLike);
+                chatUsers.setBswLike(chatUsers.getBswLike()-1);
+                userService.updateUserInfo(chatUsers);
                 return IMoocJSONResult.build(1,"取消点赞成功",null);
             }
+
         }
         return IMoocJSONResult.errorMsg("参数错误");
 

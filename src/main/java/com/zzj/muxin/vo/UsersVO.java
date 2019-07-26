@@ -29,6 +29,76 @@ public class UsersVO {
 
     private String bswConstellation;
 
+
+    private String bswAddress;
+
+    private double bswLongitude;
+
+    private double bswLatitude;
+
+    private String bswCity;
+    private int bswLike;
+
+    private int bswFollow;
+
+    private int bswFans;
+
+    public String getBswAddress() {
+        return bswAddress;
+    }
+
+    public void setBswAddress(String bswAddress) {
+        this.bswAddress = bswAddress;
+    }
+
+    public double getBswLongitude() {
+        return bswLongitude;
+    }
+
+    public void setBswLongitude(double bswLongitude) {
+        this.bswLongitude = bswLongitude;
+    }
+
+    public double getBswLatitude() {
+        return bswLatitude;
+    }
+
+    public void setBswLatitude(double bswLatitude) {
+        this.bswLatitude = bswLatitude;
+    }
+
+    public String getBswCity() {
+        return bswCity;
+    }
+
+    public void setBswCity(String bswCity) {
+        this.bswCity = bswCity;
+    }
+
+    public int getBswLike() {
+        return bswLike;
+    }
+
+    public void setBswLike(int bswLike) {
+        this.bswLike = bswLike;
+    }
+
+    public int getBswFollow() {
+        return bswFollow;
+    }
+
+    public void setBswFollow(int bswFollow) {
+        this.bswFollow = bswFollow;
+    }
+
+    public int getBswFans() {
+        return bswFans;
+    }
+
+    public void setBswFans(int bswFans) {
+        this.bswFans = bswFans;
+    }
+
     public String getProfessional() {
         return professional;
     }
