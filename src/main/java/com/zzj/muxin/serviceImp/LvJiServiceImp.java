@@ -63,6 +63,8 @@ public class LvJiServiceImp implements LvJiService {
         publishList.setPublishLocation(location);
         publishList.setPublishCity(city);
         publishList.setPublishTopic(topic);
+        publishList.setLikeNum(0);
+        publishList.setCommentNum(0);
         lvjiPublishListMapper.insert(publishList);
 
         return publishList;
