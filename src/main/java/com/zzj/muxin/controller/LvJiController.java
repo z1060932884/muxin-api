@@ -257,4 +257,15 @@ public class LvJiController {
 
     }
 
+    /**
+     * 获取发布动态city
+     * @param
+     * @return
+     */
+    @GetMapping("/getPublishCityList")
+    public IMoocJSONResult getPublishCityList(int pagesize,int page,String userId){
+
+        return IMoocJSONResult.ok(lvJiService.queryPublishCityByUserId(pagesize,page,userId));
+    }
+
 }

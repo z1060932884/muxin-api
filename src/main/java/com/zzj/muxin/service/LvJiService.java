@@ -15,7 +15,7 @@ public interface LvJiService {
      * @param imageUrl 图片地址
      * @return 图片id
      */
-    String addImage(String userId,String imageUrl);
+    String addImage(String userId,String publishId,String imageUrl);
 
     /**
      * 发布动态
@@ -118,6 +118,14 @@ public interface LvJiService {
      */
 
     LvjiLike queryLikeByUserId(String userId,String publishId);
+
+
+    /**
+     * 根据userId查询当前发送的动态的城市
+     * @param userId
+     * @return
+     */
+    List<LvjiPublishList> queryPublishCityByUserId(int pagesize,int page,String userId);
 
 }
 

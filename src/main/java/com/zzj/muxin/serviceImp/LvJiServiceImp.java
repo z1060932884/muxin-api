@@ -4,20 +4,17 @@ import com.zzj.muxin.bo.NearbyUserBo;
 import com.zzj.muxin.domain.*;
 import com.zzj.muxin.mapper.*;
 import com.zzj.muxin.service.LvJiService;
-import com.zzj.muxin.vo.LvjiPublishTopicCard;
-import com.zzj.muxin.vo.UsersVO;
 import org.apache.commons.lang3.StringUtils;
 import org.n3r.idworker.Sid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @Service
 public class LvJiServiceImp implements LvJiService {
@@ -44,8 +41,21 @@ public class LvJiServiceImp implements LvJiService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     @Override
-    public String addImage(String userId, String imageUrl) {
-        return null;
+    public String addImage(String userId,String publishId, String imageUrl) {
+        ZzjImageManager manager = new ZzjImageManager();
+        try {
+            manager.setId(sid.nextShort());
+            manager.setCreateAt(new Date());
+            manager.setUpdateAt(new Date());
+            manager.setPicture(imageUrl);
+            manager.setUserId(userId);
+            manager.setPushId(publishId);
+            imageManagerMapper.insert(manager);
+        }catch (Exception e){
+            e.printStackTrace();
+            return "";
+        }
+        return manager.getId();
     }
 
 
@@ -66,7 +76,21 @@ public class LvJiServiceImp implements LvJiService {
         publishList.setLikeNum(0);
         publishList.setCommentNum(0);
         lvjiPublishListMapper.insert(publishList);
-
+        //处理图片上传
+        if(StringUtils.isNotBlank(imageUrlList)){
+            String subUrlList = imageUrlList.substring(1,imageUrlList.length()-1);
+            ArrayList<String> arrayList = new ArrayList<>();
+            //处理图片
+            if(subUrlList.contains(",")){
+                String[] splitUrlList =  subUrlList.split(",");
+                arrayList.addAll(Arrays.asList(splitUrlList));
+            }else {
+                arrayList.add(subUrlList);
+            }
+            for(String imageUrl : arrayList){
+               addImage(userId,publishList.getId(),imageUrl);
+            }
+        }
         return publishList;
     }
 
@@ -232,5 +256,22 @@ public class LvJiServiceImp implements LvJiService {
         }
         return null;
     }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Override
+    public List<LvjiPublishList> queryPublishCityByUserId(int pagesize,int page,String userId) {
+        LvjiPublishListExample example = new LvjiPublishListExample();
+        LvjiPublishListExample.Criteria criteria =  example.createCriteria();
+        //按时间倒叙  desc   正序ASC
+        example.setOrderByClause("create_at desc");
+        example.setPageSize(pagesize);
+        example.setStartRow(page);
+        example.setDistinct(true);
+        criteria.andUserIdEqualTo(userId);
+        criteria.andPublishCityIsNotNull();
+
+        return lvjiPublishListMapper.selectByExampleWithBLOBs(example);
+    }
+
 
 }
