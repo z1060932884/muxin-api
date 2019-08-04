@@ -264,8 +264,21 @@ public class LvJiController {
      */
     @GetMapping("/getPublishCityList")
     public IMoocJSONResult getPublishCityList(int pagesize,int page,String userId){
+        List<LvjiPublishList> publishLists = lvJiService.queryPublishCityByUserId(pagesize,page,userId);
+        List<LvjiPublishCard> finalPublishLists =  publishLists.stream().map(new Function<LvjiPublishList, LvjiPublishCard>() {
+            @Override
+            public LvjiPublishCard apply(LvjiPublishList lvjiPublishList) {
+                ChatUsers users = userService.queryUserInfoByUserId(lvjiPublishList.getUserId());
 
-        return IMoocJSONResult.ok(lvJiService.queryPublishCityByUserId(pagesize,page,userId));
+                LvjiPublishCard publishCard = new LvjiPublishCard();
+                BeanUtils.copyProperties(lvjiPublishList, publishCard);
+                publishCard.setUserName(users.getNickname());
+                publishCard.setFaceImage(users.getFaceImage());
+                return publishCard;
+            }
+        }).collect(Collectors.toList());
+
+        return IMoocJSONResult.ok(finalPublishLists);
     }
 
 }
