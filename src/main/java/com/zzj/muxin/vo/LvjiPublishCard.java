@@ -22,6 +22,7 @@ public class LvjiPublishCard {
 
     private String userId;
 
+
     private String userName;
 
     private String faceImage;
@@ -36,6 +37,17 @@ public class LvjiPublishCard {
 
     //评论列表
     private List<LvjiComment> comments;
+
+    private String publishCity;
+
+
+    public String getPublishCity() {
+        return publishCity;
+    }
+
+    public void setPublishCity(String publishCity) {
+        this.publishCity = publishCity;
+    }
 
     public boolean isLike() {
         return isLike;
