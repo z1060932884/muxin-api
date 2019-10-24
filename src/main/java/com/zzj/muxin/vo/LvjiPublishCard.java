@@ -35,6 +35,7 @@ public class LvjiPublishCard {
     private boolean isLike;
 
 
+
     //评论列表
     private List<LvjiComment> comments;
 
